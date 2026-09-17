@@ -281,9 +281,3 @@ button:focus-visible,input:focus-visible{outline:3px solid rgba(32,96,182,.22);o
   .flashcard{height:500px}
   .example-list p{font-size:14px}
 }
-
-/* v3.4 — ví dụ dùng câu linh hoạt hơn */
-.example-item{display:grid;gap:5px;padding:9px 10px;border:1px solid rgba(32,96,182,.12);border-radius:12px;background:#fbfdff}
-.example-type{width:max-content;max-width:100%;padding:3px 8px;border-radius:999px;background:var(--blue-100);color:var(--blue);font-family:var(--vi);font-size:12px;font-weight:700;line-height:1.35}
-.example-item p{margin:0}
-.flash-type{display:inline-flex;margin:7px 0 2px}

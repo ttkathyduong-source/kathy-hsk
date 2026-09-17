@@ -293,7 +293,7 @@
           <div class="detail-block full"><div class="detail-label">Giải nghĩa từ</div><div class="detail-value han">${escapeHtml(item.gloss)}</div></div>
           <div class="detail-block full"><div class="detail-label">Ý chính</div><div class="detail-value core">${escapeHtml(item.core)}</div></div>
           <div class="detail-block full"><div class="detail-label">Từ khóa</div><div class="keyword-list">${(item.keywords || []).map(keyword => `<span class="keyword-chip">${escapeHtml(keyword)}</span>`).join('')}</div></div>
-          <div class="detail-block full example-block"><div class="detail-label">Câu mẫu</div><div class="example-list">${(item.examples || []).map((example,index) => `<div class="example-item"><div class="example-type">${escapeHtml((item.exampleLabels || [])[index] || `Mẫu ${index+1}`)}</div><p><span class="example-no">${index+1}</span>${escapeHtml(example)}</p></div>`).join('')}</div></div>
+          <div class="detail-block full example-block"><div class="detail-label">Câu mẫu</div><div class="example-list">${(item.examples || []).map((example,index) => `<p><span class="example-no">${index+1}</span>${escapeHtml(example)}</p>`).join('')}</div></div>
         </div>
         <div class="detail-actions">
           <button class="btn btn-small listen-row" type="button">🔊 Nghe</button>
@@ -377,7 +377,7 @@
           <div class="flash-face flash-front">
             <div class="flash-kicker">Nhớ nghĩa trước khi lật</div>
             <div class="flash-text">${escapeHtml(item.text)}</div>
-            <div class="flash-hint">Chạm để xem pinyin, nghĩa, từ khóa và cách dùng</div>
+            <div class="flash-hint">Chạm để xem pinyin, nghĩa, từ khóa và câu mẫu</div>
           </div>
           <div class="flash-face flash-back">
             <h3 class="flash-back-title">${escapeHtml(item.text)}</h3>
@@ -387,7 +387,7 @@
               <div class="back-box"><strong>Nguồn</strong><p>${escapeHtml(item.source)}</p></div>
               <div class="back-box full"><strong>Ý chính</strong><p>${escapeHtml(item.core)}</p></div>
               <div class="back-box full"><strong>Từ khóa</strong><div class="keyword-list compact">${(item.keywords || []).map(keyword => `<span class="keyword-chip">${escapeHtml(keyword)}</span>`).join('')}</div></div>
-              <div class="back-box full"><strong>Cách dùng linh hoạt</strong><span class="example-type flash-type">${escapeHtml((item.exampleLabels || [])[1] || 'Trích linh hoạt')}</span><p class="flash-example">${escapeHtml((item.examples || [])[1] || (item.examples || [])[0] || '')}</p></div>
+              <div class="back-box full"><strong>Câu mẫu</strong><p class="flash-example">${escapeHtml((item.examples || [])[0] || '')}</p></div>
             </div>
           </div>
         </div>
