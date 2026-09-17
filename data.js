@@ -369,7 +369,7 @@ window.GUYU_DATA = [
     "id": 17,
     "category": "学习与求知",
     "text": "知之为知之，不知为不知，是知也",
-    "pinyin": "zhī zhī wéi zhī zhī，bù zhī wéi bù zhī，shì zhì yě",
+    "pinyin": "zhī zhī wéi zhī zhī，bù zhī wéi bù zhī，shì zhī yě",
     "gloss": "【最后一个“知”】通“智”，聪明、智慧。",
     "source": "《论语·为政》",
     "core": "秉持实事求是的治学态度，正视自己的认知盲区本身就是一种明智。",
