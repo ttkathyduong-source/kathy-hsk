@@ -1,22 +1,13 @@
-# Kathy Dương · HSK 7–9 冲刺班 — v3.6
-## Thay đổi v3.6
+# Kathy Dương · HSK 7–9 冲刺班 — v3.7
 
-- Tinh chỉnh 5 câu mẫu theo góp ý về ngữ cảm, logic và phong cách nghị luận tiếng Trung.
-- Không thay đổi dữ liệu học, trạng thái Đã thuộc / Cần ôn / Câu sai hay localStorage.
-- Tăng cache-busting lên `?v=3.6` để Netlify tải nội dung mới.
+## Thay đổi v3.7
 
-
-Website tĩnh dùng trực tiếp trên Netlify, không cần build.
+- Chỉnh các từ khóa bị lệch nghĩa: 天行健、爱人者、桃李不言、业精于勤、明日复明日、山不厌高、志当存高远.
+- Tinh chỉnh câu mẫu/ý chính theo góp ý ngữ cảm ở: 尽信书、见一叶落、君子慎独、宁为鸡口、莫愁前路、二人同心、君子求诸己、法与时转、当局者迷.
+- Chuẩn hóa dấu trích dẫn trong toàn bộ phần Câu mẫu: dùng dấu nháy đơn tiếng Trung ‘…’ bên trong khối ví dụ để tránh lẫn cấp dấu ngoặc kép.
+- Không thay đổi logic học tập, localStorage, trạng thái Đã thuộc / Cần ôn / Câu sai.
+- Tăng cache-busting lên `?v=3.7`.
 
 ## Deploy Netlify
-Giải nén file zip, sau đó kéo thư mục `kathy-hsk-netlify-v3.6` vào Netlify Deploys / Deploy manually.
 
-
-## v3.6
-- Viết lại toàn bộ 240 câu mẫu theo ngữ cảnh tự nhiên.
-- Mẫu 1 ưu tiên dùng trọn câu cổ ngữ trong lập luận.
-- Mẫu 2 dùng linh hoạt: trích một phần, nhúng vào câu hoặc diễn đạt trong ngữ cảnh nói/viết.
-
-
-## v3.6
-- Cập nhật các câu mẫu theo bản rà soát ngôn ngữ mới nhất; ưu tiên trích dẫn đầy đủ và diễn đạt tự nhiên trong văn nghị luận.
+Giải nén file zip, sau đó kéo toàn bộ thư mục `kathy-hsk-netlify-v3.7` vào Netlify Deploys / Deploy manually.
