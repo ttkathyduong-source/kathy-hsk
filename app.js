@@ -252,7 +252,7 @@
 
     panel.innerHTML = `
       <div class="list-toolbar">
-        <div><h3>${escapeHtml(title)}</h3><p>Bấm vào câu để mở giải thích. Dùng “Cần ôn” cho những câu bạn chưa chắc.</p></div>
+        <div><h3>${escapeHtml(title)}</h3><p>Bấm vào câu để mở giải thích. Dùng "Cần ôn" cho những câu bạn chưa chắc.</p></div>
       </div>
       <div class="filter-chips" aria-label="Bộ lọc trạng thái">
         <button class="filter-chip ${state.listFilter==='all'?'active':''}" data-filter="all" type="button">Tất cả ${counts.all}</button>
@@ -575,7 +575,7 @@
       const retry=state.practice.scope==='mistakes'&&state.mistakes.has(item.id)?`<div class="retry-note">Tiến độ làm lại: ${Number(state.retryStreak[item.id])||0}/2 lần đúng liên tiếp.</div>`:'';
       feedback.innerHTML=correct
         ? `Chính xác. <span class="answer-han">${escapeHtml(item.source)}</span>${retry}`
-        : `Chưa đúng. Ý chính: <span class="answer-han"><strong>${escapeHtml(item.core)}</strong></span><br><small>Hệ thống đã tự thêm câu này vào “Cần ôn” và “Câu sai”.</small>`;
+        : `Chưa đúng. Ý chính: <span class="answer-han"><strong>${escapeHtml(item.core)}</strong></span><br><small>Hệ thống đã tự thêm câu này vào "Cần ôn" và "Câu sai".</small>`;
       $('#nextQuestion',area).hidden=false;
       renderProgress();
     }));
@@ -608,7 +608,7 @@
       const retry=state.practice.scope==='mistakes'&&state.mistakes.has(item.id)?`<div class="retry-note">Tiến độ làm lại: ${Number(state.retryStreak[item.id])||0}/2 lần đúng liên tiếp.</div>`:'';
       feedback.innerHTML=correct
         ? `Chính xác. Câu đầy đủ: <span class="answer-han"><strong>${escapeHtml(item.text)}</strong></span>${retry}`
-        : `Đáp án: <span class="answer-han"><strong>${escapeHtml(state.practice.fillAnswer)}</strong></span><br>Câu đầy đủ: <span class="answer-han">${escapeHtml(item.text)}</span><br><small>Hệ thống đã tự thêm câu này vào “Cần ôn” và “Câu sai”.</small>`;
+        : `Đáp án: <span class="answer-han"><strong>${escapeHtml(state.practice.fillAnswer)}</strong></span><br>Câu đầy đủ: <span class="answer-han">${escapeHtml(item.text)}</span><br><small>Hệ thống đã tự thêm câu này vào "Cần ôn" và "Câu sai".</small>`;
       $('#nextQuestion',area).hidden=false;
       renderProgress();
     });
