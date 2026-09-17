@@ -1,94 +1,63 @@
 <!doctype html>
-<html lang="vi">
+<html lang="zh-CN">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Kathy Dương · HSK 7–9 冲刺班 — 120 câu cổ ngữ ôn thi." />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#2060B6" />
-  <title>Kathy Dương · HSK 7–9 冲刺班</title>
+  <title>Kathy Dương｜HSK 7–9 冲刺班</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="app-shell">
     <aside class="sidebar" id="sidebar">
       <div class="brand">
-        <div class="brand-mark">K</div>
-        <div class="brand-copy">
-          <h1>Kathy Dương</h1>
-          <p>HSK 7–9 冲刺班</p>
+        <div class="brand-mark">KD</div>
+        <div>
+          <div class="brand-name">Kathy Dương</div>
+          <div class="brand-sub">HSK 7–9 冲刺班</div>
         </div>
       </div>
 
-      <div class="sidebar-tools">
-        <label class="search-box" for="searchInput">
-          <span aria-hidden="true">⌕</span>
-          <input id="searchInput" type="search" placeholder="Tìm câu, nguồn, từ khóa…" autocomplete="off" />
-        </label>
-      </div>
+      <nav class="main-nav">
+        <button class="nav-item active" data-mode="learn"><span>学</span> 学习模式</button>
+        <button class="nav-item" data-mode="quiz"><span>考</span> 考我模式</button>
+        <button class="nav-item" data-mode="write"><span>写</span> 写作模式</button>
+        <button class="nav-item" data-mode="review"><span>复</span> 今日复习</button>
+      </nav>
 
-      <nav id="categoryNav" class="category-nav" aria-label="Danh mục chủ đề"></nav>
+      <div class="side-label">主题目录</div>
+      <div class="topic-list" id="topicList"></div>
 
-      <div class="sidebar-progress">
-        <div class="progress-row">
-          <span>Tiến độ</span>
-          <strong id="learnedCount">0 / 120</strong>
-        </div>
-        <div class="progress-track" aria-hidden="true"><span id="progressBar"></span></div>
-        <button class="sidebar-btn" id="reviewMistakesBtn" type="button">Ôn câu sai</button>
+      <div class="sidebar-foot">
+        <div class="mini-progress"><div id="sidebarProgress"></div></div>
+        <div class="sidebar-stat"><span>学习进度</span><strong id="sidebarCount">0 / 12</strong></div>
       </div>
     </aside>
 
-    <button class="sidebar-backdrop" id="sidebarBackdrop" aria-label="Đóng menu"></button>
-
-    <main class="main">
+    <main class="main-content">
       <header class="topbar">
-        <button class="menu-btn" id="menuBtn" type="button" aria-label="Mở menu">☰</button>
-        <div class="topbar-copy">
-          <div class="eyebrow" id="sectionEyebrow">Chủ đề</div>
-          <h2 id="categoryTitle">认识与思维</h2>
-          <p id="categoryMeta">12 câu</p>
+        <button class="menu-btn" id="menuBtn" aria-label="打开目录">☰</button>
+        <div>
+          <div class="eyebrow">古语 · 写作 · 思辨</div>
+          <h1 id="pageTitle">一、认识与思维</h1>
         </div>
-        <div class="topbar-actions">
-          <button class="btn btn-ghost" id="randomBtn" type="button">Ngẫu nhiên</button>
-          <button class="btn btn-primary" id="markLearnedBtn" type="button">✓ Đã thuộc</button>
+        <div class="top-actions">
+          <button class="ghost-btn" id="hidePinyinBtn">隐藏拼音</button>
+          <button class="primary-btn" id="randomBtn">随机一题</button>
         </div>
       </header>
 
-      <section class="hero-card" aria-labelledby="heroText">
-        <div class="hero-main">
-          <div class="item-number" id="itemNumber">01</div>
-          <div class="hero-copy">
-            <h3 id="heroText">不识庐山真面目，只缘身在此山中</h3>
-            <p class="pinyin" id="heroPinyin"></p>
-            <p class="source" id="heroSource"></p>
-          </div>
-        </div>
-        <div class="hero-actions">
-          <button class="round-btn" id="favoriteBtn" type="button" title="Yêu thích" aria-label="Yêu thích">☆</button>
-          <button class="round-btn" id="speakBtn" type="button" title="Nghe phát âm" aria-label="Nghe phát âm">🔊</button>
-        </div>
-      </section>
-
-      <section class="workspace">
-        <div class="tabs" role="tablist" aria-label="Chế độ học">
-          <button class="tab active" type="button" data-tab="list" role="tab">Danh sách</button>
-          <button class="tab" type="button" data-tab="flashcard" role="tab">Flashcard</button>
-          <button class="tab" type="button" data-tab="practice" role="tab">Bài tập</button>
-          <button class="tab" type="button" data-tab="argument" role="tab">Câu nghị luận mẫu</button>
-        </div>
-        <div id="panel" class="panel"></div>
-      </section>
-
-      <footer class="footer">
-        <span>HSK 7–9 冲刺班 · 120 câu cổ ngữ</span>
-        <span>Phát triển bởi <strong>Kathy Dương</strong></span>
-      </footer>
+      <section id="learnView" class="view active"></section>
+      <section id="quizView" class="view"></section>
+      <section id="writeView" class="view"></section>
+      <section id="reviewView" class="view"></section>
     </main>
   </div>
 
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
-
-  <script src="data.js"></script>
+  <div class="toast" id="toast"></div>
   <script src="app.js"></script>
 </body>
 </html>

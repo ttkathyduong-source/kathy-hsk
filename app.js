@@ -1,662 +1,186 @@
-(() => {
-  'use strict';
+const TOPICS = [
+  '认识与思维','学习与求知','行动与积累','坚持与逆境','辩证与变化',
+  '心态与自省','人际与合作','规则、诚信与责任','时间、选择与目标','情谊、胸怀与生态价值'
+];
 
-  const DATA = Array.isArray(window.GUYU_DATA) ? window.GUYU_DATA : [];
-  const CATEGORIES = [...new Set(DATA.map(item => item.category))];
-  const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X'];
-  const STORAGE_KEY = 'kathy-hsk79-guyu-v2';
+const DATA = [
+ {id:1,q:'不识庐山真面目，只缘身在此山中',p:'bù shí lú shān zhēn miàn mù，zhǐ yuán shēn zài cǐ shān zhōng',v:'【缘】因为；由于。',s:'苏轼《题西林壁》',c:'身处其中容易受到局限，看问题时需要跳出自己的立场。',vn:'Khi ở quá gần hoặc ở ngay bên trong một vấn đề, con người dễ bị góc nhìn cá nhân giới hạn.',k:['局限','角度','客观','认知'],t:['认识问题','换位思考','批判性思维','自我反思'],w:'看待一个问题时，我们不能只站在自己的角度。正所谓“不识庐山真面目，只缘身在此山中”，适当地跳出自己的立场，往往能够获得更加全面的认识。'},
+ {id:2,q:'当局者迷，旁观者清',p:'dāng jú zhě mí，páng guān zhě qīng',v:'【当局者】直接参与事情的人；【旁观者】在一旁观看的人。',s:'《旧唐书·元行冲传》',c:'直接参与者易受利益与情绪干扰，客观第三方往往看得更透彻。',vn:'Người trong cuộc dễ bị cảm xúc và lợi ích chi phối; người ngoài cuộc thường nhìn vấn đề khách quan hơn.',k:['立场','客观','情绪'],t:['判断','沟通','决策'],w:'面对复杂矛盾时，当事人往往容易被情绪影响。所谓“当局者迷，旁观者清”，适当听取第三方意见，有助于我们作出更理性的判断。'},
+ {id:3,q:'井底之蛙',p:'jǐng dǐ zhī wā',v:'【井底之蛙】比喻见识短浅、眼界狭小的人。',s:'《庄子·秋水》',c:'眼界狭隘会限制个人的认知格局与判断力。',vn:'Tầm nhìn hạn hẹp sẽ giới hạn nhận thức và năng lực phán đoán của một người.',k:['眼界','局限','见识'],t:['学习','成长','国际视野'],w:'一个人的经验毕竟有限，如果拒绝接触新的知识和观点，就很容易成为“井底之蛙”，因此我们应该主动扩大自己的视野。'},
+ {id:4,q:'一叶障目，不见泰山',p:'yī yè zhàng mù，bù jiàn tài shān',v:'【障】遮挡；阻隔。',s:'《鹖冠子·天则》',c:'切忌被局部和微小的表象遮蔽，而忽略了全局与本质。',vn:'Đừng để một chi tiết hoặc hiện tượng bề mặt che khuất toàn cảnh và bản chất của vấn đề.',k:['局部','整体','本质'],t:['媒体','判断','批判性思维'],w:'评价一件事情时，如果只抓住某个细节就下结论，就可能“一叶障目，不见泰山”。只有结合整体背景，判断才会更加可靠。'},
+ {id:5,q:'尺有所短，寸有所长',p:'chǐ yǒu suǒ duǎn，cùn yǒu suǒ cháng',v:'【尺/寸】比喻各有局限与优势。',s:'《楚辞·卜居》',c:'人与事物各有所长各有所短，应客观看待、扬长避短。',vn:'Mỗi người và mỗi sự vật đều có điểm mạnh, điểm yếu; cần nhìn nhận khách quan và phát huy ưu thế.',k:['优势','不足','客观'],t:['教育','合作','人才'],w:'“尺有所短，寸有所长”，评价人才不能只用单一标准，而应看到不同个体在能力与潜力上的差异。'},
+ {id:6,q:'兼听则明，偏信则暗',p:'jiān tīng zé míng，piān xìn zé àn',v:'【兼】多方面；【明】明晰；【暗】蒙蔽。',s:'《资治通鉴》',c:'多方听取意见才能明辨是非，单凭偏听容易陷入主观蒙蔽。',vn:'Nghe nhiều phía giúp nhìn rõ sự việc; chỉ tin một phía dễ dẫn đến thiên lệch.',k:['信息','观点','判断'],t:['网络信息','管理','沟通'],w:'在信息爆炸的时代，“兼听则明，偏信则暗”更值得重视。面对网络观点，我们应主动核实来源，并比较不同立场。'},
+ {id:7,q:'知人者智，自知者明',p:'zhī rén zhě zhì，zì zhī zhě míng',v:'【智】智慧；【明】明达、清醒。',s:'《老子》第三十三章',c:'了解他人是智慧，能清醒认识并剖析自我则更为可贵。',vn:'Hiểu người là trí tuệ; hiểu rõ chính mình còn đáng quý hơn.',k:['自知','反思','成长'],t:['职业选择','自我认识','成长'],w:'“知人者智，自知者明”。在选择专业和职业时，真正重要的不只是了解外部机会，也要清楚自己的兴趣与能力。'},
+ {id:8,q:'横看成岭侧成峰，远近高低各不同',p:'héng kàn chéng lǐng cè chéng fēng，yuǎn jìn gāo dī gè bù tóng',v:'【岭】连绵的山；【峰】高耸的山尖。',s:'苏轼《题西林壁》',c:'观察角度与立场不同，对同一事物的认识与结论亦不相同。',vn:'Góc nhìn khác nhau có thể dẫn đến những nhận thức và kết luận khác nhau về cùng một sự việc.',k:['角度','差异','立场'],t:['文化差异','沟通','争议'],w:'同一项政策或技术，不同群体往往有不同评价。正如“横看成岭侧成峰，远近高低各不同”，理解差异需要先理解彼此所处的角度。'},
+ {id:9,q:'金玉其外，败絮其中',p:'jīn yù qí wài，bài xù qí zhōng',v:'【败絮】破旧稀烂的棉絮。',s:'刘基《卖柑者言》',c:'外表光鲜不代表内在充实，认识事物须透过表象看本质。',vn:'Bề ngoài đẹp đẽ không đồng nghĩa với bên trong có giá trị; cần nhìn xuyên qua hiện tượng để thấy bản chất.',k:['表象','本质','判断'],t:['消费','社交媒体','人才评价'],w:'在消费社会中，精美包装很容易影响判断。但“金玉其外，败絮其中”的现象并不少见，因此理性选择应建立在真实价值之上。'},
+ {id:10,q:'以人为镜，可以明得失',p:'yǐ rén wéi jìng，kě yǐ míng dé shī',v:'【明】看清；【得失】成功与过失。',s:'《旧唐书·魏徵传》',c:'以他人的成败经验作为参照，能够反观并修正自己的言行。',vn:'Có thể dùng kinh nghiệm thành bại của người khác như một tấm gương để tự điều chỉnh bản thân.',k:['经验','反思','借鉴'],t:['学习','管理','成长'],w:'个人成长不必事事从零开始。“以人为镜，可以明得失”，善于总结他人的经验与教训，往往能减少不必要的试错。'},
+ {id:11,q:'尽信书，则不如无书',p:'jìn xìn shū，zé bù rú wú shū',v:'【尽】完全、盲目地。',s:'《孟子·尽心下》',c:'反对教条与盲从，主张独立思考与批判性思维。',vn:'Không nên tin sách vở một cách tuyệt đối; học tập cần đi kèm tư duy độc lập và phản biện.',k:['批判','独立思考','求证'],t:['教育','网络信息','学术'],w:'知识固然重要，但“尽信书，则不如无书”。真正的学习不是机械接受结论，而是在理解、求证与实践中形成自己的判断。'},
+ {id:12,q:'见一叶落而知岁之将暮',p:'jiàn yī yè luò ér zhī suì zhī jiāng mù',v:'【岁】一年；【暮】将尽。',s:'《淮南子·说山训》',c:'见微知著；善于从微小征兆中推断整体的发展趋势。',vn:'Từ một dấu hiệu nhỏ có thể suy ra xu hướng phát triển lớn hơn của sự việc.',k:['趋势','征兆','观察'],t:['经济','环境','科技变化'],w:'社会变化往往先从细节中显现。所谓“见一叶落而知岁之将暮”，善于观察微小信号，有助于我们更早理解未来趋势。'}
+];
 
-  const $ = (selector, root = document) => root.querySelector(selector);
-  const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+const state = {
+  mode:'learn',
+  topic:0,
+  hidePinyin:false,
+  progress: JSON.parse(localStorage.getItem('kathy_hsk_progress') || '{}'),
+  quizIndex:0,
+  quizScore:0,
+  quizAnswered:false,
+  quizSet:[],
+  writingChoice:null
+};
 
-  const stored = readStored();
-  const state = {
-    currentId: Number(stored.currentId) || 1,
-    category: stored.category && CATEGORIES.includes(stored.category) ? stored.category : (CATEGORIES[0] || ''),
-    tab: ['list','flashcard','practice','argument'].includes(stored.tab) ? stored.tab : 'list',
-    learned: new Set(Array.isArray(stored.learned) ? stored.learned : []),
-    favorites: new Set(Array.isArray(stored.favorites) ? stored.favorites : []),
-    mistakes: new Set(Array.isArray(stored.mistakes) ? stored.mistakes : []),
-    search: '',
-    reviewMistakes: false,
-    openId: null,
-    practice: {
-      mode: 'choice',
-      itemId: null,
-      answered: false,
-      score: 0,
-      total: 0,
-      fillAnswer: '',
-      fillPrompt: ''
-    }
-  };
+const $ = (s)=>document.querySelector(s);
+const $$ = (s)=>[...document.querySelectorAll(s)];
 
-  let voices = [];
-  let toastTimer = null;
+function saveProgress(){ localStorage.setItem('kathy_hsk_progress', JSON.stringify(state.progress)); updateProgress(); }
+function getP(id){ return state.progress[id] || {status:'new',fav:false}; }
+function setP(id,patch){ state.progress[id] = {...getP(id),...patch}; saveProgress(); }
+function toast(msg){ const t=$('#toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),1500); }
 
-  function readStored() {
-    try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); }
-    catch { return {}; }
-  }
+function renderTopics(){
+  $('#topicList').innerHTML = TOPICS.map((t,i)=>`<button class="topic-btn ${i===state.topic?'active':''} ${i>0?'locked':''}" data-topic="${i}"><span class="topic-num">${String(i+1).padStart(2,'0')}</span><span>${t}</span></button>`).join('');
+  $$('.topic-btn').forEach(btn=>btn.onclick=()=>{
+    const i=+btn.dataset.topic;
+    if(i>0){toast('演示版暂开放“认识与思维”主题');return;}
+    state.topic=i; renderTopics(); renderLearn(); closeSidebar();
+  });
+}
 
-  function saveState() {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify({
-        currentId: state.currentId,
-        category: state.category,
-        tab: state.tab,
-        learned: [...state.learned],
-        favorites: [...state.favorites],
-        mistakes: [...state.mistakes]
-      }));
-    } catch {}
-  }
+function updateProgress(){
+  const learned = DATA.filter(x=>getP(x.id).status==='done').length;
+  $('#sidebarCount').textContent=`${learned} / ${DATA.length}`;
+  $('#sidebarProgress').style.width=`${learned/DATA.length*100}%`;
+}
 
-  function currentItem() {
-    return DATA.find(item => item.id === state.currentId) || DATA[0];
-  }
+function speak(text){
+  if(!('speechSynthesis' in window)){toast('当前浏览器暂不支持朗读');return;}
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);u.lang='zh-CN';u.rate=.82;u.pitch=1;
+  const voices=speechSynthesis.getVoices(); const zh=voices.find(v=>/zh|Chinese/i.test(v.lang+' '+v.name)); if(zh)u.voice=zh;
+  speechSynthesis.speak(u);
+}
 
-  function categoryItems(category = state.category) {
-    return DATA.filter(item => item.category === category);
-  }
+function renderLearn(){
+  $('#pageTitle').textContent='一、认识与思维';
+  const learned=DATA.filter(x=>getP(x.id).status==='done').length;
+  const hard=DATA.filter(x=>getP(x.id).status==='hard').length;
+  const fav=DATA.filter(x=>getP(x.id).fav).length;
+  $('#learnView').innerHTML=`
+    <div class="hero">
+      <div class="hero-card"><div class="hero-kicker">HSK 7–9 · 古语写作训练</div><h2>不是“背古语”，而是学会把古语变成论据。</h2><p>先回忆，再翻卡；先理解，再写作。点击卡片查看拼音、出处、核心含义与 HSK 写作示范。</p></div>
+      <div class="stats-card"><div class="stat"><strong>${learned}</strong><span>我会了</span></div><div class="stat"><strong>${hard}</strong><span>还不熟</span></div><div class="stat"><strong>${fav}</strong><span>已收藏</span></div><div class="stat"><strong>${DATA.length}</strong><span>本主题古语</span></div></div>
+    </div>
+    <div class="toolbar"><h3>认识与思维 · ${DATA.length} 句</h3><input id="searchInput" class="search" placeholder="搜索古语、关键词、出处…" /></div>
+    <div id="cardGrid" class="card-grid"></div>`;
+  renderCards(DATA);
+  $('#searchInput').oninput=(e)=>{ const q=e.target.value.trim(); renderCards(DATA.filter(x=>[x.q,x.s,x.c,...x.k,...x.t].join(' ').includes(q))); };
+}
 
-  function searchItems() {
-    const q = state.search.trim().toLowerCase();
-    if (!q) return [];
-    return DATA.filter(item => [item.text, item.pinyin, item.gloss, item.source, item.core, item.category]
-      .some(value => String(value || '').toLowerCase().includes(q)));
-  }
-
-  function visibleItems() {
-    if (state.search.trim()) return searchItems();
-    if (state.reviewMistakes) return DATA.filter(item => state.mistakes.has(item.id));
-    return categoryItems();
-  }
-
-  function ensureCurrentVisible() {
-    const list = visibleItems();
-    if (list.length && !list.some(item => item.id === state.currentId)) {
-      state.currentId = list[0].id;
-      state.openId = state.currentId;
-    }
-  }
-
-  function toast(message) {
-    const el = $('#toast');
-    el.textContent = message;
-    el.classList.add('show');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => el.classList.remove('show'), 1800);
-  }
-
-  function escapeHtml(value) {
-    return String(value ?? '')
-      .replaceAll('&', '&amp;')
-      .replaceAll('<', '&lt;')
-      .replaceAll('>', '&gt;')
-      .replaceAll('"', '&quot;')
-      .replaceAll("'", '&#039;');
-  }
-
-  function loadVoices() {
-    if (!('speechSynthesis' in window)) return;
-    voices = window.speechSynthesis.getVoices() || [];
-  }
-
-  function pickChineseVoice() {
-    if (!voices.length) loadVoices();
-    const preferredNames = /ting|xiaoxiao|huihui|kangkang|sinji|mei-jia|mandarin|chinese/i;
-    return voices.find(v => /^zh-CN$/i.test(v.lang) && preferredNames.test(v.name))
-      || voices.find(v => /^zh-CN$/i.test(v.lang))
-      || voices.find(v => /^zh(?:-|_)/i.test(v.lang))
-      || null;
-  }
-
-  function speakText(text) {
-    if (!('speechSynthesis' in window) || typeof SpeechSynthesisUtterance === 'undefined') {
-      toast('Trình duyệt này chưa hỗ trợ đọc văn bản.');
-      return;
-    }
-    const synth = window.speechSynthesis;
-    synth.cancel();
-    loadVoices();
-    const utter = new SpeechSynthesisUtterance(text);
-    utter.lang = 'zh-CN';
-    utter.rate = 0.78;
-    utter.pitch = 1;
-    const voice = pickChineseVoice();
-    if (voice) utter.voice = voice;
-    utter.onerror = () => toast('Không phát được âm thanh trên thiết bị này.');
-    synth.speak(utter);
-  }
-
-  function renderCategories() {
-    const nav = $('#categoryNav');
-    nav.innerHTML = CATEGORIES.map((category, index) => {
-      const count = categoryItems(category).length;
-      const active = !state.search && !state.reviewMistakes && state.category === category;
-      return `
-        <button class="category-btn ${active ? 'active' : ''}" type="button" data-category="${escapeHtml(category)}">
-          <span class="category-index">${ROMAN[index] || index + 1}</span>
-          <span class="category-name">${escapeHtml(category)}</span>
-          <span class="category-count">${count}</span>
-        </button>`;
-    }).join('');
-
-    $$('.category-btn', nav).forEach(btn => btn.addEventListener('click', () => {
-      state.category = btn.dataset.category;
-      state.reviewMistakes = false;
-      state.search = '';
-      $('#searchInput').value = '';
-      const first = categoryItems(state.category)[0];
-      if (first) state.currentId = first.id;
-      state.openId = null;
-      resetPracticeQuestion();
-      saveState();
-      closeSidebar();
-      renderAll();
-    }));
-  }
-
-  function renderProgress() {
-    $('#learnedCount').textContent = `${state.learned.size} / ${DATA.length}`;
-    $('#progressBar').style.width = `${DATA.length ? (state.learned.size / DATA.length) * 100 : 0}%`;
-  }
-
-  function renderTopbar() {
-    const list = visibleItems();
-    const eyebrow = $('#sectionEyebrow');
-    const title = $('#categoryTitle');
-    if (state.search.trim()) {
-      eyebrow.textContent = 'Tìm kiếm';
-      title.textContent = 'Kết quả phù hợp';
-    } else if (state.reviewMistakes) {
-      eyebrow.textContent = 'Ôn tập';
-      title.textContent = 'Các câu đã làm sai';
-    } else {
-      eyebrow.textContent = 'Chủ đề';
-      title.textContent = state.category;
-    }
-    $('#categoryMeta').textContent = `${list.length} câu`;
-  }
-
-  function renderHero() {
-    const item = currentItem();
-    if (!item) return;
-    $('#itemNumber').textContent = String(item.id).padStart(2, '0');
-    $('#heroText').textContent = item.text;
-    $('#heroPinyin').textContent = item.pinyin;
-    $('#heroSource').textContent = item.source;
-    $('#favoriteBtn').textContent = state.favorites.has(item.id) ? '★' : '☆';
-    $('#favoriteBtn').setAttribute('aria-label', state.favorites.has(item.id) ? 'Bỏ yêu thích' : 'Yêu thích');
-    const learnedBtn = $('#markLearnedBtn');
-    const learned = state.learned.has(item.id);
-    learnedBtn.textContent = learned ? '✓ Đã thuộc' : '✓ Đánh dấu đã thuộc';
-    learnedBtn.classList.toggle('learned', learned);
-  }
-
-  function renderTabs() {
-    $$('.tab').forEach(tab => {
-      const active = tab.dataset.tab === state.tab;
-      tab.classList.toggle('active', active);
-      tab.setAttribute('aria-selected', active ? 'true' : 'false');
-    });
-    const panel = $('#panel');
-    if (state.tab === 'list') renderList(panel);
-    if (state.tab === 'flashcard') renderFlashcard(panel);
-    if (state.tab === 'practice') renderPractice(panel);
-    if (state.tab === 'argument') renderArgument(panel);
-  }
-
-  function renderList(panel) {
-    const list = visibleItems();
-    const title = state.search.trim() ? 'Kết quả tìm kiếm' : state.reviewMistakes ? 'Câu cần ôn lại' : state.category;
-    if (!list.length) {
-      panel.innerHTML = `<div class="empty-state">${state.reviewMistakes ? 'Chưa có câu sai để ôn.' : 'Không tìm thấy nội dung phù hợp.'}</div>`;
-      return;
-    }
-
-    panel.innerHTML = `
-      <div class="list-toolbar">
-        <div><h3>${escapeHtml(title)}</h3><p>Nhấn vào một câu để xem pinyin, giải nghĩa từ, nguồn và ý chính.</p></div>
+function renderCards(items, selector='#cardGrid'){
+  const grid=$(selector); if(!grid)return;
+  grid.innerHTML=items.map(x=>{
+    const p=getP(x.id);
+    return `<article class="study-card" data-id="${x.id}"><div class="card-inner">
+      <div class="card-face front">
+        <div class="card-no">${String(x.id).padStart(2,'0')}｜认识与思维</div>
+        <div class="quote">${x.q}</div>
+        <div class="listen-row"><button class="listen-btn" data-speak="${x.id}">🔊 听原句</button><span class="flip-hint">点击卡片翻面</span></div>
       </div>
-      <div class="list-stack">
-        ${list.map(item => {
-          const open = state.openId === item.id;
-          return `
-          <article class="list-item ${open ? 'open' : ''}" data-id="${item.id}">
-            <button class="list-row" type="button" aria-expanded="${open ? 'true' : 'false'}">
-              <span class="list-no">${String(item.id).padStart(2,'0')}</span>
-              <span class="list-title">${escapeHtml(item.text)}</span>
-              <span class="list-status"><span class="learned-dot ${state.learned.has(item.id) ? 'on' : ''}"></span><span>${state.learned.has(item.id) ? 'Đã thuộc' : ''}</span><span class="chev">⌄</span></span>
-            </button>
-            <div class="list-detail">
-              <div class="detail-grid">
-                <div class="detail-block"><div class="detail-label">Pinyin</div><div class="detail-value">${escapeHtml(item.pinyin)}</div></div>
-                <div class="detail-block"><div class="detail-label">Nguồn</div><div class="detail-value">${escapeHtml(item.source)}</div></div>
-                <div class="detail-block full"><div class="detail-label">Giải nghĩa từ</div><div class="detail-value">${escapeHtml(item.gloss)}</div></div>
-                <div class="detail-block full"><div class="detail-label">Ý chính</div><div class="detail-value core">${escapeHtml(item.core)}</div></div>
-              </div>
-              <div class="detail-actions">
-                <button class="btn btn-ghost btn-small listen-row" type="button">🔊 Nghe</button>
-                <button class="btn ${state.learned.has(item.id) ? 'btn-primary learned' : 'btn-ghost'} btn-small learn-row" type="button">${state.learned.has(item.id) ? '✓ Đã thuộc' : 'Đánh dấu đã thuộc'}</button>
-              </div>
-            </div>
-          </article>`;
-        }).join('')}
-      </div>`;
-
-    $$('.list-item', panel).forEach(article => {
-      const id = Number(article.dataset.id);
-      const row = $('.list-row', article);
-      row.addEventListener('click', () => {
-        state.currentId = id;
-        state.openId = state.openId === id ? null : id;
-        const item = currentItem();
-        if (item) state.category = item.category;
-        saveState();
-        renderTopbar();
-        renderHero();
-        renderList(panel);
-      });
-      $('.listen-row', article).addEventListener('click', event => {
-        event.stopPropagation();
-        const item = DATA.find(x => x.id === id);
-        if (item) speakText(item.text);
-      });
-      $('.learn-row', article).addEventListener('click', event => {
-        event.stopPropagation();
-        toggleLearned(id);
-        renderProgress();
-        renderHero();
-        renderList(panel);
-      });
-    });
-  }
-
-  function flashDeck() {
-    const list = visibleItems();
-    return list.length ? list : DATA;
-  }
-
-  function moveCurrent(delta) {
-    const deck = flashDeck();
-    if (!deck.length) return;
-    let index = deck.findIndex(item => item.id === state.currentId);
-    if (index < 0) index = 0;
-    index = (index + delta + deck.length) % deck.length;
-    state.currentId = deck[index].id;
-    state.category = deck[index].category;
-    state.openId = null;
-    saveState();
-  }
-
-  function renderFlashcard(panel) {
-    const item = currentItem();
-    const deck = flashDeck();
-    if (!item || !deck.length) {
-      panel.innerHTML = '<div class="empty-state">Không có flashcard để hiển thị.</div>';
-      return;
-    }
-    const index = Math.max(0, deck.findIndex(x => x.id === item.id));
-    panel.innerHTML = `
-      <div class="flash-stage">
-        <div class="flash-meta"><span>Nhấn vào thẻ để lật</span><span>${index + 1} / ${deck.length}</span></div>
-        <div class="flashcard" id="flashcard" role="button" tabindex="0" aria-label="Lật flashcard">
-          <div class="flashcard-inner">
-            <div class="flash-face flash-front">
-              <div class="flash-kicker">Nhớ nghĩa trước khi lật</div>
-              <div class="flash-text">${escapeHtml(item.text)}</div>
-              <div class="flash-hint">Chạm / nhấn để xem đáp án</div>
-            </div>
-            <div class="flash-face flash-back">
-              <h3 class="back-title">${escapeHtml(item.text)}</h3>
-              <div class="back-pinyin">${escapeHtml(item.pinyin)}</div>
-              <div class="back-grid">
-                <div class="back-box"><strong>Giải nghĩa từ</strong><p>${escapeHtml(item.gloss)}</p></div>
-                <div class="back-box"><strong>Nguồn</strong><p>${escapeHtml(item.source)}</p></div>
-                <div class="back-box full"><strong>Ý chính</strong><p>${escapeHtml(item.core)}</p></div>
-              </div>
-            </div>
-          </div>
+      <div class="card-face back">
+        <div class="card-no">${String(x.id).padStart(2,'0')}｜详情</div>
+        <div class="quote">${x.q}</div>
+        <div class="pinyin">${x.p}</div>
+        <div class="meta-line"><b>出处：</b>${x.s}</div>
+        <div class="meta-line"><b>核心：</b>${x.c}</div>
+        <div class="tag-row">${x.k.map(k=>`<span class="tag">${k}</span>`).join('')}</div>
+        <div class="card-actions">
+          <button class="action-btn done ${p.status==='done'?'active':''}" data-action="done" data-id="${x.id}">✓ 我会了</button>
+          <button class="action-btn hard ${p.status==='hard'?'active':''}" data-action="hard" data-id="${x.id}">↻ 还不熟</button>
+          <button class="action-btn fav ${p.fav?'active':''}" data-action="fav" data-id="${x.id}">☆ 收藏</button>
         </div>
-        <div class="flash-controls">
-          <button class="btn btn-ghost" id="flashPrev" type="button">← Trước</button>
-          <button class="btn btn-ghost" id="flashListen" type="button">🔊 Nghe</button>
-          <button class="btn btn-primary ${state.learned.has(item.id) ? 'learned' : ''}" id="flashLearn" type="button">${state.learned.has(item.id) ? '✓ Đã thuộc' : 'Đánh dấu đã thuộc'}</button>
-          <button class="btn btn-ghost" id="flashNext" type="button">Sau →</button>
-        </div>
-      </div>`;
+      </div></div></article>`;
+  }).join('') || '<div class="empty">没有找到相关内容。</div>';
 
-    const card = $('#flashcard');
-    const flip = () => card.classList.toggle('flipped');
-    card.addEventListener('click', flip);
-    card.addEventListener('keydown', event => {
-      if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); flip(); }
-    });
-    $('#flashPrev').addEventListener('click', () => { moveCurrent(-1); renderTopbar(); renderHero(); renderFlashcard(panel); });
-    $('#flashNext').addEventListener('click', () => { moveCurrent(1); renderTopbar(); renderHero(); renderFlashcard(panel); });
-    $('#flashListen').addEventListener('click', () => speakText(item.text));
-    $('#flashLearn').addEventListener('click', () => { toggleLearned(item.id); renderProgress(); renderHero(); renderFlashcard(panel); });
+  $$('.study-card').forEach(card=>card.onclick=(e)=>{ if(e.target.closest('button'))return; card.classList.toggle('flipped'); });
+  $$('[data-speak]').forEach(btn=>btn.onclick=(e)=>{ e.stopPropagation(); const x=DATA.find(d=>d.id===+btn.dataset.speak); speak(x.q); });
+  $$('[data-action]').forEach(btn=>btn.onclick=(e)=>{
+    e.stopPropagation(); const id=+btn.dataset.id; const a=btn.dataset.action;
+    if(a==='done'){setP(id,{status:'done'});toast('已标记：我会了');}
+    if(a==='hard'){setP(id,{status:'hard'});toast('已加入今日复习');}
+    if(a==='fav'){setP(id,{fav:!getP(id).fav});toast(getP(id).fav?'已收藏':'已取消收藏');}
+    renderLearn();
+  });
+  document.body.classList.toggle('hidden-pinyin',state.hidePinyin);
+}
+
+function buildQuiz(){
+  const shuffled=[...DATA].sort(()=>Math.random()-.5).slice(0,5);
+  state.quizSet=shuffled.map(x=>{
+    const options=[x,...DATA.filter(d=>d.id!==x.id).sort(()=>Math.random()-.5).slice(0,3)].sort(()=>Math.random()-.5);
+    return {x,options,type:Math.random()>.5?'meaning':'source'};
+  });
+  state.quizIndex=0;state.quizScore=0;state.quizAnswered=false;
+}
+function renderQuiz(){
+  $('#pageTitle').textContent='考我模式'; if(!state.quizSet.length)buildQuiz();
+  const q=state.quizSet[state.quizIndex];
+  if(!q){
+    $('#quizView').innerHTML=`<div class="quiz-wrap section-card"><div class="empty"><h2>完成！${state.quizScore} / 5</h2><p>错题可以回到“今日复习”继续练习。</p><button class="primary-btn" id="restartQuiz">再来 5 题</button></div></div>`;
+    $('#restartQuiz').onclick=()=>{buildQuiz();renderQuiz();}; return;
   }
+  const prompt=q.type==='meaning'?`“${q.x.q}”最符合下面哪一个含义？`:`“${q.x.q}”来自哪里？`;
+  $('#quizView').innerHTML=`<div class="quiz-wrap section-card"><div class="quiz-head"><b>随机训练</b><span class="quiz-progress">${state.quizIndex+1} / 5</span></div><div class="question">${prompt}</div><div class="option-list">${q.options.map((o,i)=>`<button class="option" data-id="${o.id}"><b>${'ABCD'[i]}.</b> ${q.type==='meaning'?o.c:o.s}</button>`).join('')}</div><div id="explain"></div><div class="quiz-footer"><button class="primary-btn" id="nextQ" style="display:none">下一题 →</button></div></div>`;
+  $$('.option').forEach(btn=>btn.onclick=()=>{
+    if(state.quizAnswered)return;state.quizAnswered=true;
+    const ok=+btn.dataset.id===q.x.id; if(ok)state.quizScore++; else setP(q.x.id,{status:'hard'});
+    $$('.option').forEach(b=>{ if(+b.dataset.id===q.x.id)b.classList.add('correct'); }); if(!ok)btn.classList.add('wrong');
+    $('#explain').innerHTML=`<div class="explain"><b>${ok?'回答正确':'再想一想'}</b><br>${q.x.q}：${q.x.c}</div>`; $('#nextQ').style.display='inline-block';
+  });
+  $('#nextQ').onclick=()=>{state.quizIndex++;state.quizAnswered=false;renderQuiz();};
+}
 
-  function shuffled(array) {
-    const a = [...array];
-    for (let i = a.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [a[i], a[j]] = [a[j], a[i]];
-    }
-    return a;
-  }
+const WRITING_PROMPTS=[
+ {title:'科技与生活',text:'科技的发展给人的生活带来了便利，但也带来了新的问题。谈谈你的看法。',choices:[11,6,4,7]},
+ {title:'学习与成长',text:'有人认为学习最重要的是掌握知识，也有人认为独立思考更加重要。谈谈你的看法。',choices:[11,10,7,3]},
+ {title:'信息与判断',text:'面对网络上的大量信息，我们应该怎样形成自己的判断？',choices:[6,4,1,11]}
+];
+let writingPrompt=0;
+function renderWrite(){
+  $('#pageTitle').textContent='写作模式'; const p=WRITING_PROMPTS[writingPrompt];
+  $('#writeView').innerHTML=`<div class="section-card"><div class="section-title"><div><h2>古语不是装饰，而是论证工具</h2><p>先自己选择，再查看参考表达。</p></div></div>
+  <div class="mode-tabs">${WRITING_PROMPTS.map((x,i)=>`<button class="pill ${i===writingPrompt?'active':''}" data-wp="${i}">${x.title}</button>`).join('')}</div>
+  <div class="prompt-box"><div class="label">作文题目</div><p>${p.text}</p></div>
+  <div style="margin-top:20px;font-weight:700">第二步｜你会用哪一句？</div>
+  <div class="quote-choice-grid">${p.choices.map(id=>{const x=DATA.find(d=>d.id===id);return `<button class="quote-choice ${state.writingChoice===id?'selected':''}" data-choice="${id}"><strong>${x.q}</strong><small>${x.c}</small></button>`}).join('')}</div>
+  <div style="display:flex;justify-content:flex-end;margin-top:16px"><button class="primary-btn" id="showIdea" ${state.writingChoice?'':'disabled'}>查看参考思路</button></div>
+  <div id="writingResult"></div></div>`;
+  $$('[data-wp]').forEach(b=>b.onclick=()=>{writingPrompt=+b.dataset.wp;state.writingChoice=null;renderWrite();});
+  $$('[data-choice]').forEach(b=>b.onclick=()=>{state.writingChoice=+b.dataset.choice;renderWrite();});
+  const show=$('#showIdea'); if(show)show.onclick=()=>{const x=DATA.find(d=>d.id===state.writingChoice);$('#writingResult').innerHTML=`<div class="writing-result"><b>参考表达</b><p>${x.w}</p><div class="upgrade"><b>越南语提示：</b> ${x.vn}</div></div>`;};
+}
 
-  function randomItemFrom(list) {
-    return list[Math.floor(Math.random() * list.length)];
-  }
+function renderReview(){
+  $('#pageTitle').textContent='今日复习';
+  const hard=DATA.filter(x=>getP(x.id).status==='hard'), fav=DATA.filter(x=>getP(x.id).fav), done=DATA.filter(x=>getP(x.id).status==='done');
+  $('#reviewView').innerHTML=`<div class="hero"><div class="hero-card"><div class="hero-kicker">TODAY REVIEW</div><h2>把“不熟”变成“会用”。</h2><p>演示版会把你标记为“还不熟”的古语自动集中到这里。</p></div><div class="stats-card"><div class="stat"><strong>${hard.length}</strong><span>今日待复习</span></div><div class="stat"><strong>${fav.length}</strong><span>我的收藏</span></div><div class="stat"><strong>${done.length}</strong><span>已掌握</span></div><div class="stat"><strong>${DATA.length-done.length}</strong><span>继续努力</span></div></div></div>
+  <div class="section-card"><div class="section-title"><div><h2>还不熟</h2><p>建议先听，再回忆含义，最后查看写作用法。</p></div></div><div id="reviewCards" class="card-grid"></div></div>`;
+  renderCards(hard.length?hard:DATA.slice(0,3), '#reviewCards');
+}
 
-  function makeFill(item) {
-    const segments = item.text.split(/[，；。？！、：]/).filter(Boolean).sort((a,b) => b.length - a.length);
-    const segment = segments[0] || item.text;
-    const chars = Array.from(segment);
-    const len = Math.min(chars.length, chars.length <= 3 ? 1 : chars.length <= 6 ? 2 : 3);
-    const maxStart = Math.max(0, chars.length - len);
-    const start = Math.floor(Math.random() * (maxStart + 1));
-    const answer = chars.slice(start, start + len).join('');
-    const blank = '＿'.repeat(len);
-    const prompt = item.text.replace(answer, blank);
-    return { answer, prompt };
-  }
+function switchMode(mode){
+  state.mode=mode; $$('.view').forEach(v=>v.classList.remove('active')); $$('.nav-item').forEach(n=>n.classList.toggle('active',n.dataset.mode===mode));
+  $('#'+mode+'View').classList.add('active');
+  $('#hidePinyinBtn').style.display=mode==='learn'?'inline-block':'none';
+  $('#randomBtn').style.display=mode==='learn'?'inline-block':'none';
+  if(mode==='learn')renderLearn(); if(mode==='quiz')renderQuiz(); if(mode==='write')renderWrite(); if(mode==='review')renderReview(); closeSidebar();
+}
+function closeSidebar(){ $('#sidebar').classList.remove('open'); }
 
-  function resetPracticeQuestion() {
-    state.practice.itemId = null;
-    state.practice.answered = false;
-    state.practice.fillAnswer = '';
-    state.practice.fillPrompt = '';
-  }
+$$('.nav-item').forEach(b=>b.onclick=()=>switchMode(b.dataset.mode));
+$('#hidePinyinBtn').onclick=()=>{state.hidePinyin=!state.hidePinyin;document.body.classList.toggle('hidden-pinyin',state.hidePinyin);$('#hidePinyinBtn').textContent=state.hidePinyin?'显示拼音':'隐藏拼音';};
+$('#randomBtn').onclick=()=>{const x=DATA[Math.floor(Math.random()*DATA.length)];const card=document.querySelector(`[data-id="${x.id}"]`);if(card){card.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>card.classList.add('flipped'),400);}};
+$('#menuBtn').onclick=()=>$('#sidebar').classList.toggle('open');
 
-  function ensurePracticeQuestion() {
-    const pool = visibleItems().length ? visibleItems() : DATA;
-    if (!pool.length) return null;
-    let item = DATA.find(x => x.id === state.practice.itemId);
-    if (!item || !pool.some(x => x.id === item.id)) {
-      item = randomItemFrom(pool);
-      state.practice.itemId = item.id;
-      state.practice.answered = false;
-      const fill = makeFill(item);
-      state.practice.fillAnswer = fill.answer;
-      state.practice.fillPrompt = fill.prompt;
-    }
-    return item;
-  }
-
-  function nextPracticeQuestion(panel) {
-    const pool = visibleItems().length ? visibleItems() : DATA;
-    if (!pool.length) return;
-    const other = pool.filter(item => item.id !== state.practice.itemId);
-    const next = randomItemFrom(other.length ? other : pool);
-    state.practice.itemId = next.id;
-    state.practice.answered = false;
-    const fill = makeFill(next);
-    state.practice.fillAnswer = fill.answer;
-    state.practice.fillPrompt = fill.prompt;
-    renderPractice(panel);
-  }
-
-  function markPracticeResult(item, correct) {
-    state.practice.total += 1;
-    if (correct) {
-      state.practice.score += 1;
-      state.mistakes.delete(item.id);
-    } else {
-      state.mistakes.add(item.id);
-    }
-    saveState();
-  }
-
-  function renderPractice(panel) {
-    const item = ensurePracticeQuestion();
-    if (!item) {
-      panel.innerHTML = '<div class="empty-state">Không có dữ liệu bài tập.</div>';
-      return;
-    }
-    panel.innerHTML = `
-      <div class="practice-shell">
-        <div class="practice-top">
-          <div class="mode-switch" aria-label="Loại bài tập">
-            <button class="mode-btn ${state.practice.mode === 'choice' ? 'active' : ''}" type="button" data-mode="choice">Chọn đáp án</button>
-            <button class="mode-btn ${state.practice.mode === 'fill' ? 'active' : ''}" type="button" data-mode="fill">Điền từ</button>
-          </div>
-          <div class="practice-score">Đúng ${state.practice.score} / ${state.practice.total}</div>
-        </div>
-        <div id="questionArea"></div>
-      </div>`;
-
-    $$('.mode-btn', panel).forEach(btn => btn.addEventListener('click', () => {
-      state.practice.mode = btn.dataset.mode;
-      state.practice.answered = false;
-      if (state.practice.mode === 'fill') {
-        const fill = makeFill(item);
-        state.practice.fillAnswer = fill.answer;
-        state.practice.fillPrompt = fill.prompt;
-      }
-      renderPractice(panel);
-    }));
-
-    if (state.practice.mode === 'choice') renderChoiceQuestion($('#questionArea', panel), item, panel);
-    else renderFillQuestion($('#questionArea', panel), item, panel);
-  }
-
-  function renderChoiceQuestion(area, item, panel) {
-    const distractors = shuffled(DATA.filter(x => x.id !== item.id)).slice(0, 3);
-    const options = shuffled([item, ...distractors]);
-    area.innerHTML = `
-      <div class="question-card">
-        <div class="question-label">Chọn ý nghĩa phù hợp nhất</div>
-        <h3 class="question-text">${escapeHtml(item.text)}</h3>
-        <div class="option-list">
-          ${options.map((opt, i) => `<button class="option-btn" type="button" data-id="${opt.id}"><strong>${String.fromCharCode(65+i)}.</strong> ${escapeHtml(opt.core)}</button>`).join('')}
-        </div>
-        <div class="feedback" id="practiceFeedback"></div>
-        <div class="question-footer"><button class="btn btn-primary" id="nextQuestion" type="button" hidden>Câu tiếp theo →</button></div>
-      </div>`;
-
-    $$('.option-btn', area).forEach(btn => btn.addEventListener('click', () => {
-      if (state.practice.answered) return;
-      state.practice.answered = true;
-      const chosenId = Number(btn.dataset.id);
-      const correct = chosenId === item.id;
-      markPracticeResult(item, correct);
-      $$('.option-btn', area).forEach(option => {
-        option.disabled = true;
-        const id = Number(option.dataset.id);
-        if (id === item.id) option.classList.add('correct');
-        else if (id === chosenId) option.classList.add('wrong');
-      });
-      const feedback = $('#practiceFeedback', area);
-      feedback.className = `feedback show ${correct ? 'good' : 'bad'}`;
-      feedback.innerHTML = correct
-        ? `Chính xác. <strong>${escapeHtml(item.source)}</strong>`
-        : `Đáp án đúng: <strong>${escapeHtml(item.core)}</strong>`;
-      $('#nextQuestion', area).hidden = false;
-      renderProgress();
-    }));
-
-    $('#nextQuestion', area).addEventListener('click', () => nextPracticeQuestion(panel));
-  }
-
-  function renderFillQuestion(area, item, panel) {
-    area.innerHTML = `
-      <div class="question-card">
-        <div class="question-label">Điền phần còn thiếu</div>
-        <div class="fill-prompt">${escapeHtml(state.practice.fillPrompt)}</div>
-        <form class="fill-form" id="fillForm">
-          <input class="fill-input" id="fillInput" type="text" autocomplete="off" placeholder="Nhập chữ Hán còn thiếu…" aria-label="Đáp án" />
-          <button class="btn btn-primary" type="submit">Kiểm tra</button>
-        </form>
-        <div class="feedback" id="practiceFeedback"></div>
-        <div class="question-footer"><button class="btn btn-primary" id="nextQuestion" type="button" hidden>Câu tiếp theo →</button></div>
-      </div>`;
-
-    $('#fillForm', area).addEventListener('submit', event => {
-      event.preventDefault();
-      if (state.practice.answered) return;
-      const value = $('#fillInput', area).value.trim().replace(/\s+/g, '');
-      if (!value) { toast('Hãy nhập đáp án trước.'); return; }
-      state.practice.answered = true;
-      const correct = value === state.practice.fillAnswer;
-      markPracticeResult(item, correct);
-      $('#fillInput', area).disabled = true;
-      const feedback = $('#practiceFeedback', area);
-      feedback.className = `feedback show ${correct ? 'good' : 'bad'}`;
-      feedback.innerHTML = correct
-        ? `Chính xác. Câu đầy đủ: <strong>${escapeHtml(item.text)}</strong>`
-        : `Đáp án: <strong>${escapeHtml(state.practice.fillAnswer)}</strong><br>Câu đầy đủ: ${escapeHtml(item.text)}`;
-      $('#nextQuestion', area).hidden = false;
-    });
-    $('#nextQuestion', area).addEventListener('click', () => nextPracticeQuestion(panel));
-    setTimeout(() => $('#fillInput', area)?.focus(), 0);
-  }
-
-  const ARGUMENT_CONTEXT = {
-    '认识与思维': '面对复杂问题，我们既要关注局部，也要保持整体视角。',
-    '学习与求知': '真正有效的学习，不只在于知识的数量，更在于方法、理解与实践。',
-    '行动与积累': '实现目标不能停留在愿望上，而要落实到持续而具体的行动。',
-    '坚持与逆境': '面对困难与挫折，人的态度往往决定能否继续前进。',
-    '辩证与变化': '看待事物时，不能把问题绝对化，而应关注条件、尺度与变化。',
-    '心态与自省': '成长不仅需要向外学习，也需要不断向内反思。',
-    '人际与合作': '良好的人际关系与合作，建立在尊重、理解与共同努力之上。',
-    '规则、诚信与责任': '个人与社会的稳定发展，都离不开规则、诚信与责任。',
-    '时间、选择与目标': '面对有限的时间与资源，我们需要学会规划、选择并及时行动。',
-    '情谊、胸怀与生态价值': '人与人、人与社会乃至人与自然，都需要更宽广、更长远的眼光。'
-  };
-
-  function trimSentence(text) {
-    return String(text || '').replace(/[。；;\s]+$/g, '');
-  }
-
-  function argumentExamples(item) {
-    const context = ARGUMENT_CONTEXT[item.category] || '面对现实问题，我们需要从经验中提炼更稳定的判断。';
-    const core = trimSentence(item.core);
-    return [
-      `${context}正所谓“${item.text}”，${core}。`,
-      `从现实角度看，“${item.text}”至今仍具有启发意义，它提醒我们：${core}。`
-    ];
-  }
-
-  function renderArgument(panel) {
-    const item = currentItem();
-    if (!item) return;
-    const examples = argumentExamples(item);
-    panel.innerHTML = `
-      <div class="argument-wrap">
-        <div class="argument-intro">Hai câu mẫu dưới đây minh họa cách đưa cổ ngữ vào đoạn nghị luận một cách tự nhiên. Có thể thay đổi chủ đề và phần lập luận phía sau.</div>
-        <div class="argument-quote">${escapeHtml(item.text)}</div>
-        <div class="example-list">
-          ${examples.map((example, index) => `
-            <div class="example-card">
-              <span class="example-no">${index + 1}</span>
-              <p>${escapeHtml(example)}</p>
-            </div>`).join('')}
-        </div>
-        <div class="pattern-card">
-          <strong>Mẫu câu có thể tái sử dụng</strong>
-          <p>正所谓“……”，……。<br>从现实角度看，“……”至今仍具有启发意义，它提醒我们：……。</p>
-        </div>
-      </div>`;
-  }
-
-  function toggleLearned(id = state.currentId) {
-    if (state.learned.has(id)) state.learned.delete(id);
-    else state.learned.add(id);
-    saveState();
-  }
-
-  function randomCurrent() {
-    const pool = visibleItems().length ? visibleItems() : DATA;
-    if (!pool.length) return;
-    const chosen = randomItemFrom(pool);
-    state.currentId = chosen.id;
-    state.category = chosen.category;
-    state.openId = state.tab === 'list' ? chosen.id : null;
-    resetPracticeQuestion();
-    saveState();
-    renderAll();
-    if (state.tab === 'list') {
-      setTimeout(() => document.querySelector(`.list-item[data-id="${chosen.id}"]`)?.scrollIntoView({behavior:'smooth', block:'center'}), 30);
-    }
-  }
-
-  function openSidebar() { document.body.classList.add('sidebar-open'); }
-  function closeSidebar() { document.body.classList.remove('sidebar-open'); }
-
-  function bindStaticEvents() {
-    $$('.tab').forEach(tab => tab.addEventListener('click', () => {
-      state.tab = tab.dataset.tab;
-      if (state.tab === 'practice') resetPracticeQuestion();
-      saveState();
-      renderTabs();
-    }));
-
-    $('#randomBtn').addEventListener('click', randomCurrent);
-    $('#markLearnedBtn').addEventListener('click', () => {
-      toggleLearned();
-      renderProgress();
-      renderHero();
-      renderTabs();
-      toast(state.learned.has(state.currentId) ? 'Đã đánh dấu là thuộc.' : 'Đã bỏ đánh dấu.');
-    });
-    $('#favoriteBtn').addEventListener('click', () => {
-      const id = state.currentId;
-      if (state.favorites.has(id)) state.favorites.delete(id); else state.favorites.add(id);
-      saveState();
-      renderHero();
-    });
-    $('#speakBtn').addEventListener('click', () => currentItem() && speakText(currentItem().text));
-
-    $('#reviewMistakesBtn').addEventListener('click', () => {
-      if (!state.mistakes.size) { toast('Chưa có câu sai để ôn.'); return; }
-      state.reviewMistakes = true;
-      state.search = '';
-      $('#searchInput').value = '';
-      state.tab = 'list';
-      state.currentId = DATA.find(item => state.mistakes.has(item.id))?.id || state.currentId;
-      state.openId = state.currentId;
-      closeSidebar();
-      renderAll();
-    });
-
-    $('#searchInput').addEventListener('input', event => {
-      state.search = event.target.value;
-      state.reviewMistakes = false;
-      state.tab = 'list';
-      const results = searchItems();
-      if (results.length) {
-        state.currentId = results[0].id;
-        state.category = results[0].category;
-      }
-      state.openId = null;
-      renderAll();
-    });
-
-    $('#menuBtn').addEventListener('click', openSidebar);
-    $('#sidebarBackdrop').addEventListener('click', closeSidebar);
-    window.addEventListener('resize', () => { if (window.innerWidth > 780) closeSidebar(); });
-  }
-
-  function renderAll() {
-    ensureCurrentVisible();
-    renderCategories();
-    renderProgress();
-    renderTopbar();
-    renderHero();
-    renderTabs();
-  }
-
-  if ('speechSynthesis' in window) {
-    loadVoices();
-    window.speechSynthesis.addEventListener?.('voiceschanged', loadVoices);
-    window.speechSynthesis.onvoiceschanged = loadVoices;
-  }
-
-  bindStaticEvents();
-  renderAll();
-})();
+document.addEventListener('click',e=>{if(innerWidth<780 && !e.target.closest('#sidebar') && !e.target.closest('#menuBtn'))closeSidebar();});
+renderTopics();updateProgress();renderLearn();
