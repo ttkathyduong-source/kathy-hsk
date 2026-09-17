@@ -1,25 +1,22 @@
-# Kathy Dương · HSK 7–9 冲刺班 — v3.5
+# Kathy Dương · HSK 7–9 冲刺班 — v3.6
+## Thay đổi v3.6
+
+- Tinh chỉnh 5 câu mẫu theo góp ý về ngữ cảm, logic và phong cách nghị luận tiếng Trung.
+- Không thay đổi dữ liệu học, trạng thái Đã thuộc / Cần ôn / Câu sai hay localStorage.
+- Tăng cache-busting lên `?v=3.6` để Netlify tải nội dung mới.
+
 
 Website tĩnh dùng trực tiếp trên Netlify, không cần build.
 
-## Thay đổi v3.5
-- Thêm **Từ khóa** cho toàn bộ 120 câu.
-- Thêm **2 câu mẫu** cho mỗi câu cổ ngữ trong phần Danh sách.
-- Flashcard mặt sau hiển thị từ khóa và 1 câu mẫu để ôn nhanh.
-- Tìm kiếm có thể tìm theo từ khóa và nội dung câu mẫu.
-- Giữ nguyên hệ thống Đã thuộc / Cần ôn / Câu sai và dữ liệu localStorage của v3.x.
-- Font giao diện tiếng Việt: Times New Roman.
-- Màu chủ đạo: #2060B6.
-
 ## Deploy Netlify
-Giải nén file zip, sau đó kéo thư mục `kathy-hsk-netlify-v3.5` vào Netlify Deploys / Deploy manually.
+Giải nén file zip, sau đó kéo thư mục `kathy-hsk-netlify-v3.6` vào Netlify Deploys / Deploy manually.
 
 
-## v3.5
+## v3.6
 - Viết lại toàn bộ 240 câu mẫu theo ngữ cảnh tự nhiên.
 - Mẫu 1 ưu tiên dùng trọn câu cổ ngữ trong lập luận.
 - Mẫu 2 dùng linh hoạt: trích một phần, nhúng vào câu hoặc diễn đạt trong ngữ cảnh nói/viết.
 
 
-## v3.5
+## v3.6
 - Cập nhật các câu mẫu theo bản rà soát ngôn ngữ mới nhất; ưu tiên trích dẫn đầy đủ và diễn đạt tự nhiên trong văn nghị luận.
