@@ -257,3 +257,11 @@ button:focus-visible,input:focus-visible{outline:3px solid rgba(32,96,182,.22);o
   .flash-actions{grid-template-columns:1fr}
   .flash-nav{gap:7px}
 }
+
+/* v3.2 — Vietnamese study-state headings use Times New Roman explicitly */
+#sectionEyebrow,
+#categoryTitle,
+.topbar .eyebrow,
+.topbar h2 {
+  font-family: "Times New Roman", Times, serif !important;
+}

@@ -18,3 +18,13 @@ Web tĩnh có thể deploy trực tiếp lên Netlify.
 ## Deploy Netlify
 Giải nén thư mục và kéo toàn bộ thư mục vào Netlify > Add new site > Deploy manually.
 Không cần npm hoặc build.
+
+
+## v3.1
+- Sửa bộ đếm Câu sai/Cần ôn cập nhật ngay trong màn Bài tập.
+- Chuẩn hóa ID lưu trong localStorage để tránh lỗi khi nâng cấp từ bản cũ.
+- Câu sai đếm theo số câu khác nhau; số lần sai của từng câu vẫn được lưu riêng.
+
+
+## v3.2
+- Ép font Times New Roman cho các tiêu đề trạng thái ở đầu trang, gồm “ÔN TẬP / Cần ôn” và “LÀM LẠI / Câu sai”.

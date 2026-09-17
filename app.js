@@ -11,16 +11,17 @@
   const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 
   const stored = readStored();
+  const normalizeIds = value => Array.isArray(value) ? value.map(Number).filter(Number.isFinite) : [];
   const state = {
     currentId: Number(stored.currentId) || 1,
     category: stored.category && CATEGORIES.includes(stored.category) ? stored.category : (CATEGORIES[0] || ''),
     tab: ['list','flashcard','practice'].includes(stored.tab) ? stored.tab : 'list',
-    learned: new Set(Array.isArray(stored.learned) ? stored.learned : []),
-    review: new Set(Array.isArray(stored.review) ? stored.review : []),
-    mistakes: new Set(Array.isArray(stored.mistakes) ? stored.mistakes : []),
+    learned: new Set(normalizeIds(stored.learned)),
+    review: new Set(normalizeIds(stored.review)),
+    mistakes: new Set(normalizeIds(stored.mistakes)),
     mistakeCounts: stored.mistakeCounts && typeof stored.mistakeCounts === 'object' ? stored.mistakeCounts : {},
     retryStreak: stored.retryStreak && typeof stored.retryStreak === 'object' ? stored.retryStreak : {},
-    favorites: new Set(Array.isArray(stored.favorites) ? stored.favorites : []),
+    favorites: new Set(normalizeIds(stored.favorites)),
     search: '',
     listFilter: 'all',
     openId: null,
@@ -173,6 +174,19 @@
     }));
   }
 
+  function syncPracticeCounters() {
+    const review = state.review.size;
+    const mistakes = state.mistakes.size;
+    $$('[data-scope="review"]').forEach(btn => {
+      btn.textContent = `Cần ôn (${review})`;
+      btn.disabled = review === 0;
+    });
+    $$('[data-scope="mistakes"]').forEach(btn => {
+      btn.textContent = `Câu sai (${mistakes})`;
+      btn.disabled = mistakes === 0;
+    });
+  }
+
   function renderProgress() {
     const learned = state.learned.size;
     const review = state.review.size;
@@ -184,6 +198,7 @@
     $('#overviewLearnedCount').textContent = learned;
     $('#overviewReviewCount').textContent = review;
     $('#overviewMistakeCount').textContent = mistakes;
+    syncPracticeCounters();
   }
 
   function renderTopbar() {
