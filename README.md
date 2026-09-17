@@ -1,30 +1,15 @@
-# Kathy Dương · HSK 7–9 冲刺班 — v3
+# Kathy Dương · HSK 7–9 冲刺班 — v3.3
 
-Web tĩnh có thể deploy trực tiếp lên Netlify.
+Website tĩnh dùng trực tiếp trên Netlify, không cần build.
 
-## Điểm mới của v3
-- Bỏ hoàn toàn mục “Câu nghị luận mẫu”.
-- Font giao diện tiếng Việt dùng Times New Roman.
-- 3 chế độ chính: Danh sách, Flashcard, Bài tập.
-- Có 4 trạng thái học rõ ràng: Chưa thuộc, Cần ôn, Đã thuộc, Câu sai.
-- Người học có thể chủ động đánh dấu “Cần ôn”.
-- Bài làm sai tự động vào cả “Cần ôn” và “Câu sai”.
-- Mục “Làm lại câu sai”: câu sai chỉ được gỡ sau 2 lần trả lời đúng liên tiếp.
-- Flashcard tách nút thao tác khỏi thẻ để tránh chồng giao diện.
-- Mobile có thanh điều hướng 3 mục cố định phía dưới.
-- Màu chính: #2060B6.
-- 120 câu cổ ngữ giữ nguyên dữ liệu v2.
+## Thay đổi v3.3
+- Thêm **Từ khóa** cho toàn bộ 120 câu.
+- Thêm **2 câu mẫu** cho mỗi câu cổ ngữ trong phần Danh sách.
+- Flashcard mặt sau hiển thị từ khóa và 1 câu mẫu để ôn nhanh.
+- Tìm kiếm có thể tìm theo từ khóa và nội dung câu mẫu.
+- Giữ nguyên hệ thống Đã thuộc / Cần ôn / Câu sai và dữ liệu localStorage của v3.x.
+- Font giao diện tiếng Việt: Times New Roman.
+- Màu chủ đạo: #2060B6.
 
 ## Deploy Netlify
-Giải nén thư mục và kéo toàn bộ thư mục vào Netlify > Add new site > Deploy manually.
-Không cần npm hoặc build.
-
-
-## v3.1
-- Sửa bộ đếm Câu sai/Cần ôn cập nhật ngay trong màn Bài tập.
-- Chuẩn hóa ID lưu trong localStorage để tránh lỗi khi nâng cấp từ bản cũ.
-- Câu sai đếm theo số câu khác nhau; số lần sai của từng câu vẫn được lưu riêng.
-
-
-## v3.2
-- Ép font Times New Roman cho các tiêu đề trạng thái ở đầu trang, gồm “ÔN TẬP / Cần ôn” và “LÀM LẠI / Câu sai”.
+Giải nén file zip, sau đó kéo thư mục `kathy-hsk-netlify-v3.3` vào Netlify Deploys / Deploy manually.

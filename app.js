@@ -77,7 +77,7 @@
   function searchItems() {
     const q = state.search.trim().toLowerCase();
     if (!q) return [];
-    return DATA.filter(item => [item.text,item.pinyin,item.gloss,item.source,item.core,item.category]
+    return DATA.filter(item => [item.text,item.pinyin,item.gloss,item.source,item.core,item.category, ...(item.keywords || []), ...(item.examples || [])]
       .some(value => String(value || '').toLowerCase().includes(q)));
   }
 
@@ -292,6 +292,8 @@
           <div class="detail-block"><div class="detail-label">Nguồn</div><div class="detail-value han">${escapeHtml(item.source)}</div></div>
           <div class="detail-block full"><div class="detail-label">Giải nghĩa từ</div><div class="detail-value han">${escapeHtml(item.gloss)}</div></div>
           <div class="detail-block full"><div class="detail-label">Ý chính</div><div class="detail-value core">${escapeHtml(item.core)}</div></div>
+          <div class="detail-block full"><div class="detail-label">Từ khóa</div><div class="keyword-list">${(item.keywords || []).map(keyword => `<span class="keyword-chip">${escapeHtml(keyword)}</span>`).join('')}</div></div>
+          <div class="detail-block full example-block"><div class="detail-label">Câu mẫu</div><div class="example-list">${(item.examples || []).map((example,index) => `<p><span class="example-no">${index+1}</span>${escapeHtml(example)}</p>`).join('')}</div></div>
         </div>
         <div class="detail-actions">
           <button class="btn btn-small listen-row" type="button">🔊 Nghe</button>
@@ -375,7 +377,7 @@
           <div class="flash-face flash-front">
             <div class="flash-kicker">Nhớ nghĩa trước khi lật</div>
             <div class="flash-text">${escapeHtml(item.text)}</div>
-            <div class="flash-hint">Chạm để xem pinyin, nghĩa và nguồn</div>
+            <div class="flash-hint">Chạm để xem pinyin, nghĩa, từ khóa và câu mẫu</div>
           </div>
           <div class="flash-face flash-back">
             <h3 class="flash-back-title">${escapeHtml(item.text)}</h3>
@@ -384,6 +386,8 @@
               <div class="back-box"><strong>Giải nghĩa từ</strong><p>${escapeHtml(item.gloss)}</p></div>
               <div class="back-box"><strong>Nguồn</strong><p>${escapeHtml(item.source)}</p></div>
               <div class="back-box full"><strong>Ý chính</strong><p>${escapeHtml(item.core)}</p></div>
+              <div class="back-box full"><strong>Từ khóa</strong><div class="keyword-list compact">${(item.keywords || []).map(keyword => `<span class="keyword-chip">${escapeHtml(keyword)}</span>`).join('')}</div></div>
+              <div class="back-box full"><strong>Câu mẫu</strong><p class="flash-example">${escapeHtml((item.examples || [])[0] || '')}</p></div>
             </div>
           </div>
         </div>

@@ -265,3 +265,19 @@ button:focus-visible,input:focus-visible{outline:3px solid rgba(32,96,182,.22);o
 .topbar h2 {
   font-family: "Times New Roman", Times, serif !important;
 }
+
+/* v3.3 — Từ khóa & câu mẫu */
+.keyword-list{display:flex;flex-wrap:wrap;gap:7px;align-items:center}
+.keyword-chip{display:inline-flex;align-items:center;border-radius:999px;background:var(--blue-100);border:1px solid #D6E5F7;color:var(--blue-700);padding:5px 9px;font-family:var(--han);font-size:13px;font-weight:700;line-height:1.2}
+.keyword-list.compact{gap:6px}
+.keyword-list.compact .keyword-chip{font-size:12px;padding:4px 8px}
+.example-block{border-left:3px solid var(--blue)}
+.example-list{display:grid;gap:9px}
+.example-list p{margin:0;font-family:var(--han);font-size:15px;line-height:1.75;color:#264967;display:flex;gap:9px;align-items:flex-start}
+.example-no{width:22px;height:22px;flex:0 0 22px;border-radius:50%;display:grid;place-items:center;background:var(--blue-100);color:var(--blue);font-family:var(--vi);font-size:12px;font-weight:700;margin-top:2px}
+.flash-example{font-size:14px!important;line-height:1.65!important}
+.flashcard{height:455px}
+@media (max-width:780px){
+  .flashcard{height:500px}
+  .example-list p{font-size:14px}
+}
