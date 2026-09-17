@@ -4,799 +4,1079 @@ window.GUYU_DATA = [
     "category": "认识与思维",
     "text": "不识庐山真面目，只缘身在此山中",
     "pinyin": "bù shí lú shān zhēn miàn mù，zhǐ yuán shēn zài cǐ shān zhōng",
+    "gloss": "【缘】因为；由于。",
     "source": "苏轼《题西林壁》",
-    "core": "身处其中容易受到局限；看问题要跳出自身立场。"
+    "core": "身处其中容易受到局限；看问题要跳出自身立场，从全局审视。"
   },
   {
     "id": 2,
     "category": "认识与思维",
     "text": "当局者迷，旁观者清",
     "pinyin": "dāng jú zhě mí，páng guān zhě qīng",
+    "gloss": "【当局者】下棋或直接参与事情的人；【旁观者】在一旁观看的人。",
     "source": "《旧唐书·元行冲传》",
-    "core": "直接参与者容易受情绪和利益影响，旁观者反而可能看得更清楚。"
+    "core": "直接参与者易受利益与情绪干扰，客观第三方往往看得更透彻。"
   },
   {
     "id": 3,
     "category": "认识与思维",
     "text": "井底之蛙",
     "pinyin": "jǐng dǐ zhī wā",
+    "gloss": "【井底之蛙】井底的青蛙；比喻见识短浅、眼界狭小的人。",
     "source": "《庄子·秋水》",
-    "core": "眼界狭窄会限制一个人的判断和认识。"
+    "core": "眼界狭隘会限制个人的认知格局与判断力。"
   },
   {
     "id": 4,
     "category": "认识与思维",
     "text": "一叶障目，不见泰山",
     "pinyin": "yī yè zhàng mù，bù jiàn tài shān",
+    "gloss": "【障】遮挡；阻隔。",
     "source": "《鹖冠子·天则》",
-    "core": "不能因为局部现象而忽略整体。"
+    "core": "切忌被局部和微小的表象遮蔽，而忽略了全局与本质。"
   },
   {
     "id": 5,
     "category": "认识与思维",
     "text": "尺有所短，寸有所长",
     "pinyin": "chǐ yǒu suǒ duǎn，cùn yǒu suǒ cháng",
+    "gloss": "【尺/寸】古代长度单位，尺比寸长；比喻各有局限与优势。",
     "source": "《楚辞·卜居》",
-    "core": "人和事物都有长处和不足，应客观看待。"
+    "core": "人与事物各有所长各有所短，应客观看待、扬长避短。"
   },
   {
     "id": 6,
     "category": "认识与思维",
     "text": "兼听则明，偏信则暗",
     "pinyin": "jiān tīng zé míng，piān xìn zé àn",
-    "source": "《资治通鉴》所载魏征之言",
-    "core": "多听不同意见才能做出全面判断。"
+    "gloss": "【兼】多方面；【明】明晰、清明；【暗】糊涂、蒙蔽。",
+    "source": "《资治通鉴》",
+    "core": "多方听取意见才能明辨是非，单凭偏听容易陷入主观蒙蔽。"
   },
   {
     "id": 7,
     "category": "认识与思维",
     "text": "知人者智，自知者明",
     "pinyin": "zhī rén zhě zhì，zì zhī zhě míng",
+    "gloss": "【智】聪明、智慧；【明】明达、清醒。",
     "source": "《老子》第三十三章",
-    "core": "了解别人是智慧，真正了解自己更加难得。"
+    "core": "了解他人是智慧，能清醒认识并剖析自我则更为可贵。"
   },
   {
     "id": 8,
     "category": "认识与思维",
     "text": "横看成岭侧成峰，远近高低各不同",
     "pinyin": "héng kàn chéng lǐng cè chéng fēng，yuǎn jìn gāo dī gè bù tóng",
+    "gloss": "【岭】起伏平缓连绵的山；【峰】高耸挺立的山尖。",
     "source": "苏轼《题西林壁》",
-    "core": "角度不同，对同一事物的认识也会不同。"
+    "core": "观察的角度与立场不同，对同一事物的认识与结论亦不相同。"
   },
   {
     "id": 9,
     "category": "认识与思维",
     "text": "金玉其外，败絮其中",
     "pinyin": "jīn yù qí wài，bài xù qí zhōng",
+    "gloss": "【败絮】破旧稀烂的棉絮。",
     "source": "刘基《卖柑者言》",
-    "core": "外表漂亮不代表内在优秀，要透过现象看本质。"
+    "core": "外表光鲜不代表内在充实，认识事物须透过表象看本质。"
   },
   {
     "id": 10,
     "category": "认识与思维",
     "text": "以人为镜，可以明得失",
     "pinyin": "yǐ rén wéi jìng，kě yǐ míng dé shī",
+    "gloss": "【明】看清、弄明白；【得失】成功与过失。",
     "source": "《旧唐书·魏徵传》",
-    "core": "从别人的成功和失败中反思自己。"
+    "core": "以他人的成败经验作为参照物，能够时刻反观并修正自己的言行。"
   },
   {
     "id": 11,
-    "category": "学习与求知",
-    "text": "学而不思则罔，思而不学则殆",
-    "pinyin": "xué ér bù sī zé wǎng，sī ér bù xué zé dài",
-    "source": "《论语·为政》",
-    "core": "学习与独立思考必须结合。"
+    "category": "认识与思维",
+    "text": "尽信书，则不如无书",
+    "pinyin": "jìn xìn shū，zé bù rú wú shū",
+    "gloss": "【尽】完全；盲目地。",
+    "source": "《孟子·尽心下》",
+    "core": "反对教条与盲从，主张独立思考与批判性思维。"
   },
   {
     "id": 12,
-    "category": "学习与求知",
-    "text": "温故而知新",
-    "pinyin": "wēn gù ér zhī xīn",
-    "source": "《论语·为政》",
-    "core": "回顾旧知识能够产生新的认识。"
+    "category": "认识与思维",
+    "text": "见一叶落而知岁之将暮",
+    "pinyin": "jiàn yī yè luò ér zhī suì zhī jiāng mù",
+    "gloss": "【岁】一年；时光；【暮】晚；将尽。",
+    "source": "《淮南子·说山训》",
+    "core": "见微知著；善于从微小的征兆中推断出整体事物的发展演变趋势。"
   },
   {
     "id": 13,
     "category": "学习与求知",
-    "text": "三人行，必有我师焉",
-    "pinyin": "sān rén xíng，bì yǒu wǒ shī yān",
-    "source": "《论语·述而》",
-    "core": "每个人身上都有值得学习之处。"
+    "text": "学而不思则罔，思而不学则殆",
+    "pinyin": "xué ér bù sī zé wǎng，sī ér bù xué zé dài",
+    "gloss": "【罔】迷惑而无所得；【殆】精神疲倦或疑惑危险。",
+    "source": "《论语·为政》",
+    "core": "求知与思考必须结合，学思结合方能真正理解掌握。"
   },
   {
     "id": 14,
     "category": "学习与求知",
-    "text": "学而时习之，不亦说乎",
-    "pinyin": "xué ér shí xí zhī，bù yì yuè hū",
-    "source": "《论语·学而》",
-    "core": "学习需要不断复习、实践和巩固。"
+    "text": "温故而知新",
+    "pinyin": "wēn gù ér zhī xīn",
+    "gloss": "【温】温习、复习；【故】旧的知识。",
+    "source": "《论语·为政》",
+    "core": "时常温习学过的知识，能从中产生新的体会与领悟。"
   },
   {
     "id": 15,
     "category": "学习与求知",
-    "text": "知之为知之，不知为不知，是知也",
-    "pinyin": "zhī zhī wéi zhī zhī，bù zhī wéi bù zhī，shì zhī yě",
-    "source": "《论语·为政》",
-    "core": "承认自己的无知也是一种智慧。"
+    "text": "三人行，必有我师焉",
+    "pinyin": "sān rén xíng，bì yǒu wǒ shī yān",
+    "gloss": "【三人】泛指几个人、同行者；【焉】于此、在其中。",
+    "source": "《论语·述而》",
+    "core": "保持谦逊态度，身边的人都有值得自己汲取借鉴的闪光点。"
   },
   {
     "id": 16,
     "category": "学习与求知",
-    "text": "敏而好学，不耻下问",
-    "pinyin": "mǐn ér hào xué，bù chǐ xià wèn",
-    "source": "《论语·公冶长》",
-    "core": "真正爱学习的人不会因为向别人请教而感到羞耻。"
+    "text": "学而时习之，不亦说乎",
+    "pinyin": "xué ér shí xí zhī，bù yì yuè hū",
+    "gloss": "【时】按时、经常；【说】通“悦”，愉快、高兴。",
+    "source": "《论语·学而》",
+    "core": "学到的知识经常在实践中复习运用，是令人充实快乐的事。"
   },
   {
     "id": 17,
     "category": "学习与求知",
-    "text": "纸上得来终觉浅，绝知此事要躬行",
-    "pinyin": "zhǐ shàng dé lái zhōng jué qiǎn，jué zhī cǐ shì yào gōng xíng",
-    "source": "陆游《冬夜读书示子聿》",
-    "core": "理论知识最终需要实践来深化。"
+    "text": "知之为知之，不知为不知，是知也",
+    "pinyin": "zhī zhī wéi zhī zhī，bù zhī wéi bù zhī，shì zhī yě",
+    "gloss": "【最后一个“知”】通“智”，聪明、智慧。",
+    "source": "《论语·为政》",
+    "core": "秉持实事求是的治学态度，正视自己的认知盲区本身就是一种明智。"
   },
   {
     "id": 18,
     "category": "学习与求知",
-    "text": "读万卷书，行万里路",
-    "pinyin": "dú wàn juǎn shū，xíng wàn lǐ lù",
-    "source": "董其昌《画禅室随笔》",
-    "core": "知识学习和实际经历同样重要。"
+    "text": "敏而好学，不耻下问",
+    "pinyin": "mǐn ér hào xué，bù chǐ xià wèn",
+    "gloss": "【敏】敏捷、勤勉；【耻】以……为耻；【下问】向地位或学识低于自己的人请教。",
+    "source": "《论语·公冶长》",
+    "core": "谦逊求真，不因向他人请教而觉得有损自尊。"
   },
   {
     "id": 19,
     "category": "学习与求知",
-    "text": "读书破万卷，下笔如有神",
-    "pinyin": "dú shū pò wàn juǎn，xià bǐ rú yǒu shén",
-    "source": "杜甫《奉赠韦左丞丈二十二韵》",
-    "core": "深厚的积累是熟练表达的基础。"
+    "text": "纸上得来终觉浅，绝知此事要躬行",
+    "pinyin": "zhǐ shàng dé lái zhōng jué qiǎn，jué zhī cǐ shì yào gōng xíng",
+    "gloss": "【绝知】透彻理解；【躬行】亲身践行、亲手去做。",
+    "source": "陆游《冬夜读书示子聿》",
+    "core": "书本知识仅停留在浅层，唯有亲身实践才能转化为真知灼见。"
   },
   {
     "id": 20,
     "category": "学习与求知",
-    "text": "博学之，审问之，慎思之，明辨之，笃行之",
-    "pinyin": "bó xué zhī，shěn wèn zhī，shèn sī zhī，míng biàn zhī，dǔ xíng zhī",
-    "source": "《礼记·中庸》",
-    "core": "学习应包括广学、提问、思考、判断和行动。"
+    "text": "读书破万卷，下笔如有神",
+    "pinyin": "dú shū pò wàn juàn，xià bǐ rú yǒu shén",
+    "gloss": "【破】读破、精读透彻；【如神】有如神助，极言生动流畅。",
+    "source": "杜甫《奉赠韦左丞丈二十二韵》",
+    "core": "大量的博览精读是高水平创作与灵感迸发的前提。"
   },
   {
     "id": 21,
-    "category": "行动与积累",
-    "text": "千里之行，始于足下",
-    "pinyin": "qiān lǐ zhī xíng，shǐ yú zú xià",
-    "source": "《老子》第六十四章",
-    "core": "再大的目标也要从第一步开始。"
+    "category": "学习与求知",
+    "text": "书山有路勤为径，学海无涯苦作舟",
+    "pinyin": "shū shān yǒu lù qín wéi jìng，xué hǎi wú yá kǔ zuò zhōu",
+    "gloss": "【径】小路；途径；【无涯】没有边际。",
+    "source": "《古今贤文·劝学篇》（民间劝学格言汇编）",
+    "core": "求学道路漫长无尽，勤奋与刻苦是唯一的捷径与舟船。"
   },
   {
     "id": 22,
-    "category": "行动与积累",
-    "text": "凡事预则立，不预则废",
-    "pinyin": "fán shì yù zé lì，bù yù zé fèi",
+    "category": "学习与求知",
+    "text": "博学之，审问之，慎思之，明辨之，笃行之",
+    "pinyin": "bó xué zhī，shěn wèn zhī，shèn sī zhī，míng biàn zhī，dǔ xíng zhī",
+    "gloss": "【审】详细、审慎；【笃】坚定、踏实。",
     "source": "《礼记·中庸》",
-    "core": "充分准备能够提高成功的可能性。"
+    "core": "求学治事需经过广博学习、审慎发问、缜密思考、清晰分辨到切实付诸行动的完整闭环。"
   },
   {
     "id": 23,
-    "category": "行动与积累",
-    "text": "工欲善其事，必先利其器",
-    "pinyin": "gōng yù shàn qí shì，bì xiān lì qí qì",
-    "source": "《论语·卫灵公》",
-    "core": "做好事情首先需要准备好条件、方法和工具。"
+    "category": "学习与求知",
+    "text": "学贵心悟，守旧无功",
+    "pinyin": "xué guì xīn wù，shǒu jiù wú gōng",
+    "gloss": "【悟】理解、领悟；【功】成效、功德。",
+    "source": "张载",
+    "core": "求学重在内化理解与思维突破，拘泥于旧框架难以取得实质进展。"
   },
   {
     "id": 24,
-    "category": "行动与积累",
-    "text": "人无远虑，必有近忧",
-    "pinyin": "rén wú yuǎn lǜ，bì yǒu jìn yōu",
-    "source": "《论语·卫灵公》",
-    "core": "要有长远眼光和提前规划的意识。"
+    "category": "学习与求知",
+    "text": "授人以鱼，不如授人以渔",
+    "pinyin": "shòu rén yǐ yú，bù rú shòu rén yǐ yú",
+    "gloss": "【授】给予、传授；【鱼】捕获的鱼；【渔】捕鱼的方法技巧。",
+    "source": "民间谚语，化用古籍思想",
+    "core": "给予具体的帮扶成果，不如传授独立解决问题的能力和本领。"
   },
   {
     "id": 25,
     "category": "行动与积累",
-    "text": "欲速则不达",
-    "pinyin": "yù sù zé bù dá",
-    "source": "《论语·子路》",
-    "core": "急于求成往往会适得其反。"
+    "text": "千里之行，始于足下",
+    "pinyin": "qiān lǐ zhī xíng，shǐ yú zú xià",
+    "gloss": "【足下】脚下；第一步。",
+    "source": "《老子》第六十四章",
+    "core": "再宏伟长远的目标，也必须从最基础的第一步脚踏实地做起。"
   },
   {
     "id": 26,
     "category": "行动与积累",
-    "text": "不积跬步，无以至千里；不积小流，无以成江海",
-    "pinyin": "bù jī kuǐ bù，wú yǐ zhì qiān lǐ；bù jī xiǎo liú，wú yǐ chéng jiāng hǎi",
-    "source": "《荀子·劝学》",
-    "core": "大成果来源于长期的小积累。"
+    "text": "凡事预则立，不预则废",
+    "pinyin": "fán shì yù zé lì，bù yù zé fèi",
+    "gloss": "【预】预先准备；【立】成功、成立；【废】失败、荒废。",
+    "source": "《礼记·中庸》",
+    "core": "事前做好充分的谋划与筹备，是事情取得成功的根本保证。"
   },
   {
     "id": 27,
     "category": "行动与积累",
-    "text": "水滴石穿",
-    "pinyin": "shuǐ dī shí chuān",
-    "source": "《汉书·枚乘传》",
-    "core": "微小但持续的努力最终能够产生巨大效果。"
+    "text": "工欲善其事，必先利其器",
+    "pinyin": "gōng yù shàn qí shì，bì xiān lì qí qì",
+    "gloss": "【善】做好；【利】使……锋利、完善；【器】工具、手段。",
+    "source": "《论语·卫灵公》",
+    "core": "想高质高效完成工作，必须先优化工具、方法与条件。"
   },
   {
     "id": 28,
     "category": "行动与积累",
-    "text": "锲而不舍，金石可镂",
-    "pinyin": "qiè ér bù shě，jīn shí kě lòu",
-    "source": "《荀子·劝学》",
-    "core": "持之以恒能够克服困难。"
+    "text": "人无远虑，必有近忧",
+    "pinyin": "rén wú yuǎn lǜ，bì yǒu jìn yōu",
+    "gloss": "【远虑】长远打算与谋划；【近忧】眼前的忧患困局。",
+    "source": "《论语·卫灵公》",
+    "core": "缺乏长远战略眼光与危机意识，必然会频繁陷入眼前的困境。"
   },
   {
     "id": 29,
     "category": "行动与积累",
-    "text": "千里之堤，溃于蚁穴",
-    "pinyin": "qiān lǐ zhī dī，kuì yú yǐ xué",
-    "source": "《韩非子·喻老》",
-    "core": "微小问题如果长期被忽视，也可能造成严重后果。"
+    "text": "欲速则不达",
+    "pinyin": "yù sù zé bù dá",
+    "gloss": "【欲】企图、想要；【达】达到目标。",
+    "source": "《论语·子路》",
+    "core": "片面追求速度而违背客观规律，往往适得其反，难以成事。"
   },
   {
     "id": 30,
     "category": "行动与积累",
-    "text": "磨刀不误砍柴工",
-    "pinyin": "mó dāo bù wù kǎn chái gōng",
-    "source": "民间俗语",
-    "core": "花时间做好准备并不是浪费时间。"
+    "text": "不积跬步，无以至千里；不积小流，无以成江海",
+    "pinyin": "bù jī kuǐ bù，wú yǐ zhì qiān lǐ；bù jī xiǎo liú，wú yǐ chéng jiāng hǎi",
+    "gloss": "【跬步】半步（古时举足一次为“跬”，举足两次为“步”）；【无以】无法、没有用来……的办法。",
+    "source": "《荀子·劝学》",
+    "core": "伟大的质变与成就，源于点滴微小量变的长久持续积累。"
   },
   {
     "id": 31,
-    "category": "坚持与逆境",
-    "text": "天行健，君子以自强不息",
-    "pinyin": "tiān xíng jiàn，jūn zǐ yǐ zì qiáng bù xī",
-    "source": "《周易·乾卦》",
-    "core": "人应不断努力、自我提升。"
+    "category": "行动与积累",
+    "text": "水滴石穿",
+    "pinyin": "shuǐ dī shí chuān",
+    "gloss": "【穿】击穿、穿透。",
+    "source": "《汉书·枚乘传》",
+    "core": "力量虽微不足道，只要持之以恒，最终能产生突破性结果。"
   },
   {
     "id": 32,
-    "category": "坚持与逆境",
-    "text": "有志者事竟成",
-    "pinyin": "yǒu zhì zhě shì jìng chéng",
-    "source": "《后汉书·耿弇传》",
-    "core": "坚定的志向和持续行动能够促成成功。"
+    "category": "行动与积累",
+    "text": "锲而不舍，金石可镂",
+    "pinyin": "qiè ér bù shě，jīn shí kě lòu",
+    "gloss": "【锲】雕刻；【舍】放弃、停手；【镂】雕刻成形。",
+    "source": "《荀子·劝学》",
+    "core": "坚持不懈地付出努力，即使金石这般坚固的阻碍也能被克服。"
   },
   {
     "id": 33,
-    "category": "坚持与逆境",
-    "text": "路漫漫其修远兮，吾将上下而求索",
-    "pinyin": "lù màn màn qí xiū yuǎn xī，wú jiāng shàng xià ér qiú suǒ",
-    "source": "屈原《离骚》",
-    "core": "即使道路漫长困难，也要坚持追求目标。"
+    "category": "行动与积累",
+    "text": "千里之堤，溃于蚁穴",
+    "pinyin": "qiān lǐ zhī dī，kuì yú yǐ xué",
+    "gloss": "【溃】崩塌、溃决；【蚁穴】蚂蚁洞穴。",
+    "source": "《韩非子·喻老》",
+    "core": "微小的隐患若长期被忽视，最终可能引发全局性的崩溃崩盘。"
   },
   {
     "id": 34,
-    "category": "坚持与逆境",
-    "text": "宝剑锋从磨砺出，梅花香自苦寒来",
-    "pinyin": "bǎo jiàn fēng cóng mó lì chū，méi huā xiāng zì kǔ hán lái",
-    "source": "明清格言集《警世贤文》",
-    "core": "优秀往往来自困难和磨炼。"
+    "category": "行动与积累",
+    "text": "磨刀不误砍柴工",
+    "pinyin": "mó dāo bù wù kǎn chái gōng",
+    "gloss": "【误】延误、耽误；【工】工效、工作进度。",
+    "source": "民间俗语",
+    "core": "花时间打磨工具和梳理方法不仅不浪费时间，反而事半功倍。"
   },
   {
     "id": 35,
-    "category": "坚持与逆境",
-    "text": "山重水复疑无路，柳暗花明又一村",
-    "pinyin": "shān chóng shuǐ fù yí wú lù，liǔ àn huā míng yòu yī cūn",
-    "source": "陆游《游山西村》",
-    "core": "困境中常常隐藏着新的转机。"
+    "category": "行动与积累",
+    "text": "行百里者半九十",
+    "pinyin": "xíng bǎi lǐ zhě bàn jiǔ shí",
+    "gloss": "【半九十】把走完九十里视为才走了一半。",
+    "source": "《战国策·秦策五》",
+    "core": "越到冲刺的最后阶段难度越大，切忌松懈大意、功亏一篑。"
   },
   {
     "id": 36,
-    "category": "坚持与逆境",
-    "text": "长风破浪会有时，直挂云帆济沧海",
-    "pinyin": "cháng fēng pò làng huì yǒu shí，zhí guà yún fān jì cāng hǎi",
-    "source": "李白《行路难》",
-    "core": "即使暂时受挫，也要对未来保持信心。"
+    "category": "行动与积累",
+    "text": "致广大而尽精微",
+    "pinyin": "zhì guǎng dà ér jìn jīng wēi",
+    "gloss": "【致】达到；【尽】穷究、贯彻落实到底；【精微】精细微末之处。",
+    "source": "《礼记·中庸》",
+    "core": "做战略要宏观高远，做执行则要严谨求精、落到微观细节。"
   },
   {
     "id": 37,
     "category": "坚持与逆境",
-    "text": "会当凌绝顶，一览众山小",
-    "pinyin": "huì dāng líng jué dǐng，yī lǎn zhòng shān xiǎo",
-    "source": "杜甫《望岳》",
-    "core": "要有远大目标和挑战高峰的勇气。"
+    "text": "天行健，君子以自强不息",
+    "pinyin": "tiān xíng jiàn，jūn zǐ yǐ zì qiáng bù xī",
+    "gloss": "【健】刚劲健朗、强劲运转；【息】停止、懈怠。",
+    "source": "《周易·乾卦》",
+    "core": "效法自然天道之运行，主动自强自律、永不倦怠地奋斗提升。"
   },
   {
     "id": 38,
     "category": "坚持与逆境",
-    "text": "不经一番寒彻骨，怎得梅花扑鼻香",
-    "pinyin": "bù jīng yī fān hán chè gǔ，zěn dé méi huā pū bí xiāng",
-    "source": "黄檗禅师《上堂开示颂》",
-    "core": "成长和成就往往离不开困难。"
+    "text": "有志者事竟成",
+    "pinyin": "yǒu zhì zhě shì jìng chéng",
+    "gloss": "【竟】最终、终于。",
+    "source": "《后汉书·耿弇传》",
+    "core": "坚定的理想信念辅以持续行动，最终定能跨越阻碍成就事业。"
   },
   {
     "id": 39,
     "category": "坚持与逆境",
-    "text": "世上无难事，只怕有心人",
-    "pinyin": "shì shàng wú nán shì，zhǐ pà yǒu xīn rén",
-    "source": "吴承恩《西游记》",
-    "core": "决心和努力能够帮助人克服困难。"
+    "text": "路漫漫其修远兮，吾将上下而求索",
+    "pinyin": "lù màn màn qí xiū yuǎn xī，wú jiāng shàng xià ér qiú suǒ",
+    "gloss": "【修远】修长遥远；【求索】探求、寻找。",
+    "source": "屈原《离骚》",
+    "core": "道路漫长险阻，依然保持百折不挠、勇往直前的追求精神。"
   },
   {
     "id": 40,
     "category": "坚持与逆境",
-    "text": "精诚所至，金石为开",
-    "pinyin": "jīng chéng suǒ zhì，jīn shí wéi kāi",
-    "source": "《庄子·渔父》",
-    "core": "真诚、专注和坚定能够创造突破。"
+    "text": "宝剑锋从磨砺出，梅花香自苦寒来",
+    "pinyin": "bǎo jiàn fēng cóng mó lì chū，méi huā xiāng zì kǔ hán lái",
+    "gloss": "【磨砺】在磨刀石上磨擦打磨；【苦寒】极为严酷寒冷的天气。",
+    "source": "《警世贤文》",
+    "core": "过硬的本领和耀眼的成就，无一不是经过艰辛磨难淬炼出来的。"
   },
   {
     "id": 41,
-    "category": "辩证与变化",
-    "text": "过犹不及",
-    "pinyin": "guò yóu bù jí",
-    "source": "《论语·先进》",
-    "core": "做得过头与做得不够都不好，关键在于适度。"
+    "category": "坚持与逆境",
+    "text": "山重水复疑无路，柳暗花明又一村",
+    "pinyin": "shān chóng shuǐ fù yí wú lù，liǔ àn huā míng yòu yī cūn",
+    "gloss": "【重/复】层层重叠；【柳暗】绿柳成荫。",
+    "source": "陆游《游山西村》",
+    "core": "身处迷茫看似山穷水尽时，只要不放弃，往往会迎来转机与新局面。"
   },
   {
     "id": 42,
-    "category": "辩证与变化",
-    "text": "物极必反",
-    "pinyin": "wù jí bì fǎn",
-    "source": "《吕氏春秋·博志》",
-    "core": "事物发展到极端时往往会向相反方向转化。"
+    "category": "坚持与逆境",
+    "text": "长风破浪会有时，直挂云帆济沧海",
+    "pinyin": "cháng fēng pò làng huì yǒu shí，zhí guà yún fān jì cāng hǎi",
+    "gloss": "【会有时】终会有那么一天；【济】渡过、横渡。",
+    "source": "李白《行路难》",
+    "core": "暂时身处逆境受挫，也要对长远的未来抱有必胜信念与豪情。"
   },
   {
     "id": 43,
-    "category": "辩证与变化",
-    "text": "塞翁失马，焉知非福",
-    "pinyin": "sài wēng shī mǎ，yān zhī fēi fú",
-    "source": "《淮南子·人间训》",
-    "core": "得与失、好与坏可能相互转化。"
+    "category": "坚持与逆境",
+    "text": "会当凌绝顶，一览众山小",
+    "pinyin": "huì dāng líng jué dǐng，yī lǎn zhòng shān xiǎo",
+    "gloss": "【会当】一定要、终当；【凌】登上、高耸于……之上；【绝顶】最高峰。",
+    "source": "杜甫《望岳》",
+    "core": "树立高远追求，敢于挑战巅峰，站在最高处俯瞰格局。"
   },
   {
     "id": 44,
-    "category": "辩证与变化",
-    "text": "祸兮福之所倚，福兮祸之所伏",
-    "pinyin": "huò xī fú zhī suǒ yǐ，fú xī huò zhī suǒ fú",
-    "source": "《老子》第五十八章",
-    "core": "福祸并非绝对，而具有转化的可能。"
+    "category": "坚持与逆境",
+    "text": "不经一番寒彻骨，怎得梅花扑鼻香",
+    "pinyin": "bù jīng yī fān hán chè gǔ，zěn dé méi huā pū bí xiāng",
+    "gloss": "【彻骨】透入骨髓；极言寒冷。",
+    "source": "黄檗禅师《上堂开示颂》",
+    "core": "不经历深刻刻苦的磨砺与付出，便不可能收获丰厚甜美的成果。"
   },
   {
     "id": 45,
-    "category": "辩证与变化",
-    "text": "穷则变，变则通，通则久",
-    "pinyin": "qióng zé biàn，biàn zé tōng，tōng zé jiǔ",
-    "source": "《周易·系辞下》",
-    "core": "遇到困境时需要主动改变和适应。"
+    "category": "坚持与逆境",
+    "text": "世上无难事，只怕有心人",
+    "pinyin": "shì shàng wú nán shì，zhǐ pà yǒu xīn rén",
+    "gloss": "【有心人】指肯下苦功、有坚定志向与毅力的人。",
+    "source": "吴承恩《西游记》",
+    "core": "世上没有无法解决的难题，成败的关键在于人的决心与坚守。"
   },
   {
     "id": 46,
-    "category": "辩证与变化",
-    "text": "满招损，谦受益",
-    "pinyin": "mǎn zhāo sǔn，qiān shòu yì",
-    "source": "《尚书·大禹谟》",
-    "core": "自满使人退步，谦虚使人受益。"
+    "category": "坚持与逆境",
+    "text": "精诚所至，金石为开",
+    "pinyin": "jīng chéng suǒ zhì，jīn shí wéi kāi",
+    "gloss": "【精诚】极致的真心诚意；【开】裂开、被打动。",
+    "source": "《庄子·渔父》",
+    "core": "纯粹专注的意志力与真诚，能克服极其坚硬巨大的困难。"
   },
   {
     "id": 47,
-    "category": "辩证与变化",
-    "text": "水能载舟，亦能覆舟",
-    "pinyin": "shuǐ néng zài zhōu，yì néng fù zhōu",
-    "source": "《荀子·哀公》",
-    "core": "同一种力量既可能带来帮助，也可能造成危机。"
+    "category": "坚持与逆境",
+    "text": "艰难困苦，玉汝于成",
+    "pinyin": "jiān nán kùn kǔ，yù rǔ yú chéng",
+    "gloss": "【玉】像琢玉一样磨砺；【汝】你。",
+    "source": "张载《西铭》",
+    "core": "艰苦卓绝的磨难，是雕琢人的心智、助其成就非凡的必经熔炉。"
   },
   {
     "id": 48,
-    "category": "辩证与变化",
-    "text": "月满则亏，水满则溢",
-    "pinyin": "yuè mǎn zé kuī，shuǐ mǎn zé yì",
-    "source": "《易经·丰卦》",
-    "core": "任何事情都不应走向极端。"
+    "category": "坚持与逆境",
+    "text": "千磨万击还坚劲，任尔东西南北风",
+    "pinyin": "qiān mó wàn jī hái jiān jìng，rèn ěr dōng xī nán běi fēng",
+    "gloss": "【坚劲】刚强坚韧（“劲”在此读四声 jìng，指强劲、有力量）；【任】任凭；【尔】你、你们。",
+    "source": "郑燮《竹石》",
+    "core": "历经千锤百炼依然坚韧挺拔，毫不畏惧外部风浪的冲撞与干扰。"
   },
   {
     "id": 49,
     "category": "辩证与变化",
-    "text": "乐极生悲",
-    "pinyin": "lè jí shēng bēi",
-    "source": "《淮南子·道应训》",
-    "core": "过度的快乐和放纵也可能转化为坏结果。"
+    "text": "过犹不及",
+    "pinyin": "guò yóu bù jí",
+    "gloss": "【过】过火、超过；【犹】犹如、如同；【不及】达不到、不够。",
+    "source": "《论语·先进》",
+    "core": "做过了头和达不到尺度同样不妥，关键在于精准把握适度原则。"
   },
   {
     "id": 50,
     "category": "辩证与变化",
-    "text": "否极泰来",
-    "pinyin": "pǐ jí tài lái",
-    "source": "《周易·否卦》与《泰卦》",
-    "core": "困难发展到一定阶段之后可能出现转机。"
+    "text": "物极必反",
+    "pinyin": "wù jí bì fǎn",
+    "gloss": "【极】顶点、极端；【反】向对立面转化。",
+    "source": "《吕氏春秋·博志》",
+    "core": "事物发展到极限峰值，往往会不可逆地向对立面发生转化。"
   },
   {
     "id": 51,
-    "category": "心态与自省",
-    "text": "不以物喜，不以己悲",
-    "pinyin": "bù yǐ wù xǐ，bù yǐ jǐ bēi",
-    "source": "范仲淹《岳阳楼记》",
-    "core": "不要让外界得失完全支配自己的情绪。"
+    "category": "辩证与变化",
+    "text": "塞翁失马，焉知非福",
+    "pinyin": "sài wēng shī mǎ，yān zhī fēi fú",
+    "gloss": "【塞】边塞；【焉】怎么、哪里。",
+    "source": "《淮南子·人间训》",
+    "core": "福祸得失并不是绝对的，在一定条件下彼此可以互相演变。"
   },
   {
     "id": 52,
-    "category": "心态与自省",
-    "text": "知足不辱，知止不殆",
-    "pinyin": "zhī zú bù rǔ，zhī zhǐ bù dài",
-    "source": "《老子》第四十四章",
-    "core": "懂得满足和适可而止可以避免危险。"
+    "category": "辩证与变化",
+    "text": "祸兮福之所倚，福兮祸之所伏",
+    "pinyin": "huò xī fú zhī suǒ yǐ，fú xī huò zhī suǒ fú",
+    "gloss": "【兮】语气助词；【倚】依靠、依托；【伏】隐藏、潜伏。",
+    "source": "《老子》第五十八章",
+    "core": "福与祸互相依存、互为因果，顺境中有隐患，逆境中存生机。"
   },
   {
     "id": 53,
-    "category": "心态与自省",
-    "text": "淡泊以明志，宁静以致远",
-    "pinyin": "dàn bó yǐ míng zhì，níng jìng yǐ zhì yuǎn",
-    "source": "诸葛亮《诫子书》",
-    "core": "减少浮躁和欲望才能明确目标、走得长远。"
+    "category": "辩证与变化",
+    "text": "穷则变，变则通，通则久",
+    "pinyin": "qióng zé biàn，biàn zé tōng，tōng zé jiǔ",
+    "gloss": "【穷】走到尽头、遇到困阻瓶颈；【通】畅通。",
+    "source": "《周易·系辞下》",
+    "core": "面临困局必须打破僵化主动求变，唯有改革变通才能行稳致远。"
   },
   {
     "id": 54,
-    "category": "心态与自省",
-    "text": "君子坦荡荡，小人长戚戚",
-    "pinyin": "jūn zǐ tǎn dàng dàng，xiǎo rén cháng qī qī",
-    "source": "《论语·述而》",
-    "core": "心胸坦荡的人更加从容，计较过多反而容易焦虑。"
+    "category": "辩证与变化",
+    "text": "满招损，谦受益",
+    "pinyin": "mǎn zhāo sǔn，qiān shòu yì",
+    "gloss": "【满】骄傲自满；【招】招致；【益】益处、收获。",
+    "source": "《尚书·大禹谟》",
+    "core": "自满必然导致自身停滞与损失，谦虚好学才能赢得长足收益。"
   },
   {
     "id": 55,
-    "category": "心态与自省",
-    "text": "吾日三省吾身",
-    "pinyin": "wú rì sān xǐng wú shēn",
-    "source": "《论语·学而》",
-    "core": "人应经常反省自己的行为。"
+    "category": "辩证与变化",
+    "text": "水能载舟，亦能覆舟",
+    "pinyin": "shuǐ néng zài zhōu，yì néng fù zhōu",
+    "gloss": "【载】承载、托起；【覆】翻沉、倾覆。",
+    "source": "《荀子·哀公》",
+    "core": "同一股力量既是支撑的基石，也能成为摧毁的力量；不可掉以轻心。"
   },
   {
     "id": 56,
-    "category": "心态与自省",
-    "text": "见贤思齐焉，见不贤而内自省也",
-    "pinyin": "jiàn xián sī qí yān，jiàn bù xián ér nèi zì xǐng yě",
-    "source": "《论语·里仁》",
-    "core": "看到优秀的人应学习，看到问题也应反思自己。"
+    "category": "辩证与变化",
+    "text": "月满则亏，水满则溢",
+    "pinyin": "yuè mǎn zé kuī，shuǐ mǎn zé yì",
+    "gloss": "【亏】缺损、残缺；【溢】漫出、流淌。",
+    "source": "《易经·丰卦》",
+    "core": "万事万物忌讳过于饱满追求极致，应懂得留白与适可而止。"
   },
   {
     "id": 57,
-    "category": "心态与自省",
-    "text": "胜人者有力，自胜者强",
-    "pinyin": "shèng rén zhě yǒu lì，zì shèng zhě qiáng",
-    "source": "《老子》第三十三章",
-    "core": "战胜别人不如战胜自己的弱点更重要。"
+    "category": "辩证与变化",
+    "text": "乐极生悲",
+    "pinyin": "lè jí shēng bēi",
+    "gloss": "【极】到了顶点。",
+    "source": "《淮南子·道应训》",
+    "core": "过度的欢乐放纵若失去理性克制，容易转变成乐极生悲的悲剧。"
   },
   {
     "id": 58,
-    "category": "心态与自省",
-    "text": "静以修身，俭以养德",
-    "pinyin": "jìng yǐ xiū shēn，jiǎn yǐ yǎng dé",
-    "source": "诸葛亮《诫子书》",
-    "core": "宁静与节制有助于培养品德。"
+    "category": "辩证与变化",
+    "text": "否极泰来",
+    "pinyin": "pǐ jí tài lái",
+    "gloss": "【否/泰】《周易》卦名，否代表闭塞逆境，泰代表通顺平安。",
+    "source": "《周易·否卦》与《泰卦》",
+    "core": "逆境晦气发展到了极点，局势必将扭转向好，迎来吉祥顺遂。"
   },
   {
     "id": 59,
-    "category": "心态与自省",
-    "text": "博观而约取，厚积而薄发",
-    "pinyin": "bó guān ér yuē qǔ，hòu jī ér bó fā",
-    "source": "苏轼《稼说木居士赠刘壮舆》",
-    "core": "经过广泛阅读与深入积累，才能在实践中精炼输出。"
+    "category": "辩证与变化",
+    "text": "物无美恶，过则为灾",
+    "pinyin": "wù wú měi è，guò zé wéi zāi",
+    "gloss": "【美恶】优劣、好坏；【过】过度、越界。",
+    "source": "张载《张子全书》",
+    "core": "事物本身并无绝对的利害属性，一旦使用过度越过界限即成灾害。"
   },
   {
     "id": 60,
-    "category": "心态与自省",
-    "text": "不患人之不己知，患不知人也",
-    "pinyin": "bù huàn rén zhī bù jǐ zhī，huàn bù zhī rén yě",
-    "source": "《论语·学而》",
-    "core": "与其抱怨别人不了解自己，不如提高自己理解他人的能力。"
+    "category": "辩证与变化",
+    "text": "流水不腐，户枢不蠹",
+    "pinyin": "liú shuǐ bù fǔ，hù shū bù dù",
+    "gloss": "【腐】臭烂；【户枢】门轴；【蠹】蛀蚀、虫蛀。",
+    "source": "《吕氏春秋·尽数》",
+    "core": "经常运动与更新的事物不易被淘汰腐蚀，强调持续求变与活力。"
   },
   {
     "id": 61,
-    "category": "人际与合作",
-    "text": "己所不欲，勿施于人",
-    "pinyin": "jǐ suǒ bù yù，wù shī yú rén",
-    "source": "《论语·颜渊》",
-    "core": "与人相处要有同理心。"
+    "category": "心态与自省",
+    "text": "不以物喜，不以己悲",
+    "pinyin": "bù yǐ wù xǐ，bù yǐ jǐ bēi",
+    "gloss": "【物】外物、客观环境；【以】因为。",
+    "source": "范仲淹《岳阳楼记》",
+    "core": "保持超然平静的心态，不被外界物质得失与个人荣辱裹挟情绪。"
   },
   {
     "id": 62,
-    "category": "人际与合作",
-    "text": "君子和而不同，小人同而不和",
-    "pinyin": "jūn zǐ hé ér bù tóng，xiǎo rén tóng ér bù hé",
-    "source": "《论语·子路》",
-    "core": "真正的和谐允许不同意见存在。"
+    "category": "心态与自省",
+    "text": "知足不辱，知止不殆",
+    "pinyin": "zhī zú bù rǔ，zhī zhǐ bù dài",
+    "gloss": "【辱】羞辱、屈辱；【止】止步、适可而止；【殆】危险。",
+    "source": "《老子》第四十四章",
+    "core": "懂得满足就不会招致屈辱，懂得克制欲望便能远离危险。"
   },
   {
     "id": 63,
-    "category": "人际与合作",
-    "text": "与朋友交，言而有信",
-    "pinyin": "yǔ péng yǒu jiāo，yán ér yǒu xìn",
-    "source": "《论语·学而》",
-    "core": "信用是人际关系的重要基础。"
+    "category": "心态与自省",
+    "text": "淡泊以明志，宁静以致远",
+    "pinyin": "dàn bó yǐ míng zhì，níng jìng yǐ zhì yuǎn",
+    "gloss": "【淡泊】不追求名利；【致远】实现远大理想。",
+    "source": "诸葛亮《诫子书》",
+    "core": "看轻名利杂念才能看清志向，保持内心专注方能走得长远稳健。"
   },
   {
     "id": 64,
-    "category": "人际与合作",
-    "text": "言必信，行必果",
-    "pinyin": "yán bì xìn，xíng bì guǒ",
-    "source": "《论语·子路》",
-    "core": "强调守信和行动坚定；写作时也可讨论“原则与灵活性”的关系。"
+    "category": "心态与自省",
+    "text": "君子坦荡荡，小人长戚戚",
+    "pinyin": "jūn zǐ tǎn dàng dàng，xiǎo rén cháng qī qī",
+    "gloss": "【坦荡荡】心胸开阔舒坦；【长】经常；【戚戚】忧惧、患得患失。",
+    "source": "《论语·述而》",
+    "core": "光明磊落者心境宽宏从容，计较私利者整日处于焦虑烦闷之中。"
   },
   {
     "id": 65,
-    "category": "人际与合作",
-    "text": "海纳百川，有容乃大",
-    "pinyin": "hǎi nà bǎi chuān，yǒu róng nǎi dà",
-    "source": "林则徐自勉联",
-    "core": "包容差异才能不断扩大自己的格局。"
+    "category": "心态与自省",
+    "text": "吾日三省吾身",
+    "pinyin": "wú rì sān xǐng wú shēn",
+    "gloss": "【三】多次；【省】检查、反省。",
+    "source": "《论语·学而》",
+    "core": "养成经常且多维度自我剖析的习惯，时刻纠正行为偏差。"
   },
   {
     "id": 66,
-    "category": "人际与合作",
-    "text": "老吾老以及人之老，幼吾幼以及人之幼",
-    "pinyin": "lǎo wú lǎo yǐ jí rén zhī lǎo，yòu wú yòu yǐ jí rén zhī yòu",
-    "source": "《孟子·梁惠王上》",
-    "core": "把对自己家人的关爱扩大到他人。"
+    "category": "心态与自省",
+    "text": "见贤思齐焉，见不贤而内自省也",
+    "pinyin": "jiàn xián sī qí yān，jiàn bù xián ér nèi zì xǐng yě",
+    "gloss": "【贤】德才兼备的人；【齐】看齐；【内自省】内心反省。",
+    "source": "《论语·里仁》",
+    "core": "见到优秀的人应努力向其看齐；见他人有过失，就反省自己是否也有同样的毛病。"
   },
   {
     "id": 67,
-    "category": "人际与合作",
-    "text": "爱人者，人恒爱之；敬人者，人恒敬之",
-    "pinyin": "ài rén zhě，rén héng ài zhī；jìng rén zhě，rén héng jìng zhī",
-    "source": "《孟子·离娄下》",
-    "core": "尊重和善意往往具有相互性。"
+    "category": "心态与自省",
+    "text": "胜人者有力，自胜者强",
+    "pinyin": "shèng rén zhě yǒu lì，zì shèng zhě qiáng",
+    "gloss": "【自胜】战胜克服自身的缺点、惰性与欲望。",
+    "source": "《老子》第三十三章",
+    "core": "战胜他人只靠外部力量，唯有能战胜自我惰性与私欲者才是真强者。"
   },
   {
     "id": 68,
-    "category": "人际与合作",
-    "text": "二人同心，其利断金",
-    "pinyin": "èr rén tóng xīn，qí lì duàn jīn",
-    "source": "《周易·系辞上》",
-    "core": "合作能够产生超过个人的力量。"
+    "category": "心态与自省",
+    "text": "静以修身，俭以养德",
+    "pinyin": "jìng yǐ xiū shēn，jiǎn yǐ yǎng dé",
+    "gloss": "【静】内心宁静平和；【俭】生活节俭克制。",
+    "source": "诸葛亮《诫子书》",
+    "core": "依靠沉静反思涵养品性，依靠勤俭朴素培养高尚的道德操守。"
   },
   {
     "id": 69,
-    "category": "人际与合作",
-    "text": "独学而无友，则孤陋而寡闻",
-    "pinyin": "dú xué ér wú yǒu，zé gū lòu ér guǎ wén",
-    "source": "《礼记·学记》",
-    "core": "与别人交流有助于扩大知识和视野。"
+    "category": "心态与自省",
+    "text": "博观而约取，厚积而薄发",
+    "pinyin": "bó guān ér yuē qǔ，hòu jī ér bó fā",
+    "gloss": "【博观】广泛阅读观察；【约取】精要吸取；【薄发】克制而从容地施展。",
+    "source": "苏轼《稼说（送张琥）》",
+    "core": "广泛吸收后精炼沉淀，做足长远准备后才能实现稳健爆发。"
   },
   {
     "id": 70,
-    "category": "人际与合作",
-    "text": "道不同，不相为谋",
-    "pinyin": "dào bù tóng，bù xiāng wéi móu",
-    "source": "《论语·卫灵公》",
-    "core": "价值观和目标差距过大时，合作往往困难。"
+    "category": "心态与自省",
+    "text": "不患人之不己知，患不知人也",
+    "pinyin": "bù huàn rén zhī bù jǐ zhī，huàn bù zhī rén yě",
+    "gloss": "【患】忧虑、担心；【不己知】宾语前置，即“不知己”，不了解自己。",
+    "source": "《论语·学而》",
+    "core": "不要焦虑他人不赏识自己，应多关注自身是否具备识人、体谅人的胸襟。"
   },
   {
     "id": 71,
-    "category": "规则、诚信与责任",
-    "text": "不以规矩，不能成方圆",
-    "pinyin": "bù yǐ guī jǔ，bù néng chéng fāng yuán",
-    "source": "《孟子·离娄上》",
-    "core": "社会和个人的发展都离不开必要规则。"
+    "category": "心态与自省",
+    "text": "君子慎独，不欺暗室",
+    "pinyin": "jūn zǐ shèn dú，bù qī àn shì",
+    "gloss": "【慎独】在独处无人监督时仍谨慎自律；【暗室】无人可见的隐蔽场所。",
+    "source": "《礼记·中庸》衍生",
+    "core": "高度的自律与道德内化，即便没有外部监督，依然坚守规矩底线。"
   },
   {
     "id": 72,
-    "category": "规则、诚信与责任",
-    "text": "勿以恶小而为之，勿以善小而不为",
-    "pinyin": "wù yǐ è xiǎo ér wéi zhī，wù yǐ shàn xiǎo ér bù wéi",
-    "source": "《三国志·蜀书·先主传》裴松之注",
-    "core": "小善值得做，小恶也不可忽视。"
+    "category": "心态与自省",
+    "text": "君子求诸己，小人求诸人",
+    "pinyin": "jūn zǐ qiú zhū jǐ，xiǎo rén qiú zhū rén",
+    "gloss": "【求】要求、责求；【诸】“之于”的合音词。",
+    "source": "《论语·卫灵公》",
+    "core": "有格局者遇事先从自身找原因，平庸之辈遇到挫折只会怨天尤人。"
   },
   {
     "id": 73,
-    "category": "规则、诚信与责任",
-    "text": "富贵不能淫，贫贱不能移，威武不能屈",
-    "pinyin": "fù guì bù néng yín，pín jiàn bù néng yí，wēi wǔ bù néng qū",
-    "source": "《孟子·滕文公下》",
-    "core": "真正的原则不应轻易受到环境影响。"
+    "category": "人际与合作",
+    "text": "己所不欲，勿施于人",
+    "pinyin": "jǐ suǒ bù yù，wù shī yú rén",
+    "gloss": "【欲】希望、想要；【施】强加。",
+    "source": "《论语·颜渊》",
+    "core": "人际交往应推己及人、怀有同理心，不要将自己排斥的强加给别人。"
   },
   {
     "id": 74,
-    "category": "规则、诚信与责任",
-    "text": "人而无信，不知其可也",
-    "pinyin": "rén ér wú xìn，bù zhī qí kě yě",
-    "source": "《论语·为政》",
-    "core": "信用是一个人在社会中立足的重要条件。"
+    "category": "人际与合作",
+    "text": "君子和而不同，小人同而不和",
+    "pinyin": "jūn zǐ hé ér bù tóng，xiǎo rén tóng ér bù hé",
+    "gloss": "【和】和谐、协同；【同】盲同、附和。",
+    "source": "《论语·子路》",
+    "core": "真正的和谐包容求同存异，虚假的迎合只会盲目顺从却各怀鬼胎。"
   },
   {
     "id": 75,
-    "category": "规则、诚信与责任",
-    "text": "桃李不言，下自成蹊",
-    "pinyin": "táo lǐ bù yán，xià zì chéng xī",
-    "source": "《史记·李将军列传》",
-    "core": "真正的品德和能力不需要过度宣传，自然会产生影响。"
+    "category": "人际与合作",
+    "text": "与朋友交，言而有信",
+    "pinyin": "yǔ péng yǒu jiāo，yán ér yǒu xìn",
+    "gloss": "【信】诚信、信义。",
+    "source": "《论语·学而》",
+    "core": "诚信与兑现承诺，是维持健康人际交往不可动摇的底线。"
   },
   {
     "id": 76,
-    "category": "规则、诚信与责任",
-    "text": "其身正，不令而行；其身不正，虽令不从",
-    "pinyin": "qí shēn zhèng，bù lìng ér xíng；qí shēn bù zhèng，suī lìng bù cóng",
+    "category": "人际与合作",
+    "text": "言必信，行必果",
+    "pinyin": "yán bì xìn，xíng bì guǒ",
+    "gloss": "【果】果断、有结果。",
     "source": "《论语·子路》",
-    "core": "以身作则比单纯要求别人更加有效。"
+    "core": "说话必定诚实守信，行动必定坚定彻底落实到位。"
   },
   {
     "id": 77,
-    "category": "规则、诚信与责任",
-    "text": "天下兴亡，匹夫有责",
-    "pinyin": "tiān xià xīng wáng，pǐ fū yǒu zé",
-    "source": "顾炎武《日知录》（梁启超提炼成句）",
-    "core": "每个人都应承担与自身能力相应的社会责任。"
+    "category": "人际与合作",
+    "text": "海纳百川，有容乃大",
+    "pinyin": "hǎi nà bǎi chuān，yǒu róng nǎi dà",
+    "gloss": "【纳】接纳、容纳；【容】包容、宽容。",
+    "source": "林则徐自勉联",
+    "core": "有海纳百川的宽阔胸襟，包容差异与多重声音，方能成就大格局。"
   },
   {
     "id": 78,
-    "category": "规则、诚信与责任",
-    "text": "先天下之忧而忧，后天下之乐而乐",
-    "pinyin": "xiān tiān xià zhī yōu ér yōu，hòu tiān xià zhī lè ér lè",
-    "source": "范仲淹《岳阳楼记》",
-    "core": "强调公共责任和担当精神。"
+    "category": "人际与合作",
+    "text": "老吾老以及人之老，幼吾幼以及人之幼",
+    "pinyin": "lǎo wú lǎo yǐ jí rén zhī lǎo，yòu wú yòu yǐ jí rén zhī yòu",
+    "gloss": "【前一个“老/幼”】作动词用，敬爱老人/抚养爱护孩童；【及】推及到。",
+    "source": "《孟子·梁惠王上》",
+    "core": "推己及人；把对家庭至亲的爱护，扩充到全社会的大爱与责任担当中。"
   },
   {
     "id": 79,
-    "category": "规则、诚信与责任",
-    "text": "穷则独善其身，达则兼善天下",
-    "pinyin": "qióng zé dú shàn qí shēn，dá zé jiān shàn tiān xià",
-    "source": "《孟子·尽心上》",
-    "core": "无论处境如何，都应保持品德并尽可能承担责任。"
+    "category": "人际与合作",
+    "text": "爱人者，人恒爱之；敬人者，人恒敬之",
+    "pinyin": "ài rén zhě，rén héng ài zhī；jìng rén zhě，rén héng jìng zhī",
+    "gloss": "【恒】经常、往往；【之】指代爱人、敬人的人。",
+    "source": "《孟子·离娄下》",
+    "core": "善意与尊重具有对等互动性，真心尊重他人才能换取持久的敬爱。"
   },
   {
     "id": 80,
-    "category": "规则、诚信与责任",
-    "text": "人生自古谁无死，留取丹心照汗青",
-    "pinyin": "rén shēng zì gǔ shuí wú sǐ，liú qǔ dān xīn zhào hàn qīng",
-    "source": "文天祥《过零丁洋》",
-    "core": "人的精神价值有时比个人得失更加重要。"
+    "category": "人际与合作",
+    "text": "二人同心，其利断金",
+    "pinyin": "èr rén tóng xīn，qí lì duàn jīn",
+    "gloss": "【利】锋利；【断金】切断坚硬的金石。",
+    "source": "《周易·系辞上》",
+    "core": "团结协作、心意相通，能爆发出攻坚克难的强大合力。"
   },
   {
     "id": 81,
-    "category": "时间、选择与目标",
-    "text": "鱼与熊掌不可兼得",
-    "pinyin": "yú yǔ xióng zhǎng bù kě jiān dé",
-    "source": "《孟子·告子上》",
-    "core": "面对无法同时实现的目标时，需要懂得取舍。"
+    "category": "人际与合作",
+    "text": "独学而无友，则孤陋而寡闻",
+    "pinyin": "dú xué ér wú yǒu，zé gū lòu ér guǎ wén",
+    "gloss": "【孤陋】孤陋寡闻、见识浅薄；【寡】少。",
+    "source": "《礼记·学记》",
+    "core": "闭门造车缺少交流互鉴，极易使人陷入认知死角与闭目塞听。"
   },
   {
     "id": 82,
-    "category": "时间、选择与目标",
-    "text": "宁为鸡口，无为牛后",
-    "pinyin": "nìng wéi jī kǒu，wú wéi niú hòu",
-    "source": "《战国策·韩策一》",
-    "core": "宁愿拥有自主权，也不愿完全依附于强者。"
+    "category": "人际与合作",
+    "text": "道不同，不相为谋",
+    "pinyin": "dào bù tóng，bù xiāng wéi móu",
+    "gloss": "【道】志向、价值观、道路；【谋】商量、共事。",
+    "source": "《论语·卫灵公》",
+    "core": "核心价值理念与原则存在根本差异的人，难以展开深度的共事合作。"
   },
   {
     "id": 83,
-    "category": "时间、选择与目标",
-    "text": "三思而后行",
-    "pinyin": "sān sī ér hòu xíng",
-    "source": "《论语·公冶长》",
-    "core": "行动之前应充分考虑后果。"
+    "category": "人际与合作",
+    "text": "孤举者难起，众行者易趋",
+    "pinyin": "gū jǔ zhě nán qǐ，zhòng xíng zhě yì qū",
+    "gloss": "【举】举起重物；【趋】快步走向目标。",
+    "source": "《魏书·源贺传》",
+    "core": "单枪匹马往往步履维艰，齐心协力携手并进才能行稳致远。"
   },
   {
     "id": 84,
-    "category": "时间、选择与目标",
-    "text": "机不可失，时不再来",
-    "pinyin": "jī bù kě shī，shí bù zài lái",
-    "source": "《新五代史·晋家人传》",
-    "core": "面对重要机会要善于把握时机。"
+    "category": "人际与合作",
+    "text": "美美与共，天下大同",
+    "pinyin": "měi měi yǔ gòng，tiān xià dà tóng",
+    "gloss": "【美美与共】包容彼此的优秀文明成果；【大同】全人类和平共享的崇高理想。",
+    "source": "费孝通",
+    "core": "既欣赏本民族文化之美，又懂得欣赏多元文化，促进世界文明的交流互鉴。"
   },
   {
     "id": 85,
-    "category": "时间、选择与目标",
-    "text": "少壮不努力，老大徒伤悲",
-    "pinyin": "shào zhuàng bù nǔ lì，lǎo dà tú shāng bēi",
-    "source": "汉乐府《长歌行》",
-    "core": "年轻时应珍惜时间、积极努力。"
+    "category": "规则、诚信与责任",
+    "text": "不以规矩，不能成方圆",
+    "pinyin": "bù yǐ guī jǔ，bù néng chéng fāng yuán",
+    "gloss": "【规】画圆用的圆规；【矩】画方用的曲尺；【方圆】方形与圆形。",
+    "source": "《孟子·离娄上》",
+    "core": "任何行动与秩序都离不开标准、制度与底线规则的约束规范。"
   },
   {
     "id": 86,
-    "category": "时间、选择与目标",
-    "text": "一寸光阴一寸金，寸金难买寸光阴",
-    "pinyin": "yī cùn guāng yīn yī cùn jīn，cùn jīn nán mǎi cùn guāng yīn",
-    "source": "王贞白《续神奇集》/ 唐·唐羌诗",
-    "core": "时间具有不可逆性，比金钱更珍贵。"
+    "category": "规则、诚信与责任",
+    "text": "勿以恶小而为之，勿以善小而不为",
+    "pinyin": "wù yǐ è xiǎo ér wéi zhī，wù yǐ shàn xiǎo ér bù wéi",
+    "gloss": "【勿】不要；【为】去做。",
+    "source": "《三国志·蜀书·先主传》",
+    "core": "防微杜渐；再微小的过错都不能放任，再微小的善举都值得积极践行。"
   },
   {
     "id": 87,
-    "category": "时间、选择与目标",
-    "text": "盛年不重来，一日难再晨；及时当勉励，岁月不待人",
-    "pinyin": "shèng nián bù chóng lái，yī rì nán zài chén；jí shí dāng miǎn lì，suì yuè bù dài rén",
-    "source": "陶渊明《杂诗》",
-    "core": "人生不可重来，应珍惜当下。"
+    "category": "规则、诚信与责任",
+    "text": "富贵不能淫，贫贱不能移，威武不能屈",
+    "pinyin": "fù guì bù néng yín，pín jiàn bù néng yí，wēi wǔ bù néng qū",
+    "gloss": "【淫】迷惑放纵；【移】改变志节；【屈】屈服退让。",
+    "source": "《孟子·滕文公下》",
+    "core": "坚守崇高的人格尊严与原则骨气，绝不因荣华富贵或强权恐吓而动摇。"
   },
   {
     "id": 88,
-    "category": "时间、选择与目标",
-    "text": "明日复明日，明日何其多",
-    "pinyin": "míng rì fù míng rì，míng rì hé qí duō",
-    "source": "钱福《明日歌》",
-    "core": "批评拖延，强调及时行动。"
+    "category": "规则、诚信与责任",
+    "text": "人而无信，不知其可也",
+    "pinyin": "rén ér wú xìn，bù zhī qí kě yě",
+    "gloss": "【而】如果；【其可】他还能做什么、如何立足。",
+    "source": "《论语·为政》",
+    "core": "诚信是个体立足于社会的立身之本，丧失信用便难以在世间立足。"
   },
   {
     "id": 89,
-    "category": "时间、选择与目标",
-    "text": "业精于勤，荒于嬉；行成于思，毁于随",
-    "pinyin": "yè jīng yú qín，huāng yú xī；xíng chéng yú sī，huǐ yú suí",
-    "source": "韩愈《进学解》",
-    "core": "成就来自勤奋和思考，放纵和盲从容易导致退步。"
+    "category": "规则、诚信与责任",
+    "text": "桃李不言，下自成蹊",
+    "pinyin": "táo lǐ bù yán，xià zì chéng xī",
+    "gloss": "【蹊】被踩踏出的小路。",
+    "source": "《史记·李将军列传》",
+    "core": "真正具备优秀品质与硬核能力的人无须自夸，自然能吸引并感染他人。"
   },
   {
     "id": 90,
-    "category": "时间、选择与目标",
-    "text": "志当存高远",
-    "pinyin": "zhì dāng cún gāo yuǎn",
-    "source": "诸葛亮《诫外甥书》",
-    "core": "人应树立长远而有价值的目标。"
+    "category": "规则、诚信与责任",
+    "text": "其身正，不令而行；其身不正，虽令不从",
+    "pinyin": "qí shēn zhèng，bù lìng ér xíng；qí shēn bù zhèng，suī lìng bù cóng",
+    "gloss": "【其身】自身、做领导管理者的人；【虽】即使。",
+    "source": "《论语·子路》",
+    "core": "以身作则的榜样示范力量，远胜于生硬强制的言语号令。"
   },
   {
     "id": 91,
-    "category": "情谊、胸怀与人生价值",
-    "text": "海内存知己，天涯若比邻",
-    "pinyin": "hǎi nèi cún zhī jǐ，tiān yá ruò bǐ lín",
-    "source": "王勃《送杜少府之任蜀州》",
-    "core": "真正的友情不受空间距离限制。"
+    "category": "规则、诚信与责任",
+    "text": "天下兴亡，匹夫有责",
+    "pinyin": "tiān xià xīng wáng，pǐ fū yǒu zé",
+    "gloss": "【匹夫】普通百姓、平民。",
+    "source": "顾炎武《日知录》",
+    "core": "国家乃至集体的荣辱盛衰，每一个普通人都应扛起对应的责任。"
   },
   {
     "id": 92,
-    "category": "情谊、胸怀与人生价值",
-    "text": "莫愁前路无知己，天下谁人不识君",
-    "pinyin": "mò chóu qián lù wú zhī jǐ，tiān xià shuí rén bù shí jūn",
-    "source": "高适《别董大》",
-    "core": "面对离别和未知未来，应保持信心。"
+    "category": "规则、诚信与责任",
+    "text": "先天下之忧而忧，后天下之乐而乐",
+    "pinyin": "xiān tiān xià zhī yōu ér yōu，hòu tiān xià zhī lè ér lè",
+    "gloss": "【忧】担忧忧虑；【乐】享乐快乐。",
+    "source": "范仲淹《岳阳楼记》",
+    "core": "超越私欲的高尚家国情怀，把社会福祉置于个人享乐之上。"
   },
   {
     "id": 93,
-    "category": "情谊、胸怀与人生价值",
-    "text": "路遥知马力，日久见人心",
-    "pinyin": "lù yáo zhī mǎ lì，rì jiǔ jiàn rén xīn",
-    "source": "元·无名氏《争报恩》",
-    "core": "时间和实践能够检验一个人的真实品质。"
+    "category": "规则、诚信与责任",
+    "text": "穷则独善其身，达则兼善天下",
+    "pinyin": "qióng zé dú shàn qí shēn，dá zé jiān shàn tiān xià",
+    "gloss": "【穷】不得志、处于逆境底层；【达】得志、显达；【善】修好品行/造福。",
+    "source": "《孟子·尽心上》",
+    "core": "身处困厄坚守底线独修操守，得志发达则尽己所能兼济天下苍生。"
   },
   {
     "id": 94,
-    "category": "情谊、胸怀与人生价值",
-    "text": "患难见真情",
-    "pinyin": "huàn nàn jiàn zhēn qíng",
-    "source": "汤显祖《牡丹亭》",
-    "core": "困境最容易检验人与人之间真正的感情。"
+    "category": "规则、诚信与责任",
+    "text": "人生自古谁无死，留取丹心照汗青",
+    "pinyin": "rén shēng zì gǔ shuí wú sǐ，liú qǔ dān xīn zhào hàn qīng",
+    "gloss": "【丹心】赤诚忠心；【汗青】史册（古人在竹简上书写，烘烤去汁称“汗青”）。",
+    "source": "文天祥《过零丁洋》",
+    "core": "舍生取义的民族气节，精神力量与历史道义远超越个人生死得失。"
   },
   {
     "id": 95,
-    "category": "情谊、胸怀与人生价值",
-    "text": "落红不是无情物，化作春泥更护花",
-    "pinyin": "luò hóng bù shì wú qíng wù，huà zuò chūn ní gèng hù huā",
-    "source": "龚自珍《己亥杂诗》",
-    "core": "离开原来的位置之后仍然可以继续创造价值。"
+    "category": "规则、诚信与责任",
+    "text": "见利思义，见危授命",
+    "pinyin": "jiàn lì sī yì，jiàn wēi shòu mìng",
+    "gloss": "【授命】献出生命、舍身担当。",
+    "source": "《论语·宪问》",
+    "core": "面对利益诱惑时刻坚守道义原则，面对危难关头敢于挺身肩负使命。"
   },
   {
     "id": 96,
-    "category": "情谊、胸怀与人生价值",
-    "text": "春蚕到死丝方尽，蜡炬成灰泪始干",
-    "pinyin": "chūn cán dào sǐ sī fāng jìn，là jù chéng huī lèi shǐ gān",
-    "source": "李商隐《无题》",
-    "core": "常被引申为奉献、坚持与付出。"
+    "category": "规则、诚信与责任",
+    "text": "法与时转则治，治与世宜则有功",
+    "pinyin": "fǎ yǔ shí zhuǎn zé zhì，zhì yǔ shì yí zé yǒu gōng",
+    "gloss": "【转】转变、变化；【宜】相适应；【有功】取得成效。",
+    "source": "《韩非子·心度》",
+    "core": "规章法律必须顺应时代演变，治理策略适应社会发展方能收获实效。"
   },
   {
     "id": 97,
-    "category": "情谊、胸怀与人生价值",
-    "text": "山不厌高，海不厌深",
-    "pinyin": "shān bù yàn gāo，hǎi bù yàn shēn",
-    "source": "曹操《短歌行》",
-    "core": "胸怀越宽广，越能够吸收人才和不同意见。"
+    "category": "时间、选择与目标",
+    "text": "鱼与熊掌不可兼得",
+    "pinyin": "yú yǔ xióng zhǎng bù kě jiān dé",
+    "gloss": "【兼】同时拥有。",
+    "source": "《孟子·告子上》",
+    "core": "资源与精力有限时，人必须学会权衡轻重、懂得战略性取舍。"
   },
   {
     "id": 98,
-    "category": "情谊、胸怀与人生价值",
-    "text": "泰山不让土壤，故能成其大；河海不择细流，故能就其深",
-    "pinyin": "tài shān bù ràng tǔ rǎng，gù néng chéng qí dà；hé hǎi bù zé xì liú，gù néng jiù qí shēn",
-    "source": "李斯《谏逐客书》",
-    "core": "包容和积累微小事物才能成就伟大。"
+    "category": "时间、选择与目标",
+    "text": "宁为鸡口，无为牛后",
+    "pinyin": "nìng wéi jī kǒu，wú wéi niú hòu",
+    "gloss": "【鸡口】鸡的嘴巴，小而有独立性；【牛后】牛的尾巴肛门，大而任人摆布。",
+    "source": "《战国策·韩策一》",
+    "core": "宁在小天地拥有自主掌控权，也不在庞大体系里做被动附庸。"
   },
   {
     "id": 99,
-    "category": "情谊、胸怀与人生价值",
-    "text": "天生我材必有用",
-    "pinyin": "tiān shēng wǒ cái bì yǒu yòng",
-    "source": "李白《将进酒》",
-    "core": "要相信自身价值和潜力，但不能把自信变成自负。"
+    "category": "时间、选择与目标",
+    "text": "三思而后行",
+    "pinyin": "sān sī ér hòu xíng",
+    "gloss": "【三思】反复审慎地思考推敲。",
+    "source": "《论语·公冶长》",
+    "core": "付诸重大行动前，必须对后果与可能出现的风险做周全预判。"
   },
   {
     "id": 100,
-    "category": "情谊、胸怀与人生价值",
+    "category": "时间、选择与目标",
+    "text": "机不可失，时不再来",
+    "pinyin": "jī bù kě shī，shí bù zài lái",
+    "gloss": "【机】机遇、关键契机。",
+    "source": "《新五代史·晋家人传》",
+    "core": "关键性的时代机遇稍纵即逝，必须敏锐捕捉并当机立断。"
+  },
+  {
+    "id": 101,
+    "category": "时间、选择与目标",
+    "text": "少壮不努力，老大徒伤悲",
+    "pinyin": "shào zhuàng bù nǔ lì，lǎo dà tú shāng bēi",
+    "gloss": "【老大】年纪大了、年老之时；【徒】白白地、徒劳。",
+    "source": "汉乐府《长歌行》",
+    "core": "告诫年轻人抓紧青春时光拼搏奋斗，切忌蹉跎光阴致使年老虚叹。"
+  },
+  {
+    "id": 102,
+    "category": "时间、选择与目标",
+    "text": "一寸光阴一寸金，寸金难买寸光阴",
+    "pinyin": "yī cùn guāng yīn yī cùn jīn，cùn jīn nán mǎi cùn guāng yīn",
+    "gloss": "【光阴】时光、时间（古时用日晷测影，“寸阴”喻极短时间）。",
+    "source": "王贞白《白鹿洞二首》",
+    "core": "时间具有不可逆性与不可再生性，其价值远非物质金钱所能比拟。"
+  },
+  {
+    "id": 103,
+    "category": "时间、选择与目标",
+    "text": "盛年不重来，一日难再晨；及时当勉励，岁月不待人",
+    "pinyin": "shèng nián bù chóng lái，yī rì nán zài chén；jí shí dāng miǎn lì，suì yuè bù dài rén",
+    "gloss": "【盛年】青春壮年时期；【待】等待。",
+    "source": "陶渊明《杂诗》",
+    "core": "宝贵青春不会二次降临，应当珍惜当下每一个朝夕，积极发奋自励。"
+  },
+  {
+    "id": 104,
+    "category": "时间、选择与目标",
+    "text": "明日复明日，明日何其多",
+    "pinyin": "míng rì fù míng rì，míng rì hé qí duō",
+    "gloss": "【复】又是；【何其】多么、何等。",
+    "source": "钱福《明日歌》",
+    "core": "深刻批判拖延懈怠心态，强调今日事今日毕的敏捷行动力。"
+  },
+  {
+    "id": 105,
+    "category": "时间、选择与目标",
+    "text": "业精于勤，荒于嬉；行成于思，毁于随",
+    "pinyin": "yè jīng yú qín，huāng yú xī；xíng chéng yú sī，huǐ yú suí",
+    "gloss": "【嬉】嬉戏、荒废玩乐；【随】盲从、随大流。",
+    "source": "韩愈《进学解》",
+    "core": "学业因勤奋而精进、因懈怠荒废，德行因深思而成熟、因盲从败坏。"
+  },
+  {
+    "id": 106,
+    "category": "时间、选择与目标",
+    "text": "志当存高远",
+    "pinyin": "zhì dāng cún gāo yuǎn",
+    "gloss": "【存】怀有、寄托。",
+    "source": "诸葛亮《诫外甥书》",
+    "core": "人应当树立宏大卓越的长远志向，不可满足于眼前庸常。"
+  },
+  {
+    "id": 107,
+    "category": "时间、选择与目标",
+    "text": "当断不断，反受其乱",
+    "pinyin": "dāng duàn bù duàn，fǎn shòu qí luàn",
+    "gloss": "【断】决断、作出选择；【乱】祸乱、拖延带来的困扰。",
+    "source": "《史记·春申君列传》",
+    "core": "在关键转折点优柔寡断，必然会导致局势失控并遭受祸乱反噬。"
+  },
+  {
+    "id": 108,
+    "category": "时间、选择与目标",
+    "text": "失之东隅，收之桑榆",
+    "pinyin": "shī zhī dōng yú，shōu zhī sāng yú",
+    "gloss": "【东隅】日出处，指早晨或初期；【桑榆】夕阳照在桑树榆树树梢，指傍晚或晚期。",
+    "source": "《后汉书·冯异传》",
+    "core": "开始或某一处遭受了挫败，却在后来的长远发展中获得了成功弥补。"
+  },
+  {
+    "id": 109,
+    "category": "情谊、胸怀与生态价值",
+    "text": "海内存知己，天涯若比邻",
+    "pinyin": "hǎi nèi cún zhī jǐ，tiān yá ruò bǐ lín",
+    "gloss": "【海内】四海之内、国境之内；【比邻】并排相邻的邻居。",
+    "source": "王勃《送杜少府之任蜀州》",
+    "core": "真挚深刻的友谊不受物理空间的阻隔，心灵契合便如同近在咫尺。"
+  },
+  {
+    "id": 110,
+    "category": "情谊、胸怀与生态价值",
+    "text": "莫愁前路无知己，天下谁人不识君",
+    "pinyin": "mò chóu qián lù wú zhī jǐ，tiān xià shuí rén bù shí jūn",
+    "gloss": "【莫愁】不要担忧；【君】对对方的尊称。",
+    "source": "高适《别董大》",
+    "core": "面对离别和未来的未知变数，应充满底气与乐观豁达的胸怀。"
+  },
+  {
+    "id": 111,
+    "category": "情谊、胸怀与生态价值",
+    "text": "路遥知马力，日久见人心",
+    "pinyin": "lù yáo zhī mǎ lì，rì jiǔ jiàn rén xīn",
+    "gloss": "【遥】遥远。",
+    "source": "《争报恩》",
+    "core": "人的真实操守、意志力与心意，需要经过漫长时间与实践的检验。"
+  },
+  {
+    "id": 112,
+    "category": "情谊、胸怀与生态价值",
+    "text": "患难见真情",
+    "pinyin": "huàn nàn jiàn zhēn qíng",
+    "gloss": "【患难】逆境困苦、危险关头。",
+    "source": "民间俗语",
+    "core": "平凡顺境难以辨别真伪，唯有在困顿险境中才能看清最真挚的情感。"
+  },
+  {
+    "id": 113,
+    "category": "情谊、胸怀与生态价值",
+    "text": "落红不是无情物，化作春泥更护花",
+    "pinyin": "luò hóng bù shì wú qíng wù，huà zuò chūn ní gèng hù huā",
+    "gloss": "【落红】落花；【春泥】化作春天的泥土养分。",
+    "source": "龚自珍《己亥杂诗》",
+    "core": "不图功名回报的奉献担当精神，即使离开关键岗位依然默默滋养后代。"
+  },
+  {
+    "id": 114,
+    "category": "情谊、胸怀与生态价值",
+    "text": "春蚕到死丝方尽，蜡炬成灰泪始干",
+    "pinyin": "chūn cán dào sǐ sī fāng jìn，là jù chéng huī lèi shǐ gān",
+    "gloss": "【丝】双关“思”；【炬】蜡烛；【泪】燃烧时流淌的烛泪。",
+    "source": "李商隐《无题》",
+    "core": "常用于比喻对教育、科学事业矢志不渝、鞠躬尽瘁的奉献牺牲精神。"
+  },
+  {
+    "id": 115,
+    "category": "情谊、胸怀与生态价值",
+    "text": "山不厌高，海不厌深",
+    "pinyin": "shān bù yàn gāo，hǎi bù yàn shēn",
+    "gloss": "【厌】满足；嫌弃。",
+    "source": "曹操《短歌行》",
+    "core": "胸襟像山海一样无限接纳与包容，善于招贤纳谏、广纳天下英才。"
+  },
+  {
+    "id": 116,
+    "category": "情谊、胸怀与生态价值",
+    "text": "泰山不让土壤，故能成其大；河海不择细流，故能就其深",
+    "pinyin": "tài shān bù ràng tǔ rǎng，gù néng chéng qí dà；hé hǎi bù zé xì liú，gù néng jiù qí shēn",
+    "gloss": "【让】排斥、推辞；【择】挑拣；【就】成就、造就。",
+    "source": "李斯《谏逐客书》",
+    "core": "不拒微末、广泛包容不同元素力量，方能聚少成多铸就伟大成就。"
+  },
+  {
+    "id": 117,
+    "category": "情谊、胸怀与生态价值",
+    "text": "天生我材必有用",
+    "pinyin": "tiān shēng wǒ cái bì yǒu yòng",
+    "gloss": "【材】才能、天分。",
+    "source": "李白《将进酒》",
+    "core": "坚定信赖自身的独特价值与潜能，保持自信从容、昂扬进取的心态。"
+  },
+  {
+    "id": 118,
+    "category": "情谊、胸怀与生态价值",
     "text": "青，取之于蓝，而青于蓝",
     "pinyin": "qīng，qǔ zhī yú lán，ér qīng yú lán",
+    "gloss": "【前一个“青”】靛青染料；【蓝】蓝草（一种可提取染料的植物）；【后一个“青”】作形容词，颜色更深。",
     "source": "《荀子·劝学》",
-    "core": "后来者通过学习和创新可以超越前人。"
+    "core": "后辈通过不断学习积累与开拓创新，完全可以超越前人的认知高度。"
+  },
+  {
+    "id": 119,
+    "category": "情谊、胸怀与生态价值",
+    "text": "竭泽而渔，岂不获得？而明年无鱼",
+    "pinyin": "jié zé ér yú，qǐ bù huò dé？ér míng nián wú yú",
+    "gloss": "【竭】排空、排干；【泽】湖泊沼泽；【渔】捕鱼。",
+    "source": "《吕氏春秋·义赏》",
+    "core": "抨击只顾眼前的短视掠夺，强调可持续发展与人与自然的和谐共生。"
+  },
+  {
+    "id": 120,
+    "category": "情谊、胸怀与生态价值",
+    "text": "万物各得其和以生，各得其养以成",
+    "pinyin": "wàn wù gè dé qí hé yǐ shēng，gè dé qí yǎng yǐ chéng",
+    "gloss": "【和】和谐的气候与生态环境；【养】养料滋育。",
+    "source": "《荀子·天论》",
+    "core": "遵循自然生长法则，保护生物多样性，实现生态系统的良性循环与平衡。"
   }
 ];

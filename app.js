@@ -1,215 +1,347 @@
 (() => {
-  const DATA = window.GUYU_DATA || [];
-  const CATEGORIES = [...new Set(DATA.map(x => x.category))];
-  const CATEGORY_META = {
-    '认识与思维': ['角度','判断','认知'],
-    '学习与求知': ['学习','思考','求知'],
-    '行动与积累': ['行动','积累','方法'],
-    '坚持与逆境': ['坚持','困难','成长'],
-    '辩证与变化': ['变化','适度','辩证'],
-    '心态与自省': ['心态','反思','修养'],
-    '人际与合作': ['合作','尊重','关系'],
-    '规则、诚信与责任': ['规则','诚信','责任'],
-    '时间、选择与目标': ['时间','选择','目标'],
-    '情谊、胸怀与人生价值': ['情谊','胸怀','价值']
-  };
-  const EXAMPLE_LEADS = {
-    '认识与思维': '面对复杂问题时，我们不能只凭第一印象下结论，而应该主动换一个角度思考。',
-    '学习与求知': '学习不是简单地记住知识，更重要的是不断思考、实践和修正自己的认识。',
-    '行动与积累': '任何长期目标都离不开一步一步的实践，真正的进步往往来自持续的小行动。',
-    '坚持与逆境': '遇到困难时，暂时的挫折并不意味着失败，关键是能否继续向前。',
-    '辩证与变化': '看待事物时，我们既要看到积极的一面，也要注意条件、程度和可能发生的变化。',
-    '心态与自省': '一个人的成长不仅取决于外在条件，也取决于能否保持清醒并经常反思自己。',
-    '人际与合作': '在合作中，理解、尊重和沟通往往比单纯要求别人认同自己更重要。',
-    '规则、诚信与责任': '个人行为不仅影响自己，也会影响他人和社会，因此规则、信用与责任不可忽视。',
-    '时间、选择与目标': '面对选择时，我们既要考虑眼前的得失，也要思考长期目标和机会成本。',
-    '情谊、胸怀与人生价值': '人生的价值不只体现在个人得失上，也体现在人与人之间的情感、胸怀与贡献中。'
-  };
+  'use strict';
 
-  const $ = (sel) => document.querySelector(sel);
-  const $$ = (sel) => [...document.querySelectorAll(sel)];
+  const DATA = Array.isArray(window.GUYU_DATA) ? window.GUYU_DATA : [];
+  const CATEGORIES = [...new Set(DATA.map(item => item.category))];
+  const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X'];
+  const STORAGE_KEY = 'kathy-hsk79-guyu-v2';
 
+  const $ = (selector, root = document) => root.querySelector(selector);
+  const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+
+  const stored = readStored();
   const state = {
-    category: CATEGORIES[0],
-    currentId: DATA[0]?.id || 1,
-    tab: 'meaning',
-    practiceMode: 'meaning',
+    currentId: Number(stored.currentId) || 1,
+    category: stored.category && CATEGORIES.includes(stored.category) ? stored.category : (CATEGORIES[0] || ''),
+    tab: ['list','flashcard','practice','argument'].includes(stored.tab) ? stored.tab : 'list',
+    learned: new Set(Array.isArray(stored.learned) ? stored.learned : []),
+    favorites: new Set(Array.isArray(stored.favorites) ? stored.favorites : []),
+    mistakes: new Set(Array.isArray(stored.mistakes) ? stored.mistakes : []),
     search: '',
     reviewMistakes: false,
-    learned: new Set(JSON.parse(localStorage.getItem('guyu_learned') || '[]')),
-    favorites: new Set(JSON.parse(localStorage.getItem('guyu_favorites') || '[]')),
-    mistakes: JSON.parse(localStorage.getItem('guyu_mistakes') || '{}')
+    openId: null,
+    practice: {
+      mode: 'choice',
+      itemId: null,
+      answered: false,
+      score: 0,
+      total: 0,
+      fillAnswer: '',
+      fillPrompt: ''
+    }
   };
 
+  let voices = [];
+  let toastTimer = null;
+
+  function readStored() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); }
+    catch { return {}; }
+  }
+
   function saveState() {
-    localStorage.setItem('guyu_learned', JSON.stringify([...state.learned]));
-    localStorage.setItem('guyu_favorites', JSON.stringify([...state.favorites]));
-    localStorage.setItem('guyu_mistakes', JSON.stringify(state.mistakes));
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        currentId: state.currentId,
+        category: state.category,
+        tab: state.tab,
+        learned: [...state.learned],
+        favorites: [...state.favorites],
+        mistakes: [...state.mistakes]
+      }));
+    } catch {}
   }
 
   function currentItem() {
-    return DATA.find(x => x.id === state.currentId) || DATA[0];
+    return DATA.find(item => item.id === state.currentId) || DATA[0];
+  }
+
+  function categoryItems(category = state.category) {
+    return DATA.filter(item => item.category === category);
+  }
+
+  function searchItems() {
+    const q = state.search.trim().toLowerCase();
+    if (!q) return [];
+    return DATA.filter(item => [item.text, item.pinyin, item.gloss, item.source, item.core, item.category]
+      .some(value => String(value || '').toLowerCase().includes(q)));
   }
 
   function visibleItems() {
-    let list = DATA.filter(x => x.category === state.category);
-    if (state.reviewMistakes) {
-      const ids = Object.keys(state.mistakes).filter(id => state.mistakes[id] > 0).map(Number);
-      list = DATA.filter(x => ids.includes(x.id));
-    }
-    if (state.search.trim()) {
-      const q = state.search.trim().toLowerCase();
-      list = DATA.filter(x => `${x.text} ${x.pinyin} ${x.source} ${x.core}`.toLowerCase().includes(q));
-    }
-    return list;
+    if (state.search.trim()) return searchItems();
+    if (state.reviewMistakes) return DATA.filter(item => state.mistakes.has(item.id));
+    return categoryItems();
   }
 
-  function getCategoryItems() {
-    return DATA.filter(x => x.category === currentItem().category);
+  function ensureCurrentVisible() {
+    const list = visibleItems();
+    if (list.length && !list.some(item => item.id === state.currentId)) {
+      state.currentId = list[0].id;
+      state.openId = state.currentId;
+    }
   }
 
   function toast(message) {
     const el = $('#toast');
     el.textContent = message;
     el.classList.add('show');
-    clearTimeout(toast._t);
-    toast._t = setTimeout(() => el.classList.remove('show'), 1800);
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => el.classList.remove('show'), 1800);
+  }
+
+  function escapeHtml(value) {
+    return String(value ?? '')
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;')
+      .replaceAll("'", '&#039;');
+  }
+
+  function loadVoices() {
+    if (!('speechSynthesis' in window)) return;
+    voices = window.speechSynthesis.getVoices() || [];
+  }
+
+  function pickChineseVoice() {
+    if (!voices.length) loadVoices();
+    const preferredNames = /ting|xiaoxiao|huihui|kangkang|sinji|mei-jia|mandarin|chinese/i;
+    return voices.find(v => /^zh-CN$/i.test(v.lang) && preferredNames.test(v.name))
+      || voices.find(v => /^zh-CN$/i.test(v.lang))
+      || voices.find(v => /^zh(?:-|_)/i.test(v.lang))
+      || null;
+  }
+
+  function speakText(text) {
+    if (!('speechSynthesis' in window) || typeof SpeechSynthesisUtterance === 'undefined') {
+      toast('Trình duyệt này chưa hỗ trợ đọc văn bản.');
+      return;
+    }
+    const synth = window.speechSynthesis;
+    synth.cancel();
+    loadVoices();
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'zh-CN';
+    utter.rate = 0.78;
+    utter.pitch = 1;
+    const voice = pickChineseVoice();
+    if (voice) utter.voice = voice;
+    utter.onerror = () => toast('Không phát được âm thanh trên thiết bị này.');
+    synth.speak(utter);
   }
 
   function renderCategories() {
     const nav = $('#categoryNav');
-    nav.innerHTML = CATEGORIES.map((cat, i) => {
-      const count = DATA.filter(x => x.category === cat).length;
-      return `<button class="category-btn ${!state.reviewMistakes && !state.search && state.category === cat ? 'active' : ''}" data-category="${cat}">
-        <span class="category-index">${String(i+1).padStart(2,'0')}</span>
-        <span class="category-name">${cat}</span>
-        <span class="category-count">${count}</span>
-      </button>`;
+    nav.innerHTML = CATEGORIES.map((category, index) => {
+      const count = categoryItems(category).length;
+      const active = !state.search && !state.reviewMistakes && state.category === category;
+      return `
+        <button class="category-btn ${active ? 'active' : ''}" type="button" data-category="${escapeHtml(category)}">
+          <span class="category-index">${ROMAN[index] || index + 1}</span>
+          <span class="category-name">${escapeHtml(category)}</span>
+          <span class="category-count">${count}</span>
+        </button>`;
     }).join('');
 
-    $$('.category-btn').forEach(btn => btn.addEventListener('click', () => {
+    $$('.category-btn', nav).forEach(btn => btn.addEventListener('click', () => {
+      state.category = btn.dataset.category;
+      state.reviewMistakes = false;
       state.search = '';
       $('#searchInput').value = '';
-      state.reviewMistakes = false;
-      state.category = btn.dataset.category;
-      const first = DATA.find(x => x.category === state.category);
+      const first = categoryItems(state.category)[0];
       if (first) state.currentId = first.id;
+      state.openId = null;
+      resetPracticeQuestion();
+      saveState();
+      closeSidebar();
       renderAll();
-      $('#sidebar').classList.remove('open');
     }));
   }
 
   function renderProgress() {
     $('#learnedCount').textContent = `${state.learned.size} / ${DATA.length}`;
-    $('#progressBar').style.width = `${DATA.length ? state.learned.size / DATA.length * 100 : 0}%`;
+    $('#progressBar').style.width = `${DATA.length ? (state.learned.size / DATA.length) * 100 : 0}%`;
   }
 
-  function renderHeader() {
+  function renderTopbar() {
+    const list = visibleItems();
+    const eyebrow = $('#sectionEyebrow');
+    const title = $('#categoryTitle');
+    if (state.search.trim()) {
+      eyebrow.textContent = 'Tìm kiếm';
+      title.textContent = 'Kết quả phù hợp';
+    } else if (state.reviewMistakes) {
+      eyebrow.textContent = 'Ôn tập';
+      title.textContent = 'Các câu đã làm sai';
+    } else {
+      eyebrow.textContent = 'Chủ đề';
+      title.textContent = state.category;
+    }
+    $('#categoryMeta').textContent = `${list.length} câu`;
+  }
+
+  function renderHero() {
     const item = currentItem();
-    $('#categoryTitle').textContent = state.reviewMistakes ? '错题复习' : item.category;
-    $('#pageTitle').textContent = item.text;
-    $('#itemNumber').textContent = String(item.id).padStart(2,'0');
+    if (!item) return;
+    $('#itemNumber').textContent = String(item.id).padStart(2, '0');
     $('#heroText').textContent = item.text;
     $('#heroPinyin').textContent = item.pinyin;
     $('#heroSource').textContent = item.source;
-    const learnedBtn = $('#markLearnedBtn');
-    learnedBtn.textContent = state.learned.has(item.id) ? '✓ 已掌握' : '✓ 我会了';
-    learnedBtn.classList.toggle('learned', state.learned.has(item.id));
     $('#favoriteBtn').textContent = state.favorites.has(item.id) ? '★' : '☆';
-  }
-
-  function chipLabel(text) {
-    const compact = text.replace(/[，；。、“”]/g,'');
-    return compact.length <= 4 ? compact : compact.slice(0,2);
-  }
-
-  function renderStrip() {
-    const list = visibleItems();
-    const wrap = $('#itemStrip');
-    if (!list.length) {
-      wrap.innerHTML = '<div class="empty" style="padding:8px 0">Không tìm thấy nội dung phù hợp.</div>';
-      return;
-    }
-    if (!list.some(x => x.id === state.currentId)) state.currentId = list[0].id;
-    wrap.innerHTML = list.map(x => `<button class="item-chip ${x.id === state.currentId ? 'active' : ''}" data-id="${x.id}" title="${x.text}">${chipLabel(x.text)}</button>`).join('');
-    $$('.item-chip').forEach(btn => btn.addEventListener('click', () => {
-      state.currentId = Number(btn.dataset.id);
-      state.category = currentItem().category;
-      renderAll();
-    }));
-    requestAnimationFrame(() => wrap.querySelector('.item-chip.active')?.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'}));
+    $('#favoriteBtn').setAttribute('aria-label', state.favorites.has(item.id) ? 'Bỏ yêu thích' : 'Yêu thích');
+    const learnedBtn = $('#markLearnedBtn');
+    const learned = state.learned.has(item.id);
+    learnedBtn.textContent = learned ? '✓ Đã thuộc' : '✓ Đánh dấu đã thuộc';
+    learnedBtn.classList.toggle('learned', learned);
   }
 
   function renderTabs() {
-    $$('.tab').forEach(tab => tab.classList.toggle('active', tab.dataset.tab === state.tab));
+    $$('.tab').forEach(tab => {
+      const active = tab.dataset.tab === state.tab;
+      tab.classList.toggle('active', active);
+      tab.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
     const panel = $('#panel');
-    if (state.tab === 'meaning') renderMeaning(panel);
+    if (state.tab === 'list') renderList(panel);
     if (state.tab === 'flashcard') renderFlashcard(panel);
     if (state.tab === 'practice') renderPractice(panel);
-    if (state.tab === 'usage') renderUsage(panel);
+    if (state.tab === 'argument') renderArgument(panel);
   }
 
-  function renderMeaning(panel) {
-    const item = currentItem();
-    const tags = CATEGORY_META[item.category] || ['古语','HSK 7–9'];
+  function renderList(panel) {
+    const list = visibleItems();
+    const title = state.search.trim() ? 'Kết quả tìm kiếm' : state.reviewMistakes ? 'Câu cần ôn lại' : state.category;
+    if (!list.length) {
+      panel.innerHTML = `<div class="empty-state">${state.reviewMistakes ? 'Chưa có câu sai để ôn.' : 'Không tìm thấy nội dung phù hợp.'}</div>`;
+      return;
+    }
+
     panel.innerHTML = `
-      <div class="meaning-grid">
-        <div class="card soft">
-          <div class="card-title">核心含义</div>
-          <p class="core-text">${item.core}</p>
-          <div style="height:18px"></div>
-          <div class="card-title">关键词</div>
-          <div class="tags">${tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
-        </div>
-        <div class="card">
-          <div class="card-title">基本信息</div>
-          <div class="info-list">
-            <div class="info-row"><div class="info-label">古语</div><div>${item.text}</div></div>
-            <div class="info-row"><div class="info-label">拼音</div><div>${item.pinyin}</div></div>
-            <div class="info-row"><div class="info-label">出处</div><div>${item.source}</div></div>
-            <div class="info-row"><div class="info-label">主题</div><div>${item.category}</div></div>
-          </div>
-        </div>
+      <div class="list-toolbar">
+        <div><h3>${escapeHtml(title)}</h3><p>Nhấn vào một câu để xem pinyin, giải nghĩa từ, nguồn và ý chính.</p></div>
+      </div>
+      <div class="list-stack">
+        ${list.map(item => {
+          const open = state.openId === item.id;
+          return `
+          <article class="list-item ${open ? 'open' : ''}" data-id="${item.id}">
+            <button class="list-row" type="button" aria-expanded="${open ? 'true' : 'false'}">
+              <span class="list-no">${String(item.id).padStart(2,'0')}</span>
+              <span class="list-title">${escapeHtml(item.text)}</span>
+              <span class="list-status"><span class="learned-dot ${state.learned.has(item.id) ? 'on' : ''}"></span><span>${state.learned.has(item.id) ? 'Đã thuộc' : ''}</span><span class="chev">⌄</span></span>
+            </button>
+            <div class="list-detail">
+              <div class="detail-grid">
+                <div class="detail-block"><div class="detail-label">Pinyin</div><div class="detail-value">${escapeHtml(item.pinyin)}</div></div>
+                <div class="detail-block"><div class="detail-label">Nguồn</div><div class="detail-value">${escapeHtml(item.source)}</div></div>
+                <div class="detail-block full"><div class="detail-label">Giải nghĩa từ</div><div class="detail-value">${escapeHtml(item.gloss)}</div></div>
+                <div class="detail-block full"><div class="detail-label">Ý chính</div><div class="detail-value core">${escapeHtml(item.core)}</div></div>
+              </div>
+              <div class="detail-actions">
+                <button class="btn btn-ghost btn-small listen-row" type="button">🔊 Nghe</button>
+                <button class="btn ${state.learned.has(item.id) ? 'btn-primary learned' : 'btn-ghost'} btn-small learn-row" type="button">${state.learned.has(item.id) ? '✓ Đã thuộc' : 'Đánh dấu đã thuộc'}</button>
+              </div>
+            </div>
+          </article>`;
+        }).join('')}
       </div>`;
+
+    $$('.list-item', panel).forEach(article => {
+      const id = Number(article.dataset.id);
+      const row = $('.list-row', article);
+      row.addEventListener('click', () => {
+        state.currentId = id;
+        state.openId = state.openId === id ? null : id;
+        const item = currentItem();
+        if (item) state.category = item.category;
+        saveState();
+        renderTopbar();
+        renderHero();
+        renderList(panel);
+      });
+      $('.listen-row', article).addEventListener('click', event => {
+        event.stopPropagation();
+        const item = DATA.find(x => x.id === id);
+        if (item) speakText(item.text);
+      });
+      $('.learn-row', article).addEventListener('click', event => {
+        event.stopPropagation();
+        toggleLearned(id);
+        renderProgress();
+        renderHero();
+        renderList(panel);
+      });
+    });
+  }
+
+  function flashDeck() {
+    const list = visibleItems();
+    return list.length ? list : DATA;
+  }
+
+  function moveCurrent(delta) {
+    const deck = flashDeck();
+    if (!deck.length) return;
+    let index = deck.findIndex(item => item.id === state.currentId);
+    if (index < 0) index = 0;
+    index = (index + delta + deck.length) % deck.length;
+    state.currentId = deck[index].id;
+    state.category = deck[index].category;
+    state.openId = null;
+    saveState();
   }
 
   function renderFlashcard(panel) {
     const item = currentItem();
+    const deck = flashDeck();
+    if (!item || !deck.length) {
+      panel.innerHTML = '<div class="empty-state">Không có flashcard để hiển thị.</div>';
+      return;
+    }
+    const index = Math.max(0, deck.findIndex(x => x.id === item.id));
     panel.innerHTML = `
-      <div class="flashcard-wrap">
-        <div>
-          <div class="flashcard" id="flashcard">
-            <div class="flashcard-inner">
-              <div class="flash-face flash-front">
-                <div class="card-title">看古语 · 先回忆含义</div>
-                <h4>${item.text}</h4>
-                <div class="flash-hint">点击卡片查看答案</div>
-              </div>
-              <div class="flash-face flash-back">
-                <div class="card-title">答案</div>
-                <p>${item.core}</p>
-                <div class="pinyin">${item.pinyin}</div>
-                <div class="source">${item.source}</div>
+      <div class="flash-stage">
+        <div class="flash-meta"><span>Nhấn vào thẻ để lật</span><span>${index + 1} / ${deck.length}</span></div>
+        <div class="flashcard" id="flashcard" role="button" tabindex="0" aria-label="Lật flashcard">
+          <div class="flashcard-inner">
+            <div class="flash-face flash-front">
+              <div class="flash-kicker">Nhớ nghĩa trước khi lật</div>
+              <div class="flash-text">${escapeHtml(item.text)}</div>
+              <div class="flash-hint">Chạm / nhấn để xem đáp án</div>
+            </div>
+            <div class="flash-face flash-back">
+              <h3 class="back-title">${escapeHtml(item.text)}</h3>
+              <div class="back-pinyin">${escapeHtml(item.pinyin)}</div>
+              <div class="back-grid">
+                <div class="back-box"><strong>Giải nghĩa từ</strong><p>${escapeHtml(item.gloss)}</p></div>
+                <div class="back-box"><strong>Nguồn</strong><p>${escapeHtml(item.source)}</p></div>
+                <div class="back-box full"><strong>Ý chính</strong><p>${escapeHtml(item.core)}</p></div>
               </div>
             </div>
           </div>
-          <div class="flash-actions">
-            <button class="ghost-btn" id="againBtn">还不熟</button>
-            <button class="primary-btn" id="knowBtn">我会了</button>
-          </div>
+        </div>
+        <div class="flash-controls">
+          <button class="btn btn-ghost" id="flashPrev" type="button">← Trước</button>
+          <button class="btn btn-ghost" id="flashListen" type="button">🔊 Nghe</button>
+          <button class="btn btn-primary ${state.learned.has(item.id) ? 'learned' : ''}" id="flashLearn" type="button">${state.learned.has(item.id) ? '✓ Đã thuộc' : 'Đánh dấu đã thuộc'}</button>
+          <button class="btn btn-ghost" id="flashNext" type="button">Sau →</button>
         </div>
       </div>`;
-    $('#flashcard').addEventListener('click', e => e.currentTarget.classList.toggle('flipped'));
-    $('#knowBtn').addEventListener('click', () => {
-      state.learned.add(item.id); saveState(); renderProgress(); renderHeader(); toast('已标记为掌握');
+
+    const card = $('#flashcard');
+    const flip = () => card.classList.toggle('flipped');
+    card.addEventListener('click', flip);
+    card.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); flip(); }
     });
-    $('#againBtn').addEventListener('click', () => {
-      state.learned.delete(item.id); saveState(); renderProgress(); renderHeader(); toast('已加入继续复习');
-    });
+    $('#flashPrev').addEventListener('click', () => { moveCurrent(-1); renderTopbar(); renderHero(); renderFlashcard(panel); });
+    $('#flashNext').addEventListener('click', () => { moveCurrent(1); renderTopbar(); renderHero(); renderFlashcard(panel); });
+    $('#flashListen').addEventListener('click', () => speakText(item.text));
+    $('#flashLearn').addEventListener('click', () => { toggleLearned(item.id); renderProgress(); renderHero(); renderFlashcard(panel); });
   }
 
-  function shuffled(arr) {
-    const a = [...arr];
+  function shuffled(array) {
+    const a = [...array];
     for (let i = a.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [a[i], a[j]] = [a[j], a[i]];
@@ -217,232 +349,314 @@
     return a;
   }
 
-  function practicePool() {
-    const same = DATA.filter(x => x.category === currentItem().category && x.id !== currentItem().id);
-    return same.length >= 3 ? same : DATA.filter(x => x.id !== currentItem().id);
+  function randomItemFrom(list) {
+    return list[Math.floor(Math.random() * list.length)];
   }
 
-  function recordMistake(id) {
-    state.mistakes[id] = (state.mistakes[id] || 0) + 1;
+  function makeFill(item) {
+    const segments = item.text.split(/[，；。？！、：]/).filter(Boolean).sort((a,b) => b.length - a.length);
+    const segment = segments[0] || item.text;
+    const chars = Array.from(segment);
+    const len = Math.min(chars.length, chars.length <= 3 ? 1 : chars.length <= 6 ? 2 : 3);
+    const maxStart = Math.max(0, chars.length - len);
+    const start = Math.floor(Math.random() * (maxStart + 1));
+    const answer = chars.slice(start, start + len).join('');
+    const blank = '＿'.repeat(len);
+    const prompt = item.text.replace(answer, blank);
+    return { answer, prompt };
+  }
+
+  function resetPracticeQuestion() {
+    state.practice.itemId = null;
+    state.practice.answered = false;
+    state.practice.fillAnswer = '';
+    state.practice.fillPrompt = '';
+  }
+
+  function ensurePracticeQuestion() {
+    const pool = visibleItems().length ? visibleItems() : DATA;
+    if (!pool.length) return null;
+    let item = DATA.find(x => x.id === state.practice.itemId);
+    if (!item || !pool.some(x => x.id === item.id)) {
+      item = randomItemFrom(pool);
+      state.practice.itemId = item.id;
+      state.practice.answered = false;
+      const fill = makeFill(item);
+      state.practice.fillAnswer = fill.answer;
+      state.practice.fillPrompt = fill.prompt;
+    }
+    return item;
+  }
+
+  function nextPracticeQuestion(panel) {
+    const pool = visibleItems().length ? visibleItems() : DATA;
+    if (!pool.length) return;
+    const other = pool.filter(item => item.id !== state.practice.itemId);
+    const next = randomItemFrom(other.length ? other : pool);
+    state.practice.itemId = next.id;
+    state.practice.answered = false;
+    const fill = makeFill(next);
+    state.practice.fillAnswer = fill.answer;
+    state.practice.fillPrompt = fill.prompt;
+    renderPractice(panel);
+  }
+
+  function markPracticeResult(item, correct) {
+    state.practice.total += 1;
+    if (correct) {
+      state.practice.score += 1;
+      state.mistakes.delete(item.id);
+    } else {
+      state.mistakes.add(item.id);
+    }
     saveState();
   }
 
   function renderPractice(panel) {
+    const item = ensurePracticeQuestion();
+    if (!item) {
+      panel.innerHTML = '<div class="empty-state">Không có dữ liệu bài tập.</div>';
+      return;
+    }
     panel.innerHTML = `
-      <div class="practice-toolbar">
-        <button class="mode-btn ${state.practiceMode==='meaning'?'active':''}" data-mode="meaning">看古语选含义</button>
-        <button class="mode-btn ${state.practiceMode==='fill'?'active':''}" data-mode="fill">补全名句</button>
-        <button class="mode-btn ${state.practiceMode==='match'?'active':''}" data-mode="match">古语配对</button>
-      </div>
-      <div id="practiceBody"></div>`;
-    $$('.mode-btn').forEach(btn => btn.addEventListener('click', () => {
-      state.practiceMode = btn.dataset.mode;
+      <div class="practice-shell">
+        <div class="practice-top">
+          <div class="mode-switch" aria-label="Loại bài tập">
+            <button class="mode-btn ${state.practice.mode === 'choice' ? 'active' : ''}" type="button" data-mode="choice">Chọn đáp án</button>
+            <button class="mode-btn ${state.practice.mode === 'fill' ? 'active' : ''}" type="button" data-mode="fill">Điền từ</button>
+          </div>
+          <div class="practice-score">Đúng ${state.practice.score} / ${state.practice.total}</div>
+        </div>
+        <div id="questionArea"></div>
+      </div>`;
+
+    $$('.mode-btn', panel).forEach(btn => btn.addEventListener('click', () => {
+      state.practice.mode = btn.dataset.mode;
+      state.practice.answered = false;
+      if (state.practice.mode === 'fill') {
+        const fill = makeFill(item);
+        state.practice.fillAnswer = fill.answer;
+        state.practice.fillPrompt = fill.prompt;
+      }
       renderPractice(panel);
     }));
-    if (state.practiceMode === 'meaning') renderMeaningQuiz($('#practiceBody'));
-    if (state.practiceMode === 'fill') renderFillQuiz($('#practiceBody'));
-    if (state.practiceMode === 'match') renderMatchQuiz($('#practiceBody'));
+
+    if (state.practice.mode === 'choice') renderChoiceQuestion($('#questionArea', panel), item, panel);
+    else renderFillQuestion($('#questionArea', panel), item, panel);
   }
 
-  function renderMeaningQuiz(root) {
-    const item = currentItem();
-    const distractors = shuffled(practicePool()).slice(0,3).map(x => x.core);
-    const options = shuffled([item.core, ...distractors]);
-    root.innerHTML = `
+  function renderChoiceQuestion(area, item, panel) {
+    const distractors = shuffled(DATA.filter(x => x.id !== item.id)).slice(0, 3);
+    const options = shuffled([item, ...distractors]);
+    area.innerHTML = `
       <div class="question-card">
-        <div class="question-label">选择题</div>
-        <h4 class="question-title">“${item.text}”最接近下面哪一个意思？</h4>
-        <div class="options">${options.map((o,i)=>`<button class="option" data-value="${encodeURIComponent(o)}">${String.fromCharCode(65+i)}. ${o}</button>`).join('')}</div>
-        <div class="feedback" id="feedback"></div>
+        <div class="question-label">Chọn ý nghĩa phù hợp nhất</div>
+        <h3 class="question-text">${escapeHtml(item.text)}</h3>
+        <div class="option-list">
+          ${options.map((opt, i) => `<button class="option-btn" type="button" data-id="${opt.id}"><strong>${String.fromCharCode(65+i)}.</strong> ${escapeHtml(opt.core)}</button>`).join('')}
+        </div>
+        <div class="feedback" id="practiceFeedback"></div>
+        <div class="question-footer"><button class="btn btn-primary" id="nextQuestion" type="button" hidden>Câu tiếp theo →</button></div>
       </div>`;
-    $$('.option').forEach(btn => btn.addEventListener('click', () => {
-      if (root.dataset.answered) return;
-      root.dataset.answered = '1';
-      const value = decodeURIComponent(btn.dataset.value);
-      const correct = value === item.core;
-      btn.classList.add(correct ? 'correct' : 'wrong');
-      $$('.option').forEach(b => {
-        if (decodeURIComponent(b.dataset.value) === item.core) b.classList.add('correct');
+
+    $$('.option-btn', area).forEach(btn => btn.addEventListener('click', () => {
+      if (state.practice.answered) return;
+      state.practice.answered = true;
+      const chosenId = Number(btn.dataset.id);
+      const correct = chosenId === item.id;
+      markPracticeResult(item, correct);
+      $$('.option-btn', area).forEach(option => {
+        option.disabled = true;
+        const id = Number(option.dataset.id);
+        if (id === item.id) option.classList.add('correct');
+        else if (id === chosenId) option.classList.add('wrong');
       });
-      if (!correct) recordMistake(item.id);
-      const fb = $('#feedback');
-      fb.textContent = correct ? '✓ 正确！继续保持。' : `答案：${item.core}`;
-      fb.classList.add('show');
+      const feedback = $('#practiceFeedback', area);
+      feedback.className = `feedback show ${correct ? 'good' : 'bad'}`;
+      feedback.innerHTML = correct
+        ? `Chính xác. <strong>${escapeHtml(item.source)}</strong>`
+        : `Đáp án đúng: <strong>${escapeHtml(item.core)}</strong>`;
+      $('#nextQuestion', area).hidden = false;
+      renderProgress();
     }));
+
+    $('#nextQuestion', area).addEventListener('click', () => nextPracticeQuestion(panel));
   }
 
-  function makeBlank(text) {
-    const pieces = text.split(/[，；]/).filter(Boolean);
-    if (pieces.length > 1) {
-      const answer = pieces[pieces.length - 1].replace(/[。]/g,'');
-      const index = text.lastIndexOf(answer);
-      return {masked: text.slice(0,index) + '＿＿＿＿', answer};
-    }
-    const chars = [...text];
-    const n = Math.min(4, Math.max(2, Math.floor(chars.length / 2)));
-    const answer = chars.slice(-n).join('');
-    return {masked: chars.slice(0,-n).join('') + '＿＿＿＿', answer};
-  }
-
-  function renderFillQuiz(root) {
-    const item = currentItem();
-    const {masked, answer} = makeBlank(item.text);
-    root.innerHTML = `
+  function renderFillQuestion(area, item, panel) {
+    area.innerHTML = `
       <div class="question-card">
-        <div class="question-label">填空题</div>
-        <h4 class="question-title">${masked}</h4>
-        <div class="fill-row">
-          <input class="fill-input" id="fillInput" placeholder="输入缺少的部分" autocomplete="off" />
-          <button class="primary-btn" id="checkFill">检查</button>
-        </div>
-        <div class="feedback" id="feedback"></div>
+        <div class="question-label">Điền phần còn thiếu</div>
+        <div class="fill-prompt">${escapeHtml(state.practice.fillPrompt)}</div>
+        <form class="fill-form" id="fillForm">
+          <input class="fill-input" id="fillInput" type="text" autocomplete="off" placeholder="Nhập chữ Hán còn thiếu…" aria-label="Đáp án" />
+          <button class="btn btn-primary" type="submit">Kiểm tra</button>
+        </form>
+        <div class="feedback" id="practiceFeedback"></div>
+        <div class="question-footer"><button class="btn btn-primary" id="nextQuestion" type="button" hidden>Câu tiếp theo →</button></div>
       </div>`;
-    $('#checkFill').addEventListener('click', () => {
-      const val = $('#fillInput').value.trim().replace(/[，。；、\s]/g,'');
-      const target = answer.replace(/[，。；、\s]/g,'');
-      const correct = val === target;
-      if (!correct) recordMistake(item.id);
-      const fb = $('#feedback');
-      fb.textContent = correct ? '✓ 正确！' : `答案：${answer}`;
-      fb.classList.add('show');
+
+    $('#fillForm', area).addEventListener('submit', event => {
+      event.preventDefault();
+      if (state.practice.answered) return;
+      const value = $('#fillInput', area).value.trim().replace(/\s+/g, '');
+      if (!value) { toast('Hãy nhập đáp án trước.'); return; }
+      state.practice.answered = true;
+      const correct = value === state.practice.fillAnswer;
+      markPracticeResult(item, correct);
+      $('#fillInput', area).disabled = true;
+      const feedback = $('#practiceFeedback', area);
+      feedback.className = `feedback show ${correct ? 'good' : 'bad'}`;
+      feedback.innerHTML = correct
+        ? `Chính xác. Câu đầy đủ: <strong>${escapeHtml(item.text)}</strong>`
+        : `Đáp án: <strong>${escapeHtml(state.practice.fillAnswer)}</strong><br>Câu đầy đủ: ${escapeHtml(item.text)}`;
+      $('#nextQuestion', area).hidden = false;
     });
-    $('#fillInput').addEventListener('keydown', e => { if (e.key === 'Enter') $('#checkFill').click(); });
+    $('#nextQuestion', area).addEventListener('click', () => nextPracticeQuestion(panel));
+    setTimeout(() => $('#fillInput', area)?.focus(), 0);
   }
 
-  function renderMatchQuiz(root) {
-    const group = shuffled(DATA.filter(x => x.category === currentItem().category)).slice(0,4);
-    const left = shuffled(group);
-    const right = shuffled(group);
-    root.innerHTML = `
-      <div class="question-card">
-        <div class="question-label">配对题</div>
-        <h4 class="question-title">把古语和它的核心含义配对</h4>
-        <div class="match-grid">
-          <div class="match-col">${left.map(x=>`<button class="match-card left" data-id="${x.id}">${x.text}</button>`).join('')}</div>
-          <div class="match-col">${right.map(x=>`<button class="match-card right" data-id="${x.id}">${x.core}</button>`).join('')}</div>
-        </div>
-        <div class="feedback" id="feedback">完成 4 组即可过关。</div>
-      </div>`;
-    let selectedLeft = null, selectedRight = null, matched = 0;
-    const tryMatch = () => {
-      if (!selectedLeft || !selectedRight) return;
-      if (selectedLeft.dataset.id === selectedRight.dataset.id) {
-        selectedLeft.classList.add('matched'); selectedRight.classList.add('matched');
-        selectedLeft.disabled = true; selectedRight.disabled = true; matched++;
-        selectedLeft = selectedRight = null;
-        if (matched === group.length) {
-          const fb = $('#feedback'); fb.textContent = '✓ 全部配对正确！'; fb.classList.add('show');
-        }
-      } else {
-        const wrongId = Number(selectedLeft.dataset.id);
-        recordMistake(wrongId);
-        selectedLeft.classList.add('wrong'); selectedRight.classList.add('wrong');
-        setTimeout(() => {
-          selectedLeft?.classList.remove('wrong','selected');
-          selectedRight?.classList.remove('wrong','selected');
-          selectedLeft = selectedRight = null;
-        }, 450);
-      }
-    };
-    $$('.match-card.left').forEach(btn => btn.addEventListener('click', () => {
-      if (btn.disabled) return;
-      $$('.match-card.left').forEach(b=>b.classList.remove('selected'));
-      selectedLeft = btn; btn.classList.add('selected'); tryMatch();
-    }));
-    $$('.match-card.right').forEach(btn => btn.addEventListener('click', () => {
-      if (btn.disabled) return;
-      $$('.match-card.right').forEach(b=>b.classList.remove('selected'));
-      selectedRight = btn; btn.classList.add('selected'); tryMatch();
-    }));
+  const ARGUMENT_CONTEXT = {
+    '认识与思维': '面对复杂问题，我们既要关注局部，也要保持整体视角。',
+    '学习与求知': '真正有效的学习，不只在于知识的数量，更在于方法、理解与实践。',
+    '行动与积累': '实现目标不能停留在愿望上，而要落实到持续而具体的行动。',
+    '坚持与逆境': '面对困难与挫折，人的态度往往决定能否继续前进。',
+    '辩证与变化': '看待事物时，不能把问题绝对化，而应关注条件、尺度与变化。',
+    '心态与自省': '成长不仅需要向外学习，也需要不断向内反思。',
+    '人际与合作': '良好的人际关系与合作，建立在尊重、理解与共同努力之上。',
+    '规则、诚信与责任': '个人与社会的稳定发展，都离不开规则、诚信与责任。',
+    '时间、选择与目标': '面对有限的时间与资源，我们需要学会规划、选择并及时行动。',
+    '情谊、胸怀与生态价值': '人与人、人与社会乃至人与自然，都需要更宽广、更长远的眼光。'
+  };
+
+  function trimSentence(text) {
+    return String(text || '').replace(/[。；;\s]+$/g, '');
   }
 
-  function renderUsage(panel) {
+  function argumentExamples(item) {
+    const context = ARGUMENT_CONTEXT[item.category] || '面对现实问题，我们需要从经验中提炼更稳定的判断。';
+    const core = trimSentence(item.core);
+    return [
+      `${context}正所谓“${item.text}”，${core}。`,
+      `从现实角度看，“${item.text}”至今仍具有启发意义，它提醒我们：${core}。`
+    ];
+  }
+
+  function renderArgument(panel) {
     const item = currentItem();
-    const lead = EXAMPLE_LEADS[item.category];
+    if (!item) return;
+    const examples = argumentExamples(item);
     panel.innerHTML = `
-      <div class="usage-grid">
-        <div class="card soft">
-          <div class="card-title">写作例句 01</div>
-          <p class="usage-sentence">${lead} 正所谓“${item.text}”，${item.core.replace(/。$/,'')}。</p>
-          <div class="usage-note">适合用来引出观点或总结一个道理。</div>
+      <div class="argument-wrap">
+        <div class="argument-intro">Hai câu mẫu dưới đây minh họa cách đưa cổ ngữ vào đoạn nghị luận một cách tự nhiên. Có thể thay đổi chủ đề và phần lập luận phía sau.</div>
+        <div class="argument-quote">${escapeHtml(item.text)}</div>
+        <div class="example-list">
+          ${examples.map((example, index) => `
+            <div class="example-card">
+              <span class="example-no">${index + 1}</span>
+              <p>${escapeHtml(example)}</p>
+            </div>`).join('')}
         </div>
-        <div class="card">
-          <div class="card-title">写作例句 02</div>
-          <p class="usage-sentence">古人所说的“${item.text}”至今仍有现实意义。它提醒我们，${item.core.replace(/。$/,'')}。</p>
-          <div class="usage-note">适合放在议论文主体段或结尾。</div>
+        <div class="pattern-card">
+          <strong>Mẫu câu có thể tái sử dụng</strong>
+          <p>正所谓“……”，……。<br>从现实角度看，“……”至今仍具有启发意义，它提醒我们：……。</p>
         </div>
-      </div>
-      <div style="height:18px"></div>
-      <div class="template-box">
-        <strong>可套用句型：</strong><br>
-        正所谓“……”，……<br>
-        古人云：“……”。因此，……<br>
-        从这个角度来看，“……”至今仍有现实意义。<br>
-        这也印证了“……”这一道理。
       </div>`;
+  }
+
+  function toggleLearned(id = state.currentId) {
+    if (state.learned.has(id)) state.learned.delete(id);
+    else state.learned.add(id);
+    saveState();
+  }
+
+  function randomCurrent() {
+    const pool = visibleItems().length ? visibleItems() : DATA;
+    if (!pool.length) return;
+    const chosen = randomItemFrom(pool);
+    state.currentId = chosen.id;
+    state.category = chosen.category;
+    state.openId = state.tab === 'list' ? chosen.id : null;
+    resetPracticeQuestion();
+    saveState();
+    renderAll();
+    if (state.tab === 'list') {
+      setTimeout(() => document.querySelector(`.list-item[data-id="${chosen.id}"]`)?.scrollIntoView({behavior:'smooth', block:'center'}), 30);
+    }
+  }
+
+  function openSidebar() { document.body.classList.add('sidebar-open'); }
+  function closeSidebar() { document.body.classList.remove('sidebar-open'); }
+
+  function bindStaticEvents() {
+    $$('.tab').forEach(tab => tab.addEventListener('click', () => {
+      state.tab = tab.dataset.tab;
+      if (state.tab === 'practice') resetPracticeQuestion();
+      saveState();
+      renderTabs();
+    }));
+
+    $('#randomBtn').addEventListener('click', randomCurrent);
+    $('#markLearnedBtn').addEventListener('click', () => {
+      toggleLearned();
+      renderProgress();
+      renderHero();
+      renderTabs();
+      toast(state.learned.has(state.currentId) ? 'Đã đánh dấu là thuộc.' : 'Đã bỏ đánh dấu.');
+    });
+    $('#favoriteBtn').addEventListener('click', () => {
+      const id = state.currentId;
+      if (state.favorites.has(id)) state.favorites.delete(id); else state.favorites.add(id);
+      saveState();
+      renderHero();
+    });
+    $('#speakBtn').addEventListener('click', () => currentItem() && speakText(currentItem().text));
+
+    $('#reviewMistakesBtn').addEventListener('click', () => {
+      if (!state.mistakes.size) { toast('Chưa có câu sai để ôn.'); return; }
+      state.reviewMistakes = true;
+      state.search = '';
+      $('#searchInput').value = '';
+      state.tab = 'list';
+      state.currentId = DATA.find(item => state.mistakes.has(item.id))?.id || state.currentId;
+      state.openId = state.currentId;
+      closeSidebar();
+      renderAll();
+    });
+
+    $('#searchInput').addEventListener('input', event => {
+      state.search = event.target.value;
+      state.reviewMistakes = false;
+      state.tab = 'list';
+      const results = searchItems();
+      if (results.length) {
+        state.currentId = results[0].id;
+        state.category = results[0].category;
+      }
+      state.openId = null;
+      renderAll();
+    });
+
+    $('#menuBtn').addEventListener('click', openSidebar);
+    $('#sidebarBackdrop').addEventListener('click', closeSidebar);
+    window.addEventListener('resize', () => { if (window.innerWidth > 780) closeSidebar(); });
   }
 
   function renderAll() {
+    ensureCurrentVisible();
     renderCategories();
     renderProgress();
-    renderStrip();
-    renderHeader();
+    renderTopbar();
+    renderHero();
     renderTabs();
   }
 
-  function move(delta) {
-    const list = visibleItems();
-    if (!list.length) return;
-    const i = Math.max(0, list.findIndex(x => x.id === state.currentId));
-    const next = list[(i + delta + list.length) % list.length];
-    state.currentId = next.id;
-    state.category = next.category;
-    renderAll();
+  if ('speechSynthesis' in window) {
+    loadVoices();
+    window.speechSynthesis.addEventListener?.('voiceschanged', loadVoices);
+    window.speechSynthesis.onvoiceschanged = loadVoices;
   }
 
-  // Static handlers
-  $$('.tab').forEach(tab => tab.addEventListener('click', () => {
-    state.tab = tab.dataset.tab;
-    renderTabs();
-  }));
-  $('#prevBtn').addEventListener('click', () => move(-1));
-  $('#nextBtn').addEventListener('click', () => move(1));
-  $('#markLearnedBtn').addEventListener('click', () => {
-    const id = currentItem().id;
-    if (state.learned.has(id)) state.learned.delete(id); else state.learned.add(id);
-    saveState(); renderAll();
-  });
-  $('#favoriteBtn').addEventListener('click', () => {
-    const id = currentItem().id;
-    if (state.favorites.has(id)) state.favorites.delete(id); else state.favorites.add(id);
-    saveState(); renderHeader(); toast(state.favorites.has(id) ? '已收藏' : '已取消收藏');
-  });
-  $('#randomBtn').addEventListener('click', () => {
-    const item = DATA[Math.floor(Math.random() * DATA.length)];
-    state.search = ''; $('#searchInput').value = ''; state.reviewMistakes = false;
-    state.currentId = item.id; state.category = item.category; renderAll();
-  });
-  $('#reviewMistakesBtn').addEventListener('click', () => {
-    const ids = Object.keys(state.mistakes).filter(id => state.mistakes[id] > 0);
-    if (!ids.length) { toast('目前还没有错题'); return; }
-    state.reviewMistakes = true; state.search = ''; $('#searchInput').value='';
-    state.currentId = Number(ids[0]); state.category = currentItem().category; renderAll();
-  });
-  $('#searchInput').addEventListener('input', e => {
-    state.search = e.target.value;
-    state.reviewMistakes = false;
-    const list = visibleItems();
-    if (list.length) { state.currentId = list[0].id; state.category = list[0].category; }
-    renderAll();
-  });
-  $('#menuBtn').addEventListener('click', () => $('#sidebar').classList.toggle('open'));
-  $('#speakBtn').addEventListener('click', () => {
-    if (!('speechSynthesis' in window)) { toast('Trình duyệt này chưa hỗ trợ đọc tự động'); return; }
-    speechSynthesis.cancel();
-    const utter = new SpeechSynthesisUtterance(currentItem().text);
-    utter.lang = 'zh-CN'; utter.rate = .8;
-    speechSynthesis.speak(utter);
-  });
-
+  bindStaticEvents();
   renderAll();
 })();

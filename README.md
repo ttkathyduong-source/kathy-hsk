@@ -1,24 +1,24 @@
-# HSK 7–9 古语100句 · Netlify static site
+# Kathy Dương · HSK 7–9 冲刺班
 
-Trang web tĩnh, không cần build tool. Chỉ cần kéo toàn bộ thư mục lên Netlify Drop hoặc push lên GitHub rồi kết nối Netlify.
+Website tĩnh, có thể deploy trực tiếp lên Netlify.
 
-## Files
-- `index.html` — giao diện chính
-- `styles.css` — theme màu `#2060B6`
-- `data.js` — dữ liệu 100 câu cổ ngữ
-- `app.js` — logic học, flashcard, bài tập, localStorage
-- `netlify.toml` — cấu hình deploy Netlify
+## Nội dung
+- 120 câu cổ ngữ, chia thành 10 chủ đề.
+- Danh sách dạng accordion: nhấn vào câu để xem pinyin, giải nghĩa từ, nguồn và ý chính.
+- Flashcard lật thẻ.
+- Bài tập trắc nghiệm và điền từ.
+- Câu nghị luận mẫu.
+- Nút nghe dùng Web Speech API của trình duyệt (`zh-CN`).
+- Lưu tiến độ, câu yêu thích và câu sai bằng `localStorage`.
+- Tone màu chính: `#2060B6`.
+- Footer: Phát triển bởi Kathy Dương.
 
-## Cách deploy nhanh
+## Deploy Netlify
 1. Giải nén thư mục.
 2. Vào Netlify → Add new site → Deploy manually.
-3. Kéo cả thư mục `kathy-hsk-netlify` vào vùng upload.
-4. Netlify sẽ cấp URL ngay.
+3. Kéo toàn bộ thư mục này vào vùng upload.
 
-## Chỉnh nội dung
-Dữ liệu nằm trong `data.js`. Mỗi mục gồm `text`, `pinyin`, `source`, `core`, `category`.
+Không cần npm, framework hay bước build.
 
-## Lưu ý
-Nguồn/出处 hiện dùng theo danh sách nội dung đã cung cấp; nên rà soát học thuật lần cuối trước khi xuất bản chính thức.
-
-Phát triển bởi Kathy Dương.
+## Lưu ý về nút nghe
+Nút nghe sử dụng giọng tiếng Trung có sẵn trên hệ điều hành/trình duyệt. Nếu thiết bị chưa cài giọng Trung Quốc phổ thông, trình duyệt có thể dùng giọng tiếng Trung gần nhất hoặc không phát được.

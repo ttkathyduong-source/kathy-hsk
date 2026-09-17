@@ -1,92 +1,86 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="vi">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="HSK 7–9 古语100句冲刺学习网页" />
-  <title>古语100句 · HSK 7–9</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;600;700&display=swap" rel="stylesheet">
+  <meta name="description" content="Kathy Dương · HSK 7–9 冲刺班 — 120 câu cổ ngữ ôn thi." />
+  <meta name="theme-color" content="#2060B6" />
+  <title>Kathy Dương · HSK 7–9 冲刺班</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="app-shell">
     <aside class="sidebar" id="sidebar">
       <div class="brand">
-        <div class="brand-mark">古</div>
-        <div>
-          <h1>古语100句</h1>
-          <p>HSK 7–9 冲刺</p>
+        <div class="brand-mark">K</div>
+        <div class="brand-copy">
+          <h1>Kathy Dương</h1>
+          <p>HSK 7–9 冲刺班</p>
         </div>
       </div>
 
       <div class="sidebar-tools">
-        <label class="search-box">
-          <span>⌕</span>
-          <input id="searchInput" type="search" placeholder="搜索古语 / 出处…" />
+        <label class="search-box" for="searchInput">
+          <span aria-hidden="true">⌕</span>
+          <input id="searchInput" type="search" placeholder="Tìm câu, nguồn, từ khóa…" autocomplete="off" />
         </label>
       </div>
 
-      <nav id="categoryNav" class="category-nav" aria-label="主题分类"></nav>
+      <nav id="categoryNav" class="category-nav" aria-label="Danh mục chủ đề"></nav>
 
       <div class="sidebar-progress">
         <div class="progress-row">
-          <span>学习进度</span>
-          <strong id="learnedCount">0 / 100</strong>
+          <span>Tiến độ</span>
+          <strong id="learnedCount">0 / 120</strong>
         </div>
-        <div class="progress-track"><span id="progressBar"></span></div>
-        <button class="ghost-btn full" id="reviewMistakesBtn">复习错题</button>
+        <div class="progress-track" aria-hidden="true"><span id="progressBar"></span></div>
+        <button class="sidebar-btn" id="reviewMistakesBtn" type="button">Ôn câu sai</button>
       </div>
     </aside>
 
+    <button class="sidebar-backdrop" id="sidebarBackdrop" aria-label="Đóng menu"></button>
+
     <main class="main">
       <header class="topbar">
-        <button class="icon-btn mobile-only" id="menuBtn" aria-label="打开菜单">☰</button>
-        <div>
-          <div class="eyebrow" id="categoryTitle">认识与思维</div>
-          <h2 id="pageTitle">不识庐山真面目，只缘身在此山中</h2>
+        <button class="menu-btn" id="menuBtn" type="button" aria-label="Mở menu">☰</button>
+        <div class="topbar-copy">
+          <div class="eyebrow" id="sectionEyebrow">Chủ đề</div>
+          <h2 id="categoryTitle">认识与思维</h2>
+          <p id="categoryMeta">12 câu</p>
         </div>
         <div class="topbar-actions">
-          <button class="ghost-btn" id="randomBtn">随机一题</button>
-          <button class="primary-btn" id="markLearnedBtn">✓ 我会了</button>
+          <button class="btn btn-ghost" id="randomBtn" type="button">Ngẫu nhiên</button>
+          <button class="btn btn-primary" id="markLearnedBtn" type="button">✓ Đã thuộc</button>
         </div>
       </header>
 
-      <section class="hero-card">
+      <section class="hero-card" aria-labelledby="heroText">
         <div class="hero-main">
           <div class="item-number" id="itemNumber">01</div>
-          <div>
+          <div class="hero-copy">
             <h3 id="heroText">不识庐山真面目，只缘身在此山中</h3>
-            <p class="pinyin" id="heroPinyin">bù shí lú shān zhēn miàn mù，zhǐ yuán shēn zài cǐ shān zhōng</p>
-            <p class="source" id="heroSource">苏轼《题西林壁》</p>
+            <p class="pinyin" id="heroPinyin"></p>
+            <p class="source" id="heroSource"></p>
           </div>
         </div>
         <div class="hero-actions">
-          <button class="round-btn" id="favoriteBtn" title="收藏">☆</button>
-          <button class="round-btn" id="speakBtn" title="朗读">🔊</button>
+          <button class="round-btn" id="favoriteBtn" type="button" title="Yêu thích" aria-label="Yêu thích">☆</button>
+          <button class="round-btn" id="speakBtn" type="button" title="Nghe phát âm" aria-label="Nghe phát âm">🔊</button>
         </div>
-      </section>
-
-      <section class="item-strip-wrap">
-        <button class="strip-arrow" id="prevBtn" aria-label="上一句">‹</button>
-        <div class="item-strip" id="itemStrip"></div>
-        <button class="strip-arrow" id="nextBtn" aria-label="下一句">›</button>
       </section>
 
       <section class="workspace">
-        <div class="tabs" role="tablist">
-          <button class="tab active" data-tab="meaning">释义 · Giải nghĩa</button>
-          <button class="tab" data-tab="flashcard">Flashcard</button>
-          <button class="tab" data-tab="practice">练习 · Bài tập</button>
-          <button class="tab" data-tab="usage">活用 · Câu mẫu</button>
+        <div class="tabs" role="tablist" aria-label="Chế độ học">
+          <button class="tab active" type="button" data-tab="list" role="tab">Danh sách</button>
+          <button class="tab" type="button" data-tab="flashcard" role="tab">Flashcard</button>
+          <button class="tab" type="button" data-tab="practice" role="tab">Bài tập</button>
+          <button class="tab" type="button" data-tab="argument" role="tab">Câu nghị luận mẫu</button>
         </div>
-
         <div id="panel" class="panel"></div>
       </section>
 
       <footer class="footer">
-        <span>HSK 7–9 古语学习站</span>
+        <span>HSK 7–9 冲刺班 · 120 câu cổ ngữ</span>
         <span>Phát triển bởi <strong>Kathy Dương</strong></span>
       </footer>
     </main>
